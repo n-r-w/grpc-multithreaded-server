@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package ProtoShared;
+
+message Value {
+    oneof data {
+       string v_string = 1;
+       int64 v_int = 3;
+       double v_double = 4;
+       bool v_bool = 5;
+       bytes v_bytes = 6;
+       // дата+время (миллисекунды с начала эпохи)
+       uint64 v_date_time = 7;
+       // время в секундах
+       uint32 v_time = 8;
+       bool v_null = 9;
+    }
+}
+
+message PacketDataset {
+    message Row {
+        map<uint32,Value> data = 1;
+    }
+
+   uint32 column_count = 1;
+   uint64 row_count = 2;
+   map<uint64, Row> rows = 3;
+}
+
+message FlatDataset {
+    message Row {
+       repeated Value data  = 1;
+    }
+
+   uint32 column_count = 1;
+   repeated Row rows = 2;
+}
+
+message DataContainer {
+    uint32 structure_version = 1;
+    map<uint32,Value> fields = 2;
+
+    message Dataset {
+        oneof data {
+            PacketDataset packet = 1;
+            FlatDataset flat = 2;
+        }
+    }
+
+    map<uint32,Dataset> datasets = 3;
+    // Данные упакованы (используется PacketDataset)
+    bool packet_data = 4;
+}
+

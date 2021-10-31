@@ -1,0 +1,5 @@
+/prebuilds/grpc/bin/
+/prebuilds/grpc/include/
+/prebuilds/grpc/lib/
+/prebuilds/grpc/share/
+/third_party/grpc/sources/

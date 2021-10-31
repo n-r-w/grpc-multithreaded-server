@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package TestApi;
+
+service TestService {  
+  rpc ExecuteTestRequest1 (TestRequest) returns (TestReply);
+  rpc ExecuteTestRequest2 (TestRequest) returns (TestReply);
+}
+
+message TestRequest {
+  string info = 1;
+}
+
+message TestReply {
+  string info = 1;
+}
