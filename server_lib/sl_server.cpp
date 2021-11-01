@@ -1,16 +1,24 @@
 #include "sl_server.h"
 #include "sl_utils.h"
+#include <fstream>
 
 namespace sl
 {
 ServiceFactory* Server::_service_factory_global = nullptr;
+UserValidator* Server::_user_validator_global = nullptr;
 
-Server::Server(ServiceFactory* service_factory)
+Server::Server(ServiceFactory* service_factory, UserValidator* user_validator)
     : _service_factory(service_factory)
+    , _user_validator(user_validator)
 {
     assert(_service_factory != nullptr);
     assert(_service_factory_global == nullptr);
+
+    assert(_user_validator != nullptr);
+    assert(_user_validator_global == nullptr);
+
     _service_factory_global = _service_factory;
+    _user_validator_global = _user_validator;
 }
 
 Server::~Server()
@@ -24,10 +32,21 @@ ServiceFactory* Server::serviceFactory()
     return _service_factory_global;
 }
 
-void Server::start(const std::string& server_address, size_t thread_count)
+UserValidator* Server::userValidator()
+{
+    assert(_user_validator_global != nullptr);
+    return _user_validator_global;
+}
+
+void Server::start(const std::string& server_address, size_t thread_count, const std::string& root_cert, const std::string& ssl_cert,
+                   const std::string& ssl_key)
 {
     assert(thread_count > 0);
     assert(_thread == nullptr);
+
+    _root_cert = root_cert;
+    _ssl_cert = ssl_cert;
+    _ssl_key = ssl_key;
 
     _server_address = server_address;
     _thread_count = thread_count;
@@ -69,6 +88,14 @@ void Server::stop()
     }
 }
 
+static std::string read_keycert(const char* filename)
+{
+    std::ifstream ifs(filename);
+    std::string content;
+    content.assign((std::istreambuf_iterator<char>(ifs)), (std::istreambuf_iterator<char>()));
+    return content;
+}
+
 void Server::process()
 {
     _builder = std::make_unique<grpc::ServerBuilder>();
@@ -77,7 +104,28 @@ void Server::process()
     quota.SetMaxThreads(_thread_count);
     _builder->SetResourceQuota(quota);
 
-    _builder->AddListeningPort(_server_address, grpc::InsecureServerCredentials());
+    // параметры безопасности
+    std::shared_ptr<grpc::ServerCredentials> creds;
+    if (!_ssl_key.empty() && !_ssl_cert.empty()) {
+        grpc::SslServerCredentialsOptions::PemKeyCertPair pkcp;
+        pkcp.private_key = _ssl_key;
+        pkcp.cert_chain = _ssl_cert;
+
+        grpc::SslServerCredentialsOptions ssl_opts;
+
+#ifdef GPR_WINDOWS // https://grpc.io/docs/guides/auth/
+        ssl_opts.pem_root_certs = _root_cert;
+#endif
+        ssl_opts.pem_key_cert_pairs.push_back(pkcp);
+
+        creds = grpc::SslServerCredentials(ssl_opts);
+
+    } else {
+        creds = grpc::InsecureServerCredentials();
+    }
+
+    // устанавливаем порт и безопасность
+    _builder->AddListeningPort(_server_address, creds);
 
     for (auto& key : _service_factory->serviceKeys()) {
         _builder->RegisterService(_service_factory->getService(key));

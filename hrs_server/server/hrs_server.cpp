@@ -5,12 +5,12 @@
 namespace hrs
 {
 HrsServer::HrsServer()
-    : sl::Server(&_service_factory)
+    : sl::Server(&_service_factory, &_user_validator)
 {
 }
 
 sl::RequestWorker* HrsServer::createWorker(grpc::ServerCompletionQueue* queue)
 {
-    return new HrsRequestWorker(queue);
+    return new HrsRequestWorker(queue, &_user_validator);
 }
 } // namespace hrs

@@ -3,6 +3,7 @@
 #include "sl_stoppable_worker.h"
 #include "sl_request_processor.h"
 #include "sl_service_factory.h"
+#include "sl_auth.h"
 
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/ext/proto_server_reflection_plugin.h>
@@ -16,7 +17,9 @@ class RequestWorker : public StoppableWorker
 public:
     RequestWorker(
         //! Очередь
-        grpc::ServerCompletionQueue* queue);
+        grpc::ServerCompletionQueue* queue,
+        //! Проверка пользователей
+        UserValidator* user_validator);
     virtual ~RequestWorker();
 
     void start();
@@ -31,12 +34,16 @@ protected:
 
     //! Фабрика по созданию обработчиков запросов
     virtual std::vector<sl::RequestProcessorBase*> createRequestProcessors(const std::string& service_key) const = 0;
+    //! Извлечь из запроса логин и пароль
+    virtual bool extractUserValidationInfo(const grpc::ServerContext* context, std::string& login, std::string& password) const = 0;
 
 private:
     void process();
 
     //! Очередь
     grpc::ServerCompletionQueue* _queue = nullptr;
+    //! Проверка пользователей
+    UserValidator* _user_validator = nullptr;
 
     // Поток, в котором запускается
     std::thread* _thread = nullptr;

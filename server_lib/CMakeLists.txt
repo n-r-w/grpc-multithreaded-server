@@ -8,24 +8,9 @@ include(${TOP_SRS_DIR}/cmake_tools/grpc.cmake)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(SOURCES    
-    "sl_utils.h"
-    "sl_utils.cpp"
-
-    "sl_stoppable_worker.h"
-    "sl_stoppable_worker.cpp"
-
-    "sl_request_worker.h"
-    "sl_request_worker.cpp"
-
-    "sl_request_processor.h"
-    "sl_request_processor.cpp"
-
-    "sl_server.h"
-    "sl_server.cpp"
-
-    "sl_service_factory.h"
-    "sl_service_factory.cpp"
+file(GLOB SOURCES
+    "*.h"
+    "*.cpp"
 )
 
 add_library(${ID} SHARED

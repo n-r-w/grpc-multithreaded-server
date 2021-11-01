@@ -9,11 +9,15 @@ class HrsRequestWorker : public sl::RequestWorker
 public:
     HrsRequestWorker(
         //! Очередь
-        grpc::ServerCompletionQueue* queue);
+        grpc::ServerCompletionQueue* queue,
+        //! Проверка пользователей
+        sl::UserValidator* user_validator);
 
 protected:
     //! Фабрика по созданию обработчиков запросов
     std::vector<sl::RequestProcessorBase*> createRequestProcessors(const std::string& service_key) const override;
+    //! Извлечь из запроса логин и пароль
+    bool extractUserValidationInfo(const grpc::ServerContext* context, std::string& login, std::string& password) const override;
 };
 
 } // namespace hrs

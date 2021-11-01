@@ -33,7 +33,9 @@ class RequestProcessorBase
 {
 public:
     RequestProcessorBase() { }
-    virtual void run() = 0;
+    virtual void run(grpc::StatusCode code, const std::string& error_message = {}) = 0;
+    //! Контекст запроса
+    virtual grpc::ServerContext* context() const = 0;
 
 protected:
     virtual void waitForRequest() = 0;
@@ -61,7 +63,7 @@ public:
         assert(_service != nullptr);
     }
 
-    void run() override
+    void run(grpc::StatusCode code, const std::string& error_message = {}) override
     {
         if (_status == CREATE) {
             _status = PROCESS;
@@ -70,19 +72,21 @@ public:
         } else if (_status == PROCESS) {
             auto rp = createRequestProcessor();
             assert(rp != nullptr);
-            rp->run();
+            rp->run(grpc::StatusCode::OK);
 
-            handleRequest();
+            if (code == grpc::StatusCode::OK)
+                handleRequest();
             _status = FINISH;
-            _responder.Finish(_reply, grpc::Status::OK, this);
+            _responder.Finish(_reply, grpc::Status(code, error_message), this);
 
         } else {
             GPR_ASSERT(_status == FINISH);
             delete this;
         }
     }
-    //! Уникальный идентификатор сервиса
-    const std::string& serviceKey() const;
+
+    //! Контекст запроса
+    grpc::ServerContext* context() const final { return &_context; }
 
 protected:
     //! Очередь
@@ -90,9 +94,7 @@ protected:
     //! Обработчик потока
     const RequestWorker* worker() const { return _worker; }
     //! Сервис
-    ServiceType* service() const { return _service; }
-    //! Контекст запроса
-    grpc::ServerContext* context() const { return &_context; }
+    ServiceType* service() const { return _service; }    
     //! Запрос
     RequestType* request() const { return &_request; }
     //! Ответ

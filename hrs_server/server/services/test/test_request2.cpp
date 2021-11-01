@@ -11,7 +11,7 @@ void TestRequestProcessor2::handleRequest()
     sl::Utils::coutPrint("TestRequestProcessor2::process");
 
     double xxx = 0;
-    size_t counter = 999999999;
+    size_t counter = 99999999;
     for (size_t i = 0; i < counter; i++) {
         xxx += counter / (i + 1);
     }

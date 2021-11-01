@@ -2,4 +2,7 @@
 /prebuilds/grpc/include/
 /prebuilds/grpc/lib/
 /prebuilds/grpc/share/
+/build/
+/bin/
 /third_party/grpc/sources/
+/CMakeLists.txt.user

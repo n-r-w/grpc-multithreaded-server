@@ -3,11 +3,12 @@
 
 #include <services/sql/srv_sql.h>
 #include <services/test/srv_test.h>
+#include "hrs_auth.h"
 
 namespace hrs
 {
-HrsRequestWorker::HrsRequestWorker(grpc::ServerCompletionQueue* queue)
-    : RequestWorker(queue)
+HrsRequestWorker::HrsRequestWorker(grpc::ServerCompletionQueue* queue, sl::UserValidator* user_validator)
+    : RequestWorker(queue, user_validator)
 {
 }
 
@@ -26,6 +27,23 @@ std::vector<sl::RequestProcessorBase*> HrsRequestWorker::createRequestProcessors
 
     assert(false);
     return {};
+}
+
+bool HrsRequestWorker::extractUserValidationInfo(const grpc::ServerContext* context, std::string& login, std::string& password) const
+{
+    auto meta = context->client_metadata().find(UserValidator::LOGIN_METADATA);
+    if (meta != context->client_metadata().end())
+        login = std::string(meta->second.begin(), meta->second.end());
+    else
+        return false;
+
+    meta = context->client_metadata().find(UserValidator::PASSWORD_METADATA);
+    if (meta != context->client_metadata().end())
+        password = std::string(meta->second.begin(), meta->second.end());
+    else
+        return false;
+
+    return true;
 }
 
 } // namespace hrs

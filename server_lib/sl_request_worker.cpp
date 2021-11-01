@@ -4,8 +4,9 @@
 
 namespace sl
 {
-RequestWorker::RequestWorker(grpc::ServerCompletionQueue* queue)
+RequestWorker::RequestWorker(grpc::ServerCompletionQueue* queue, UserValidator* user_validator)
     : _queue(queue)
+    , _user_validator(user_validator)
 {
     assert(_queue != nullptr);
 }
@@ -43,7 +44,7 @@ void RequestWorker::runRequestProcessorsPool() const
     for (auto& key : ServiceFactory::instance()->serviceKeys()) {
         auto processors = createRequestProcessors(key);
         for (auto p : processors) {
-            p->run();
+            p->run(grpc::StatusCode::OK);
         }
     }
 }
@@ -65,7 +66,19 @@ void RequestWorker::process()
 
         if (next_status == grpc::CompletionQueue::NextStatus::GOT_EVENT) {
             auto processor = static_cast<sl::RequestProcessorBase*>(tag);
-            processor->run();
+
+            std::string login;
+            std::string password;
+
+            if (!extractUserValidationInfo(processor->context(), login, password)) {
+                processor->run(grpc::StatusCode::INVALID_ARGUMENT);
+
+            } else {
+                if (!_user_validator->checkUser(login, password))
+                    processor->run(grpc::StatusCode::UNAUTHENTICATED);
+                else
+                    processor->run(grpc::StatusCode::OK);
+            }
         }
     }
 }

@@ -8,7 +8,6 @@ CPU_COUNT=$([ $(uname) = 'Darwin' ] &&
                        sysctl -n hw.logicalcpu_max || 
                        lscpu -p | egrep -v '^#' | wc -l)
 echo $CPU_COUNT
-pause
 
 MAIN_DIR=$PWD
 INSTALL_DIR_REL=./../../prebuilds/grpc/
@@ -33,6 +32,8 @@ rm -rf ./../../build/grpc
 mkdir -p ./../../build/grpc
 cd ./../../build/grpc
 
+#cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DgRPC_SSL_PROVIDER=package -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR_ABS $SOURCES
 cmake -DgRPC_INSTALL=ON -DgRPC_BUILD_TESTS=OFF -DCMAKE_INSTALL_PREFIX=$INSTALL_DIR_ABS $SOURCES
+
 make -j$CPU_COUNT
 make install

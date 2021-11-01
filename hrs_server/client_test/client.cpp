@@ -9,7 +9,12 @@
 #include <api/generated/sql/sql.grpc.pb.h>
 #include <api/generated/test/test.grpc.pb.h>
 
+#include <grpcpp/security/auth_context.h>
+
 #include <server_lib/sl_utils.h>
+#include <server_lib/sl_auth.h>
+
+#include <hrs_server/server/hrs_auth.h>
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -31,7 +36,9 @@ public:
         SqlApi::SqlReply reply;
 
         ClientContext context;
-        context.set_compression_algorithm(GRPC_COMPRESS_GZIP);
+
+        context.AddMetadata(hrs::UserValidator::LOGIN_METADATA, "petrov");
+        context.AddMetadata(hrs::UserValidator::PASSWORD_METADATA, "qq1234");
 
         Status status = _stub->ExecuteSQL(&context, request, &reply);
 
@@ -64,7 +71,9 @@ public:
         TestApi::TestReply reply;
 
         ClientContext context;
-        context.set_compression_algorithm(GRPC_COMPRESS_GZIP);
+
+        context.AddMetadata(hrs::UserValidator::LOGIN_METADATA, "petrov");
+        context.AddMetadata(hrs::UserValidator::PASSWORD_METADATA, "qq1234");
 
         Status status;
         if (test_num == 1)
@@ -77,7 +86,7 @@ public:
             return "Test data received";
 
         } else {
-            return std::to_string(status.error_code()) + ": " + status.error_message();
+            return "error: " + std::to_string(status.error_code()) + ": " + status.error_message();
         }
     }
 
@@ -92,6 +101,7 @@ void execSqlClient(const std::string& info, uint id)
         sl::Utils::coutPrint("SQL request start: " + std::to_string(id) + ", count: " + std::to_string(++counter));
 
         SqlServiceClient service_client(grpc::CreateChannel(info, grpc::InsecureChannelCredentials()), id);
+
         std::string status = service_client.executeSQL("SELECT * FROM XXXX");
 
         sl::Utils::coutPrint(status + ": " + std::to_string(id) + ", count: " + std::to_string(++counter));
@@ -105,7 +115,10 @@ void execTestClient(const std::string& info, uint id, int test_num)
         sl::Utils::coutPrint("Test request start: " + std::to_string(id) + "," + std::to_string(test_num)
                              + ", count: " + std::to_string(++counter));
 
-        TestServiceClient test_client(grpc::CreateChannel(info, grpc::InsecureChannelCredentials()), id);
+        auto channel = grpc::CreateChannel(info, grpc::InsecureChannelCredentials());
+
+        TestServiceClient test_client(channel, id);
+
         std::string status = test_client.executeTestRequest("hello", test_num);
 
         sl::Utils::coutPrint(status + ": " + std::to_string(id) + ", count: " + std::to_string(++counter));
@@ -116,9 +129,9 @@ int main(int argc, char** argv)
 {
     std::string target_str = "localhost:50051";
 
-    size_t worker_sql_count = 50;
-    size_t worker_test1_count = 50;
-    size_t worker_test2_count = 50;
+    size_t worker_sql_count = 0;
+    size_t worker_test1_count = 100;
+    size_t worker_test2_count = 0;
 
     std::vector<std::thread*> worker_threads;
 
