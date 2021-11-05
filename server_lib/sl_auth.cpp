@@ -2,21 +2,6 @@
 
 namespace sl
 {
-SimpleAuthenticator::SimpleAuthenticator(const std::string& login, const std::string& password)
-    : _login(login)
-    , _password(password)
-{
-}
-
-grpc::Status SimpleAuthenticator::GetMetadata(grpc::string_ref service_url, grpc::string_ref method_name,
-                                              const grpc::AuthContext& channel_auth_context,
-                                              std::multimap<std::string, std::string>* metadata)
-{
-    metadata->insert(std::make_pair("x-custom-auth-login", _login));
-    metadata->insert(std::make_pair("x-custom-auth-password", _password));
-    return grpc::Status::OK;
-}
-
 UserValidator::UserValidator()
 {
 }

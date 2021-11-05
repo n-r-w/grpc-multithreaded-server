@@ -1,0 +1,118 @@
+#include "sl_connection_pool.h"
+#include "sl_error.h"
+#include "sl_connection.h"
+
+#include <sl_utils.h>
+#include <assert.h>
+#include <chrono>
+
+namespace sql
+{
+std::atomic<bool> ConnectionPool::_is_shutdown(false);
+
+void ConnectionPool::shutdown()
+{
+    _is_shutdown = true;
+}
+
+ConnectionPool::ConnectionPool(size_t capacity)
+    : _capacity(capacity)
+{
+    _salt = sl::Utils::createSalt();
+}
+
+ConnectionPool::~ConnectionPool()
+{
+    std::lock_guard<std::mutex> lock(_mutex);
+
+    for (auto q = _connections.cbegin(); q != _connections.cend(); ++q) {
+        while (q->second->size() > 0) {
+            delete q->second->front();
+            q->second->pop();
+        }
+    }
+}
+
+ConnectionPtr ConnectionPool::getConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
+                                            const std::string& password, const std::string& options, Error& error) const
+{
+    assert(!_is_shutdown);
+
+    std::string password_hash = sl::Utils::sha256(_salt + password);
+    std::string key = createKey(host, port, db_name, login, password_hash, options);
+
+    Connection* connection = nullptr;
+
+    _mutex.lock();
+    auto i = _connections.find(key);
+    if (i != _connections.end()) {
+        connection = i->second->front();
+        i->second->pop();
+
+        if (i->second->size() == 0)
+            _connections.erase(i);
+
+        _mutex.unlock();
+
+    } else {
+        _mutex.unlock();
+        connection
+            = const_cast<ConnectionPool*>(this)->createConnection(host, port, db_name, login, password, password_hash, options, error);
+        if (error.isError()) {
+            assert(connection == nullptr);
+            return nullptr;
+        }
+
+        assert(connection != nullptr);
+        error = connection->error();
+        if (error.isError()) {
+            delete connection;
+            return nullptr;
+        }
+
+        assert(connection->isOpen());
+    }
+
+    return std::shared_ptr<Connection>(connection,
+                                       // нестандартный метод удаления объекта
+                                       [this](Connection* c) {
+                                           if (_is_shutdown)
+                                               delete c;
+                                           else
+                                               freeConnection(c);
+                                       });
+}
+
+void ConnectionPool::freeConnection(Connection* c) const
+{
+    assert(!_is_shutdown);
+
+    if (!c->isOpen()) {
+        delete c;
+        return;
+    }
+
+    std::string key = createKey(c->host(), c->port(), c->database(), c->login(), c->passwordHash(), c->options());
+
+    std::lock_guard<std::mutex> lock(_mutex);
+    auto i = _connections.find(key);
+    if (i != _connections.end()) {
+        if (i->second->size() < _capacity)
+            i->second->push(c);
+        else
+            delete c;
+
+    } else {
+        auto queue = std::make_unique<std::queue<Connection*>>();
+        queue->push(c);
+        _connections[key] = std::move(queue);
+    }
+}
+
+std::string ConnectionPool::createKey(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
+                                      const std::string& password_hash, const std::string& options) const
+{
+    static const std::string sp = "_";
+    return sl::Utils::sha256(_salt + host + sp + std::to_string(port) + sp + db_name + sp + login + sp + password_hash + sp + options);
+}
+} // namespace sql

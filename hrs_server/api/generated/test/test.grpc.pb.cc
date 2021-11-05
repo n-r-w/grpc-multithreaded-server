@@ -37,46 +37,46 @@ TestService::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channe
   , rpcmethod_ExecuteTestRequest2_(TestService_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status TestService::Stub::ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::TestApi::TestReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::TestApi::TestRequest, ::TestApi::TestReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ExecuteTestRequest1_, context, request, response);
+::grpc::Status TestService::Stub::ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::TestApi::TestReply1* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::TestApi::TestRequest1, ::TestApi::TestReply1, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ExecuteTestRequest1_, context, request, response);
 }
 
-void TestService::Stub::async::ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::TestApi::TestRequest, ::TestApi::TestReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecuteTestRequest1_, context, request, response, std::move(f));
+void TestService::Stub::async::ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::TestApi::TestRequest1, ::TestApi::TestReply1, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecuteTestRequest1_, context, request, response, std::move(f));
 }
 
-void TestService::Stub::async::ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, ::grpc::ClientUnaryReactor* reactor) {
+void TestService::Stub::async::ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecuteTestRequest1_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* TestService::Stub::PrepareAsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::TestApi::TestReply, ::TestApi::TestRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ExecuteTestRequest1_, context, request);
+::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>* TestService::Stub::PrepareAsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::TestApi::TestReply1, ::TestApi::TestRequest1, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ExecuteTestRequest1_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* TestService::Stub::AsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>* TestService::Stub::AsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncExecuteTestRequest1Raw(context, request, cq);
   result->StartCall();
   return result;
 }
 
-::grpc::Status TestService::Stub::ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::TestApi::TestReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::TestApi::TestRequest, ::TestApi::TestReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ExecuteTestRequest2_, context, request, response);
+::grpc::Status TestService::Stub::ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::TestApi::TestReply2* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::TestApi::TestRequest2, ::TestApi::TestReply2, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_ExecuteTestRequest2_, context, request, response);
 }
 
-void TestService::Stub::async::ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::TestApi::TestRequest, ::TestApi::TestReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecuteTestRequest2_, context, request, response, std::move(f));
+void TestService::Stub::async::ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::TestApi::TestRequest2, ::TestApi::TestReply2, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecuteTestRequest2_, context, request, response, std::move(f));
 }
 
-void TestService::Stub::async::ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, ::grpc::ClientUnaryReactor* reactor) {
+void TestService::Stub::async::ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_ExecuteTestRequest2_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* TestService::Stub::PrepareAsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::TestApi::TestReply, ::TestApi::TestRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ExecuteTestRequest2_, context, request);
+::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>* TestService::Stub::PrepareAsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::TestApi::TestReply2, ::TestApi::TestRequest2, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_ExecuteTestRequest2_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* TestService::Stub::AsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>* TestService::Stub::AsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncExecuteTestRequest2Raw(context, request, cq);
   result->StartCall();
@@ -87,21 +87,21 @@ TestService::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TestService_method_names[0],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TestService::Service, ::TestApi::TestRequest, ::TestApi::TestReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< TestService::Service, ::TestApi::TestRequest1, ::TestApi::TestReply1, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TestService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::TestApi::TestRequest* req,
-             ::TestApi::TestReply* resp) {
+             const ::TestApi::TestRequest1* req,
+             ::TestApi::TestReply1* resp) {
                return service->ExecuteTestRequest1(ctx, req, resp);
              }, this)));
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       TestService_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< TestService::Service, ::TestApi::TestRequest, ::TestApi::TestReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< TestService::Service, ::TestApi::TestRequest2, ::TestApi::TestReply2, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](TestService::Service* service,
              ::grpc::ServerContext* ctx,
-             const ::TestApi::TestRequest* req,
-             ::TestApi::TestReply* resp) {
+             const ::TestApi::TestRequest2* req,
+             ::TestApi::TestReply2* resp) {
                return service->ExecuteTestRequest2(ctx, req, resp);
              }, this)));
 }
@@ -109,14 +109,14 @@ TestService::Service::Service() {
 TestService::Service::~Service() {
 }
 
-::grpc::Status TestService::Service::ExecuteTestRequest1(::grpc::ServerContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response) {
+::grpc::Status TestService::Service::ExecuteTestRequest1(::grpc::ServerContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response) {
   (void) context;
   (void) request;
   (void) response;
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status TestService::Service::ExecuteTestRequest2(::grpc::ServerContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response) {
+::grpc::Status TestService::Service::ExecuteTestRequest2(::grpc::ServerContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response) {
   (void) context;
   (void) request;
   (void) response;

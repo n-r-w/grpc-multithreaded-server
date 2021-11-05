@@ -9,11 +9,11 @@
 namespace hrs
 {
 //! Обработчик запроса TestService::ExecuteTestRequest1
-SL_DEFINE_PROCESSOR(TestRequestProcessor1, TestApi::TestService::AsyncService, TestApi::TestRequest, TestApi::TestReply,
-                    ExecuteTestRequest1)
+SL_DEFINE_PROCESSOR(TestRequestProcessor1, TestApi::TestService::AsyncService, HrsServiceFactory::TEST_SERVICE_KEY, TestApi::TestRequest1,
+                    TestApi::TestReply1, ExecuteTestRequest1)
 
 //! Обработчик запроса TestService::ExecuteTestRequest2
-SL_DEFINE_PROCESSOR(TestRequestProcessor2, TestApi::TestService::AsyncService, TestApi::TestRequest, TestApi::TestReply,
-                    ExecuteTestRequest2)
+SL_DEFINE_PROCESSOR(TestRequestProcessor2, TestApi::TestService::AsyncService, HrsServiceFactory::TEST_SERVICE_KEY, TestApi::TestRequest2,
+                    TestApi::TestReply2, ExecuteTestRequest2)
 
 } // namespace hrs

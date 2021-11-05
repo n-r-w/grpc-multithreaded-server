@@ -7,22 +7,26 @@
 #include "sl_service_factory.h"
 
 // clang-format off
-#define SL_DEFINE_PROCESSOR_HELPER(ClassName,ServiceType,RequestType,ReplyType,Method) \
+#define SL_DEFINE_PROCESSOR_HELPER(ClassName,ServiceType,ServiceKey,RequestType,ReplyType,Method) \
 class ClassName : public sl::RequestProcessor<ServiceType, RequestType, ReplyType> \
 { \
     public: \
     ClassName(grpc::ServerCompletionQueue* queue, const sl::RequestWorker* worker) \
-    : sl::RequestProcessor<ServiceType, RequestType, ReplyType>(queue, worker, HrsServiceFactory::TEST_SERVICE_KEY) {} \
+    : sl::RequestProcessor<ServiceType, RequestType, ReplyType>(queue, worker, ServiceKey) {} \
     protected: \
     void waitForRequest() override { service()->Method (context(), request(), responder(), queue(), queue(), this); } \
     ClassName* createRequestProcessor() override { return new ClassName(queue(), worker()); } \
     void handleRequest() override; \
 }; \
 
-// Макро для создания класса обработчика метода сервиса
+// Макро для создания класса обработчика метода сервиса. Наследуется от шаблонного класса sl::RequestProcessor
 // Кроме самого макро надо создать метод обработчик запроса
+// В обработчике необходимо использовать:
+//      Информация о запросе: request()
+//      Заполнение ответа: reply()
+//      Контекст запроса: context()
 // void ClassName::handleRequest() {...}
-#define SL_DEFINE_PROCESSOR(ClassName,ServiceType,RequestType,ReplyType,Method) SL_DEFINE_PROCESSOR_HELPER(ClassName,ServiceType,RequestType,ReplyType,Request##Method)
+#define SL_DEFINE_PROCESSOR(ClassName, ServiceType, ServiceKey, RequestType, ReplyType,Method) SL_DEFINE_PROCESSOR_HELPER(ClassName,ServiceType,ServiceKey,RequestType,ReplyType,Request##Method)
 // clang-format on
 
 namespace sl
@@ -85,7 +89,7 @@ public:
         }
     }
 
-    //! Контекст запроса
+    //! Контекст запроса. В него можно класть разную доп.информацию на клиенте, и читать на ее в обработчике сервера
     grpc::ServerContext* context() const final { return &_context; }
 
 protected:

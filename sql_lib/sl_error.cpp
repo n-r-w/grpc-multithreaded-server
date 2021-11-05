@@ -35,7 +35,7 @@ Error& Error::operator=(const Error& e)
 
 Error& Error::operator=(Error&& e)
 {
-    _code = std::make_unique<int64_t>(e._code);
+    _code = std::move(e._code);
     _text = std::move(e._text);
     return *this;
 }
@@ -47,9 +47,14 @@ bool Error::operator==(const Error& e) const
     return (_code == nullptr || *_code == *e._code);
 }
 
-bool Error::isValid() const
+bool Error::isError() const
 {
     return _code != nullptr;
+}
+
+bool Error::isOk() const
+{
+    return _code == nullptr;
 }
 
 std::string_view Error::text() const

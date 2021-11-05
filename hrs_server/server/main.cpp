@@ -1,6 +1,7 @@
 #include "hrs_server.h"
 #include "background_worker.h"
-#include <server_lib/sl_utils.h>
+#include <utils/sl_utils.h>
+#include <sql_lib/plugins/psql/psql_impl.h>
 
 int main(int argc, char** argv)
 {

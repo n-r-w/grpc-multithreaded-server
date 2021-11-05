@@ -1,52 +1,57 @@
 #include "sl_connection.h"
+#include <sl_utils.h>
+#include "sl_connection_pool.h"
 
 namespace sql
 {
-Connection::Connection()
-{
-}
-
-Connection::Connection(const std::string& options)
-    : _options(options)
-{
-    assert(!_options.empty());
-}
-
 Connection::~Connection()
 {
 }
 
-bool Connection::isValid() const
+std::string Connection::host() const
 {
-    return !_options.empty();
+    return _host;
 }
 
-bool Connection::isOpen() const
+size_t Connection::port() const
 {
-    if (!isValid())
-        return false;
-
-    std::lock_guard<std::mutex> lock(_mutex);
-    return impl_isOpen();
+    return _port;
 }
 
-Error Connection::open()
+std::string Connection::database() const
 {
-    assert(isValid());
-    std::lock_guard<std::mutex> lock(_mutex);
-    return impl_open();
+    return _db_name;
 }
 
-Error Connection::close()
+std::string Connection::login() const
 {
-    assert(isValid());
-    std::lock_guard<std::mutex> lock(_mutex);
-    return impl_close();
+    return _login;
 }
 
-std::string_view Connection::options() const
+std::string Connection::passwordHash() const
+{
+    return _password_hash;
+}
+
+std::string Connection::options() const
 {
     return _options;
+}
+
+Connection::Connection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
+                       const std::string& password, const std::string& password_hash, const std::string& options)
+    : _host(host)
+    , _port(port)
+    , _login(login)
+    , _db_name(db_name)
+    , _password_hash(password_hash)
+    , _options(options)
+{
+    assert(!_host.empty());
+    assert(_port > 0);
+    assert(!_login.empty());
+    assert(!_db_name.empty());
+    assert(!_password_hash.empty());
 }
 
 } // namespace sql

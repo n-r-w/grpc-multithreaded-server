@@ -3,14 +3,23 @@ syntax = "proto3";
 package TestApi;
 
 service TestService {  
-  rpc ExecuteTestRequest1 (TestRequest) returns (TestReply);
-  rpc ExecuteTestRequest2 (TestRequest) returns (TestReply);
+  rpc ExecuteTestRequest1 (TestRequest1) returns (TestReply1);
+  rpc ExecuteTestRequest2 (TestRequest2) returns (TestReply2);
 }
 
-message TestRequest {
-  string info = 1;
+message TestRequest1 {
+  string request1_info = 1;
 }
 
-message TestReply {
-  string info = 1;
+message TestReply1 {
+  string reply1_info = 1;
+}
+
+
+message TestRequest2 {
+  string request2_info = 1;
+}
+
+message TestReply2 {
+  string reply2_info = 1;
 }

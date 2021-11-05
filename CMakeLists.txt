@@ -15,7 +15,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_DEBUG ${BIN_DIR})
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY_RELEASE ${BIN_DIR})
 link_directories(${BIN_DIR})
 
-#add_subdirectory(sql_lib)
+add_subdirectory(utils)
+add_subdirectory(sql_lib)
 add_subdirectory(server_lib)
 add_subdirectory(hrs_server)
 

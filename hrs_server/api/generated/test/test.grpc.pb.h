@@ -35,61 +35,61 @@ class TestService final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::TestApi::TestReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>> AsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>>(AsyncExecuteTestRequest1Raw(context, request, cq));
+    virtual ::grpc::Status ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::TestApi::TestReply1* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply1>> AsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply1>>(AsyncExecuteTestRequest1Raw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>> PrepareAsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>>(PrepareAsyncExecuteTestRequest1Raw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply1>> PrepareAsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply1>>(PrepareAsyncExecuteTestRequest1Raw(context, request, cq));
     }
-    virtual ::grpc::Status ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::TestApi::TestReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>> AsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>>(AsyncExecuteTestRequest2Raw(context, request, cq));
+    virtual ::grpc::Status ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::TestApi::TestReply2* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply2>> AsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply2>>(AsyncExecuteTestRequest2Raw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>> PrepareAsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>>(PrepareAsyncExecuteTestRequest2Raw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply2>> PrepareAsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply2>>(PrepareAsyncExecuteTestRequest2Raw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>* AsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>* PrepareAsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>* AsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply>* PrepareAsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply1>* AsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply1>* PrepareAsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply2>* AsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::TestApi::TestReply2>* PrepareAsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::TestApi::TestReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>> AsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>>(AsyncExecuteTestRequest1Raw(context, request, cq));
+    ::grpc::Status ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::TestApi::TestReply1* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>> AsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>>(AsyncExecuteTestRequest1Raw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>> PrepareAsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>>(PrepareAsyncExecuteTestRequest1Raw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>> PrepareAsyncExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>>(PrepareAsyncExecuteTestRequest1Raw(context, request, cq));
     }
-    ::grpc::Status ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::TestApi::TestReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>> AsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>>(AsyncExecuteTestRequest2Raw(context, request, cq));
+    ::grpc::Status ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::TestApi::TestReply2* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>> AsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>>(AsyncExecuteTestRequest2Raw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>> PrepareAsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>>(PrepareAsyncExecuteTestRequest2Raw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>> PrepareAsyncExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>>(PrepareAsyncExecuteTestRequest2Raw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, std::function<void(::grpc::Status)>) override;
-      void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, std::function<void(::grpc::Status)>) override;
-      void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response, std::function<void(::grpc::Status)>) override;
+      void ExecuteTestRequest1(::grpc::ClientContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response, std::function<void(::grpc::Status)>) override;
+      void ExecuteTestRequest2(::grpc::ClientContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -101,10 +101,10 @@ class TestService final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* AsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* PrepareAsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* AsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply>* PrepareAsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>* AsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply1>* PrepareAsyncExecuteTestRequest1Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest1& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>* AsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::TestApi::TestReply2>* PrepareAsyncExecuteTestRequest2Raw(::grpc::ClientContext* context, const ::TestApi::TestRequest2& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_ExecuteTestRequest1_;
     const ::grpc::internal::RpcMethod rpcmethod_ExecuteTestRequest2_;
   };
@@ -114,8 +114,8 @@ class TestService final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response);
-    virtual ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response);
+    virtual ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response);
+    virtual ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_ExecuteTestRequest1 : public BaseClass {
@@ -129,11 +129,11 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest1* /*request*/, ::TestApi::TestReply1* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestExecuteTestRequest1(::grpc::ServerContext* context, ::TestApi::TestRequest* request, ::grpc::ServerAsyncResponseWriter< ::TestApi::TestReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestExecuteTestRequest1(::grpc::ServerContext* context, ::TestApi::TestRequest1* request, ::grpc::ServerAsyncResponseWriter< ::TestApi::TestReply1>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -149,11 +149,11 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest2* /*request*/, ::TestApi::TestReply2* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestExecuteTestRequest2(::grpc::ServerContext* context, ::TestApi::TestRequest* request, ::grpc::ServerAsyncResponseWriter< ::TestApi::TestReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestExecuteTestRequest2(::grpc::ServerContext* context, ::TestApi::TestRequest2* request, ::grpc::ServerAsyncResponseWriter< ::TestApi::TestReply2>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -165,25 +165,25 @@ class TestService final {
    public:
     WithCallbackMethod_ExecuteTestRequest1() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest, ::TestApi::TestReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest1, ::TestApi::TestReply1>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response) { return this->ExecuteTestRequest1(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::TestApi::TestRequest1* request, ::TestApi::TestReply1* response) { return this->ExecuteTestRequest1(context, request, response); }));}
     void SetMessageAllocatorFor_ExecuteTestRequest1(
-        ::grpc::MessageAllocator< ::TestApi::TestRequest, ::TestApi::TestReply>* allocator) {
+        ::grpc::MessageAllocator< ::TestApi::TestRequest1, ::TestApi::TestReply1>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest, ::TestApi::TestReply>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest1, ::TestApi::TestReply1>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_ExecuteTestRequest1() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest1* /*request*/, ::TestApi::TestReply1* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ExecuteTestRequest1(
-      ::grpc::CallbackServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::TestApi::TestRequest1* /*request*/, ::TestApi::TestReply1* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
   class WithCallbackMethod_ExecuteTestRequest2 : public BaseClass {
@@ -192,25 +192,25 @@ class TestService final {
    public:
     WithCallbackMethod_ExecuteTestRequest2() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest, ::TestApi::TestReply>(
+          new ::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest2, ::TestApi::TestReply2>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::TestApi::TestRequest* request, ::TestApi::TestReply* response) { return this->ExecuteTestRequest2(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::TestApi::TestRequest2* request, ::TestApi::TestReply2* response) { return this->ExecuteTestRequest2(context, request, response); }));}
     void SetMessageAllocatorFor_ExecuteTestRequest2(
-        ::grpc::MessageAllocator< ::TestApi::TestRequest, ::TestApi::TestReply>* allocator) {
+        ::grpc::MessageAllocator< ::TestApi::TestRequest2, ::TestApi::TestReply2>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest, ::TestApi::TestReply>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::TestApi::TestRequest2, ::TestApi::TestReply2>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_ExecuteTestRequest2() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest2* /*request*/, ::TestApi::TestReply2* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* ExecuteTestRequest2(
-      ::grpc::CallbackServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::TestApi::TestRequest2* /*request*/, ::TestApi::TestReply2* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_ExecuteTestRequest1<WithCallbackMethod_ExecuteTestRequest2<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -226,7 +226,7 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest1* /*request*/, ::TestApi::TestReply1* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -243,7 +243,7 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest2* /*request*/, ::TestApi::TestReply2* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -260,7 +260,7 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest1* /*request*/, ::TestApi::TestReply1* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -280,7 +280,7 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest2* /*request*/, ::TestApi::TestReply2* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -303,7 +303,7 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest1* /*request*/, ::TestApi::TestReply1* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -325,7 +325,7 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest2* /*request*/, ::TestApi::TestReply2* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -340,10 +340,10 @@ class TestService final {
     WithStreamedUnaryMethod_ExecuteTestRequest1() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::TestApi::TestRequest, ::TestApi::TestReply>(
+          ::TestApi::TestRequest1, ::TestApi::TestReply1>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::TestApi::TestRequest, ::TestApi::TestReply>* streamer) {
+                     ::TestApi::TestRequest1, ::TestApi::TestReply1>* streamer) {
                        return this->StreamedExecuteTestRequest1(context,
                          streamer);
                   }));
@@ -352,12 +352,12 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest1(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest1* /*request*/, ::TestApi::TestReply1* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedExecuteTestRequest1(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::TestApi::TestRequest,::TestApi::TestReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedExecuteTestRequest1(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::TestApi::TestRequest1,::TestApi::TestReply1>* server_unary_streamer) = 0;
   };
   template <class BaseClass>
   class WithStreamedUnaryMethod_ExecuteTestRequest2 : public BaseClass {
@@ -367,10 +367,10 @@ class TestService final {
     WithStreamedUnaryMethod_ExecuteTestRequest2() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::TestApi::TestRequest, ::TestApi::TestReply>(
+          ::TestApi::TestRequest2, ::TestApi::TestReply2>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::TestApi::TestRequest, ::TestApi::TestReply>* streamer) {
+                     ::TestApi::TestRequest2, ::TestApi::TestReply2>* streamer) {
                        return this->StreamedExecuteTestRequest2(context,
                          streamer);
                   }));
@@ -379,12 +379,12 @@ class TestService final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest* /*request*/, ::TestApi::TestReply* /*response*/) override {
+    ::grpc::Status ExecuteTestRequest2(::grpc::ServerContext* /*context*/, const ::TestApi::TestRequest2* /*request*/, ::TestApi::TestReply2* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedExecuteTestRequest2(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::TestApi::TestRequest,::TestApi::TestReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedExecuteTestRequest2(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::TestApi::TestRequest2,::TestApi::TestReply2>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_ExecuteTestRequest1<WithStreamedUnaryMethod_ExecuteTestRequest2<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;

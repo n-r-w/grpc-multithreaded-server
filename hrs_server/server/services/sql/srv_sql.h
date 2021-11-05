@@ -10,6 +10,7 @@
 namespace hrs
 {
 //! Обработчик запроса Sql::ExecuteSQL
-SL_DEFINE_PROCESSOR(SqlRequestProcessor, SqlApi::Sql::AsyncService, SqlApi::SqlRequest, SqlApi::SqlReply, ExecuteSQL)
+SL_DEFINE_PROCESSOR(SqlRequestProcessor, SqlApi::Sql::AsyncService, HrsServiceFactory::SQL_SERVICE_KEY, SqlApi::SqlRequest,
+                    SqlApi::SqlReply, ExecuteSQL)
 
 } // namespace impl

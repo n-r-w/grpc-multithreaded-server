@@ -11,7 +11,7 @@
 
 #include <grpcpp/security/auth_context.h>
 
-#include <server_lib/sl_utils.h>
+#include <utils/sl_utils.h>
 #include <server_lib/sl_auth.h>
 
 #include <hrs_server/server/hrs_auth.h>
@@ -64,26 +64,31 @@ public:
     }
 
     std::string executeTestRequest(const std::string& info, int test_num)
-    {
-        TestApi::TestRequest request;
-        request.set_info(info);
-
-        TestApi::TestReply reply;
-
+    {        
         ClientContext context;
-
         context.AddMetadata(hrs::UserValidator::LOGIN_METADATA, "petrov");
         context.AddMetadata(hrs::UserValidator::PASSWORD_METADATA, "qq1234");
 
         Status status;
-        if (test_num == 1)
+        std::string reply_info;
+        if (test_num == 1) {
+            TestApi::TestRequest1 request;
+            request.set_request1_info(info);
+            TestApi::TestReply1 reply;
             status = _stub->ExecuteTestRequest1(&context, request, &reply);
-        else
+            reply_info = reply.reply1_info();
+
+        } else {
+            TestApi::TestRequest2 request;
+            request.set_request2_info(info);
+            TestApi::TestReply2 reply;
             status = _stub->ExecuteTestRequest2(&context, request, &reply);
+            reply_info = reply.reply2_info();
+        }
 
         if (status.ok()) {
             // ответ в reply.data()
-            return "Test data received";
+            return "Test data received: " + reply_info;
 
         } else {
             return "error: " + std::to_string(status.error_code()) + ": " + status.error_message();
@@ -129,9 +134,9 @@ int main(int argc, char** argv)
 {
     std::string target_str = "localhost:50051";
 
-    size_t worker_sql_count = 0;
-    size_t worker_test1_count = 100;
-    size_t worker_test2_count = 0;
+    size_t worker_sql_count = 10;
+    size_t worker_test1_count = 10;
+    size_t worker_test2_count = 10;
 
     std::vector<std::thread*> worker_threads;
 

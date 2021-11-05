@@ -1,4 +1,4 @@
-set(ID sql_lib)
+set(ID sl_utils)
 project(${ID} C CXX)
 
 set(CMAKE_CXX_STANDARD 17)
@@ -17,7 +17,5 @@ target_include_directories(${ID} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(${ID}
-    sl_utils
-    pq
-)
+target_link_libraries(${ID}    
+    )

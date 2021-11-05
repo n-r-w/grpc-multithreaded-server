@@ -46,7 +46,7 @@ struct TableStruct_test_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -54,39 +54,47 @@ struct TableStruct_test_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_test_2eproto;
 namespace TestApi {
-class TestReply;
-struct TestReplyDefaultTypeInternal;
-extern TestReplyDefaultTypeInternal _TestReply_default_instance_;
-class TestRequest;
-struct TestRequestDefaultTypeInternal;
-extern TestRequestDefaultTypeInternal _TestRequest_default_instance_;
+class TestReply1;
+struct TestReply1DefaultTypeInternal;
+extern TestReply1DefaultTypeInternal _TestReply1_default_instance_;
+class TestReply2;
+struct TestReply2DefaultTypeInternal;
+extern TestReply2DefaultTypeInternal _TestReply2_default_instance_;
+class TestRequest1;
+struct TestRequest1DefaultTypeInternal;
+extern TestRequest1DefaultTypeInternal _TestRequest1_default_instance_;
+class TestRequest2;
+struct TestRequest2DefaultTypeInternal;
+extern TestRequest2DefaultTypeInternal _TestRequest2_default_instance_;
 }  // namespace TestApi
 PROTOBUF_NAMESPACE_OPEN
-template<> ::TestApi::TestReply* Arena::CreateMaybeMessage<::TestApi::TestReply>(Arena*);
-template<> ::TestApi::TestRequest* Arena::CreateMaybeMessage<::TestApi::TestRequest>(Arena*);
+template<> ::TestApi::TestReply1* Arena::CreateMaybeMessage<::TestApi::TestReply1>(Arena*);
+template<> ::TestApi::TestReply2* Arena::CreateMaybeMessage<::TestApi::TestReply2>(Arena*);
+template<> ::TestApi::TestRequest1* Arena::CreateMaybeMessage<::TestApi::TestRequest1>(Arena*);
+template<> ::TestApi::TestRequest2* Arena::CreateMaybeMessage<::TestApi::TestRequest2>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
 namespace TestApi {
 
 // ===================================================================
 
-class TestRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestApi.TestRequest) */ {
+class TestRequest1 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestApi.TestRequest1) */ {
  public:
-  inline TestRequest() : TestRequest(nullptr) {}
-  ~TestRequest() override;
-  explicit constexpr TestRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline TestRequest1() : TestRequest1(nullptr) {}
+  ~TestRequest1() override;
+  explicit constexpr TestRequest1(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  TestRequest(const TestRequest& from);
-  TestRequest(TestRequest&& from) noexcept
-    : TestRequest() {
+  TestRequest1(const TestRequest1& from);
+  TestRequest1(TestRequest1&& from) noexcept
+    : TestRequest1() {
     *this = ::std::move(from);
   }
 
-  inline TestRequest& operator=(const TestRequest& from) {
+  inline TestRequest1& operator=(const TestRequest1& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TestRequest& operator=(TestRequest&& from) noexcept {
+  inline TestRequest1& operator=(TestRequest1&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()) {
       InternalSwap(&from);
@@ -105,20 +113,20 @@ class TestRequest final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const TestRequest& default_instance() {
+  static const TestRequest1& default_instance() {
     return *internal_default_instance();
   }
-  static inline const TestRequest* internal_default_instance() {
-    return reinterpret_cast<const TestRequest*>(
-               &_TestRequest_default_instance_);
+  static inline const TestRequest1* internal_default_instance() {
+    return reinterpret_cast<const TestRequest1*>(
+               &_TestRequest1_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     0;
 
-  friend void swap(TestRequest& a, TestRequest& b) {
+  friend void swap(TestRequest1& a, TestRequest1& b) {
     a.Swap(&b);
   }
-  inline void Swap(TestRequest* other) {
+  inline void Swap(TestRequest1* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -126,7 +134,7 @@ class TestRequest final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TestRequest* other) {
+  void UnsafeArenaSwap(TestRequest1* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -134,17 +142,17 @@ class TestRequest final :
 
   // implements Message ----------------------------------------------
 
-  inline TestRequest* New() const final {
-    return new TestRequest();
+  inline TestRequest1* New() const final {
+    return new TestRequest1();
   }
 
-  TestRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TestRequest>(arena);
+  TestRequest1* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestRequest1>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const TestRequest& from);
+  void CopyFrom(const TestRequest1& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const TestRequest& from);
+  void MergeFrom(const TestRequest1& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
   public:
@@ -161,13 +169,13 @@ class TestRequest final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(TestRequest* other);
+  void InternalSwap(TestRequest1* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "TestApi.TestRequest";
+    return "TestApi.TestRequest1";
   }
   protected:
-  explicit TestRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit TestRequest1(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -184,53 +192,53 @@ class TestRequest final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kInfoFieldNumber = 1,
+    kRequest1InfoFieldNumber = 1,
   };
-  // string info = 1;
-  void clear_info();
-  const std::string& info() const;
+  // string request1_info = 1;
+  void clear_request1_info();
+  const std::string& request1_info() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_info(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_info();
-  PROTOBUF_MUST_USE_RESULT std::string* release_info();
-  void set_allocated_info(std::string* info);
+  void set_request1_info(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_request1_info();
+  PROTOBUF_MUST_USE_RESULT std::string* release_request1_info();
+  void set_allocated_request1_info(std::string* request1_info);
   private:
-  const std::string& _internal_info() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_info(const std::string& value);
-  std::string* _internal_mutable_info();
+  const std::string& _internal_request1_info() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_request1_info(const std::string& value);
+  std::string* _internal_mutable_request1_info();
   public:
 
-  // @@protoc_insertion_point(class_scope:TestApi.TestRequest)
+  // @@protoc_insertion_point(class_scope:TestApi.TestRequest1)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr info_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr request1_info_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_test_2eproto;
 };
 // -------------------------------------------------------------------
 
-class TestReply final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestApi.TestReply) */ {
+class TestReply1 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestApi.TestReply1) */ {
  public:
-  inline TestReply() : TestReply(nullptr) {}
-  ~TestReply() override;
-  explicit constexpr TestReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+  inline TestReply1() : TestReply1(nullptr) {}
+  ~TestReply1() override;
+  explicit constexpr TestReply1(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
 
-  TestReply(const TestReply& from);
-  TestReply(TestReply&& from) noexcept
-    : TestReply() {
+  TestReply1(const TestReply1& from);
+  TestReply1(TestReply1&& from) noexcept
+    : TestReply1() {
     *this = ::std::move(from);
   }
 
-  inline TestReply& operator=(const TestReply& from) {
+  inline TestReply1& operator=(const TestReply1& from) {
     CopyFrom(from);
     return *this;
   }
-  inline TestReply& operator=(TestReply&& from) noexcept {
+  inline TestReply1& operator=(TestReply1&& from) noexcept {
     if (this == &from) return *this;
     if (GetOwningArena() == from.GetOwningArena()) {
       InternalSwap(&from);
@@ -249,20 +257,20 @@ class TestReply final :
   static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const TestReply& default_instance() {
+  static const TestReply1& default_instance() {
     return *internal_default_instance();
   }
-  static inline const TestReply* internal_default_instance() {
-    return reinterpret_cast<const TestReply*>(
-               &_TestReply_default_instance_);
+  static inline const TestReply1* internal_default_instance() {
+    return reinterpret_cast<const TestReply1*>(
+               &_TestReply1_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
     1;
 
-  friend void swap(TestReply& a, TestReply& b) {
+  friend void swap(TestReply1& a, TestReply1& b) {
     a.Swap(&b);
   }
-  inline void Swap(TestReply* other) {
+  inline void Swap(TestReply1* other) {
     if (other == this) return;
     if (GetOwningArena() == other->GetOwningArena()) {
       InternalSwap(other);
@@ -270,7 +278,7 @@ class TestReply final :
       ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(TestReply* other) {
+  void UnsafeArenaSwap(TestReply1* other) {
     if (other == this) return;
     GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
     InternalSwap(other);
@@ -278,17 +286,17 @@ class TestReply final :
 
   // implements Message ----------------------------------------------
 
-  inline TestReply* New() const final {
-    return new TestReply();
+  inline TestReply1* New() const final {
+    return new TestReply1();
   }
 
-  TestReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<TestReply>(arena);
+  TestReply1* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestReply1>(arena);
   }
   using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const TestReply& from);
+  void CopyFrom(const TestReply1& from);
   using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const TestReply& from);
+  void MergeFrom(const TestReply1& from);
   private:
   static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
   public:
@@ -305,13 +313,13 @@ class TestReply final :
   void SharedCtor();
   void SharedDtor();
   void SetCachedSize(int size) const final;
-  void InternalSwap(TestReply* other);
+  void InternalSwap(TestReply1* other);
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "TestApi.TestReply";
+    return "TestApi.TestReply1";
   }
   protected:
-  explicit TestReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+  explicit TestReply1(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                        bool is_message_owned = false);
   private:
   static void ArenaDtor(void* object);
@@ -328,30 +336,318 @@ class TestReply final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kInfoFieldNumber = 1,
+    kReply1InfoFieldNumber = 1,
   };
-  // string info = 1;
-  void clear_info();
-  const std::string& info() const;
+  // string reply1_info = 1;
+  void clear_reply1_info();
+  const std::string& reply1_info() const;
   template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_info(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_info();
-  PROTOBUF_MUST_USE_RESULT std::string* release_info();
-  void set_allocated_info(std::string* info);
+  void set_reply1_info(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reply1_info();
+  PROTOBUF_MUST_USE_RESULT std::string* release_reply1_info();
+  void set_allocated_reply1_info(std::string* reply1_info);
   private:
-  const std::string& _internal_info() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_info(const std::string& value);
-  std::string* _internal_mutable_info();
+  const std::string& _internal_reply1_info() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reply1_info(const std::string& value);
+  std::string* _internal_mutable_reply1_info();
   public:
 
-  // @@protoc_insertion_point(class_scope:TestApi.TestReply)
+  // @@protoc_insertion_point(class_scope:TestApi.TestReply1)
  private:
   class _Internal;
 
   template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr info_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reply1_info_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_test_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestRequest2 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestApi.TestRequest2) */ {
+ public:
+  inline TestRequest2() : TestRequest2(nullptr) {}
+  ~TestRequest2() override;
+  explicit constexpr TestRequest2(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TestRequest2(const TestRequest2& from);
+  TestRequest2(TestRequest2&& from) noexcept
+    : TestRequest2() {
+    *this = ::std::move(from);
+  }
+
+  inline TestRequest2& operator=(const TestRequest2& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestRequest2& operator=(TestRequest2&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TestRequest2& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TestRequest2* internal_default_instance() {
+    return reinterpret_cast<const TestRequest2*>(
+               &_TestRequest2_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(TestRequest2& a, TestRequest2& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestRequest2* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TestRequest2* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestRequest2* New() const final {
+    return new TestRequest2();
+  }
+
+  TestRequest2* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestRequest2>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TestRequest2& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TestRequest2& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestRequest2* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "TestApi.TestRequest2";
+  }
+  protected:
+  explicit TestRequest2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kRequest2InfoFieldNumber = 1,
+  };
+  // string request2_info = 1;
+  void clear_request2_info();
+  const std::string& request2_info() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_request2_info(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_request2_info();
+  PROTOBUF_MUST_USE_RESULT std::string* release_request2_info();
+  void set_allocated_request2_info(std::string* request2_info);
+  private:
+  const std::string& _internal_request2_info() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_request2_info(const std::string& value);
+  std::string* _internal_mutable_request2_info();
+  public:
+
+  // @@protoc_insertion_point(class_scope:TestApi.TestRequest2)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr request2_info_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_test_2eproto;
+};
+// -------------------------------------------------------------------
+
+class TestReply2 final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:TestApi.TestReply2) */ {
+ public:
+  inline TestReply2() : TestReply2(nullptr) {}
+  ~TestReply2() override;
+  explicit constexpr TestReply2(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  TestReply2(const TestReply2& from);
+  TestReply2(TestReply2&& from) noexcept
+    : TestReply2() {
+    *this = ::std::move(from);
+  }
+
+  inline TestReply2& operator=(const TestReply2& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline TestReply2& operator=(TestReply2&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const TestReply2& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const TestReply2* internal_default_instance() {
+    return reinterpret_cast<const TestReply2*>(
+               &_TestReply2_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(TestReply2& a, TestReply2& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(TestReply2* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(TestReply2* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline TestReply2* New() const final {
+    return new TestReply2();
+  }
+
+  TestReply2* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<TestReply2>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const TestReply2& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const TestReply2& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(TestReply2* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "TestApi.TestReply2";
+  }
+  protected:
+  explicit TestReply2(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kReply2InfoFieldNumber = 1,
+  };
+  // string reply2_info = 1;
+  void clear_reply2_info();
+  const std::string& reply2_info() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_reply2_info(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_reply2_info();
+  PROTOBUF_MUST_USE_RESULT std::string* release_reply2_info();
+  void set_allocated_reply2_info(std::string* reply2_info);
+  private:
+  const std::string& _internal_reply2_info() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_reply2_info(const std::string& value);
+  std::string* _internal_mutable_reply2_info();
+  public:
+
+  // @@protoc_insertion_point(class_scope:TestApi.TestReply2)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr reply2_info_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_test_2eproto;
 };
@@ -364,107 +660,211 @@ class TestReply final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// TestRequest
+// TestRequest1
 
-// string info = 1;
-inline void TestRequest::clear_info() {
-  info_.ClearToEmpty();
+// string request1_info = 1;
+inline void TestRequest1::clear_request1_info() {
+  request1_info_.ClearToEmpty();
 }
-inline const std::string& TestRequest::info() const {
-  // @@protoc_insertion_point(field_get:TestApi.TestRequest.info)
-  return _internal_info();
+inline const std::string& TestRequest1::request1_info() const {
+  // @@protoc_insertion_point(field_get:TestApi.TestRequest1.request1_info)
+  return _internal_request1_info();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void TestRequest::set_info(ArgT0&& arg0, ArgT... args) {
+void TestRequest1::set_request1_info(ArgT0&& arg0, ArgT... args) {
  
- info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:TestApi.TestRequest.info)
+ request1_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:TestApi.TestRequest1.request1_info)
 }
-inline std::string* TestRequest::mutable_info() {
-  std::string* _s = _internal_mutable_info();
-  // @@protoc_insertion_point(field_mutable:TestApi.TestRequest.info)
+inline std::string* TestRequest1::mutable_request1_info() {
+  std::string* _s = _internal_mutable_request1_info();
+  // @@protoc_insertion_point(field_mutable:TestApi.TestRequest1.request1_info)
   return _s;
 }
-inline const std::string& TestRequest::_internal_info() const {
-  return info_.Get();
+inline const std::string& TestRequest1::_internal_request1_info() const {
+  return request1_info_.Get();
 }
-inline void TestRequest::_internal_set_info(const std::string& value) {
+inline void TestRequest1::_internal_set_request1_info(const std::string& value) {
   
-  info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  request1_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* TestRequest::_internal_mutable_info() {
+inline std::string* TestRequest1::_internal_mutable_request1_info() {
   
-  return info_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return request1_info_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* TestRequest::release_info() {
-  // @@protoc_insertion_point(field_release:TestApi.TestRequest.info)
-  return info_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* TestRequest1::release_request1_info() {
+  // @@protoc_insertion_point(field_release:TestApi.TestRequest1.request1_info)
+  return request1_info_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void TestRequest::set_allocated_info(std::string* info) {
-  if (info != nullptr) {
+inline void TestRequest1::set_allocated_request1_info(std::string* request1_info) {
+  if (request1_info != nullptr) {
     
   } else {
     
   }
-  info_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), info,
+  request1_info_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), request1_info,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:TestApi.TestRequest.info)
+  // @@protoc_insertion_point(field_set_allocated:TestApi.TestRequest1.request1_info)
 }
 
 // -------------------------------------------------------------------
 
-// TestReply
+// TestReply1
 
-// string info = 1;
-inline void TestReply::clear_info() {
-  info_.ClearToEmpty();
+// string reply1_info = 1;
+inline void TestReply1::clear_reply1_info() {
+  reply1_info_.ClearToEmpty();
 }
-inline const std::string& TestReply::info() const {
-  // @@protoc_insertion_point(field_get:TestApi.TestReply.info)
-  return _internal_info();
+inline const std::string& TestReply1::reply1_info() const {
+  // @@protoc_insertion_point(field_get:TestApi.TestReply1.reply1_info)
+  return _internal_reply1_info();
 }
 template <typename ArgT0, typename... ArgT>
 inline PROTOBUF_ALWAYS_INLINE
-void TestReply::set_info(ArgT0&& arg0, ArgT... args) {
+void TestReply1::set_reply1_info(ArgT0&& arg0, ArgT... args) {
  
- info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:TestApi.TestReply.info)
+ reply1_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:TestApi.TestReply1.reply1_info)
 }
-inline std::string* TestReply::mutable_info() {
-  std::string* _s = _internal_mutable_info();
-  // @@protoc_insertion_point(field_mutable:TestApi.TestReply.info)
+inline std::string* TestReply1::mutable_reply1_info() {
+  std::string* _s = _internal_mutable_reply1_info();
+  // @@protoc_insertion_point(field_mutable:TestApi.TestReply1.reply1_info)
   return _s;
 }
-inline const std::string& TestReply::_internal_info() const {
-  return info_.Get();
+inline const std::string& TestReply1::_internal_reply1_info() const {
+  return reply1_info_.Get();
 }
-inline void TestReply::_internal_set_info(const std::string& value) {
+inline void TestReply1::_internal_set_reply1_info(const std::string& value) {
   
-  info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+  reply1_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
 }
-inline std::string* TestReply::_internal_mutable_info() {
+inline std::string* TestReply1::_internal_mutable_reply1_info() {
   
-  return info_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+  return reply1_info_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
 }
-inline std::string* TestReply::release_info() {
-  // @@protoc_insertion_point(field_release:TestApi.TestReply.info)
-  return info_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+inline std::string* TestReply1::release_reply1_info() {
+  // @@protoc_insertion_point(field_release:TestApi.TestReply1.reply1_info)
+  return reply1_info_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
 }
-inline void TestReply::set_allocated_info(std::string* info) {
-  if (info != nullptr) {
+inline void TestReply1::set_allocated_reply1_info(std::string* reply1_info) {
+  if (reply1_info != nullptr) {
     
   } else {
     
   }
-  info_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), info,
+  reply1_info_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), reply1_info,
       GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:TestApi.TestReply.info)
+  // @@protoc_insertion_point(field_set_allocated:TestApi.TestReply1.reply1_info)
+}
+
+// -------------------------------------------------------------------
+
+// TestRequest2
+
+// string request2_info = 1;
+inline void TestRequest2::clear_request2_info() {
+  request2_info_.ClearToEmpty();
+}
+inline const std::string& TestRequest2::request2_info() const {
+  // @@protoc_insertion_point(field_get:TestApi.TestRequest2.request2_info)
+  return _internal_request2_info();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TestRequest2::set_request2_info(ArgT0&& arg0, ArgT... args) {
+ 
+ request2_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:TestApi.TestRequest2.request2_info)
+}
+inline std::string* TestRequest2::mutable_request2_info() {
+  std::string* _s = _internal_mutable_request2_info();
+  // @@protoc_insertion_point(field_mutable:TestApi.TestRequest2.request2_info)
+  return _s;
+}
+inline const std::string& TestRequest2::_internal_request2_info() const {
+  return request2_info_.Get();
+}
+inline void TestRequest2::_internal_set_request2_info(const std::string& value) {
+  
+  request2_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TestRequest2::_internal_mutable_request2_info() {
+  
+  return request2_info_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TestRequest2::release_request2_info() {
+  // @@protoc_insertion_point(field_release:TestApi.TestRequest2.request2_info)
+  return request2_info_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TestRequest2::set_allocated_request2_info(std::string* request2_info) {
+  if (request2_info != nullptr) {
+    
+  } else {
+    
+  }
+  request2_info_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), request2_info,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:TestApi.TestRequest2.request2_info)
+}
+
+// -------------------------------------------------------------------
+
+// TestReply2
+
+// string reply2_info = 1;
+inline void TestReply2::clear_reply2_info() {
+  reply2_info_.ClearToEmpty();
+}
+inline const std::string& TestReply2::reply2_info() const {
+  // @@protoc_insertion_point(field_get:TestApi.TestReply2.reply2_info)
+  return _internal_reply2_info();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void TestReply2::set_reply2_info(ArgT0&& arg0, ArgT... args) {
+ 
+ reply2_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:TestApi.TestReply2.reply2_info)
+}
+inline std::string* TestReply2::mutable_reply2_info() {
+  std::string* _s = _internal_mutable_reply2_info();
+  // @@protoc_insertion_point(field_mutable:TestApi.TestReply2.reply2_info)
+  return _s;
+}
+inline const std::string& TestReply2::_internal_reply2_info() const {
+  return reply2_info_.Get();
+}
+inline void TestReply2::_internal_set_reply2_info(const std::string& value) {
+  
+  reply2_info_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* TestReply2::_internal_mutable_reply2_info() {
+  
+  return reply2_info_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* TestReply2::release_reply2_info() {
+  // @@protoc_insertion_point(field_release:TestApi.TestReply2.reply2_info)
+  return reply2_info_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void TestReply2::set_allocated_reply2_info(std::string* reply2_info) {
+  if (reply2_info != nullptr) {
+    
+  } else {
+    
+  }
+  reply2_info_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), reply2_info,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:TestApi.TestReply2.reply2_info)
 }
 
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

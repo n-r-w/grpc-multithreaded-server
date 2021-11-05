@@ -25,6 +25,8 @@ add_executable(${ID}
 target_link_libraries(${ID}
     server_lib
     hrs_api
+    sl_utils
+    sql_lib
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF})

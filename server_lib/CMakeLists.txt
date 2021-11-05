@@ -21,7 +21,8 @@ target_include_directories(${ID} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
-target_link_libraries(${ID}    
+target_link_libraries(${ID}
+    sl_utils
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF})

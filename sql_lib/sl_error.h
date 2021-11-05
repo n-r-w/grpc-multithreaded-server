@@ -20,7 +20,8 @@ public:
     //! Сравнение только по коду, текст игнорируется
     bool operator==(const Error& e) const;
 
-    bool isValid() const;
+    bool isError() const;
+    bool isOk() const;
 
     std::string_view text() const;
     int64_t code() const;
