@@ -114,7 +114,7 @@ void execSqlClient(const std::string& info, uint id)
 
         SqlServiceClient service_client(grpc::CreateChannel(info, grpc::InsecureChannelCredentials()), id);
 
-        std::string status = service_client.executeSQL("SELECT * FROM r0001");
+        std::string status = service_client.executeSQL("SELECT * FROM c_types");
 
         sl::Utils::coutPrint(status + ": " + std::to_string(id) + ", count: " + std::to_string(++counter));
     }

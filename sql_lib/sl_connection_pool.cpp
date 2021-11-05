@@ -23,14 +23,7 @@ ConnectionPool::ConnectionPool(size_t capacity)
 
 ConnectionPool::~ConnectionPool()
 {
-    std::lock_guard<std::mutex> lock(_mutex);
-
-    for (auto q = _connections.cbegin(); q != _connections.cend(); ++q) {
-        while (q->second->size() > 0) {
-            delete q->second->front();
-            q->second->pop();
-        }
-    }
+    clear();
 }
 
 ConnectionPtr ConnectionPool::getConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
@@ -81,6 +74,22 @@ ConnectionPtr ConnectionPool::getConnection(const std::string& host, size_t port
                                            else
                                                freeConnection(c);
                                        });
+}
+
+size_t ConnectionPool::clear()
+{
+    std::lock_guard<std::mutex> lock(_mutex);
+
+    size_t count = 0;
+    for (auto q = _connections.cbegin(); q != _connections.cend(); ++q) {
+        while (q->second->size() > 0) {
+            delete q->second->front();
+            q->second->pop();
+            count++;
+        }
+    }
+
+    return count;
 }
 
 void ConnectionPool::freeConnection(Connection* c) const

@@ -34,6 +34,9 @@ public:
         return std::dynamic_pointer_cast<T>(getConnection(host, port, db_name, login, password, options, error));
     }
 
+    //! Очистить пул. Возвращает количество удаленных соединений
+    size_t clear();
+
 protected:
     //! Создать соединение
     virtual Connection* createConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
