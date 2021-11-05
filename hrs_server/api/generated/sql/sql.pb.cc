@@ -76,18 +76,18 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_sql_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\tsql.proto\022\006SqlApi\032\014shared.proto\"\031\n\nSql"
-  "Request\022\013\n\003sql\030\001 \001(\t\"Z\n\010SqlReply\022\022\n\nerro"
-  "r_code\030\001 \001(\004\022\022\n\nerror_text\030\002 \001(\t\022&\n\004data"
-  "\030\003 \001(\0132\030.ProtoShared.FlatDataset29\n\003Sql\022"
-  "2\n\nExecuteSQL\022\022.SqlApi.SqlRequest\032\020.SqlA"
-  "pi.SqlReplyb\006proto3"
+  "Request\022\013\n\003sql\030\001 \001(\t\"\\\n\010SqlReply\022\022\n\nerro"
+  "r_code\030\001 \001(\004\022\022\n\nerror_text\030\002 \001(\t\022(\n\004data"
+  "\030\003 \001(\0132\032.ProtoShared.DataContainer29\n\003Sq"
+  "l\0222\n\nExecuteSQL\022\022.SqlApi.SqlRequest\032\020.Sq"
+  "lApi.SqlReplyb\006proto3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_sql_2eproto_deps[1] = {
   &::descriptor_table_shared_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_sql_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_sql_2eproto = {
-  false, false, 219, descriptor_table_protodef_sql_2eproto, "sql.proto", 
+  false, false, 221, descriptor_table_protodef_sql_2eproto, "sql.proto", 
   &descriptor_table_sql_2eproto_once, descriptor_table_sql_2eproto_deps, 1, 2,
   schemas, file_default_instances, TableStruct_sql_2eproto::offsets,
   file_level_metadata_sql_2eproto, file_level_enum_descriptors_sql_2eproto, file_level_service_descriptors_sql_2eproto,
@@ -304,10 +304,10 @@ void SqlRequest::InternalSwap(SqlRequest* other) {
 
 class SqlReply::_Internal {
  public:
-  static const ::ProtoShared::FlatDataset& data(const SqlReply* msg);
+  static const ::ProtoShared::DataContainer& data(const SqlReply* msg);
 };
 
-const ::ProtoShared::FlatDataset&
+const ::ProtoShared::DataContainer&
 SqlReply::_Internal::data(const SqlReply* msg) {
   return *msg->data_;
 }
@@ -335,7 +335,7 @@ SqlReply::SqlReply(const SqlReply& from)
       GetArenaForAllocation());
   }
   if (from._internal_has_data()) {
-    data_ = new ::ProtoShared::FlatDataset(*from.data_);
+    data_ = new ::ProtoShared::DataContainer(*from.data_);
   } else {
     data_ = nullptr;
   }
@@ -411,7 +411,7 @@ const char* SqlReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .ProtoShared.FlatDataset data = 3;
+      // .ProtoShared.DataContainer data = 3;
       case 3:
         if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
           ptr = ctx->ParseMessage(_internal_mutable_data(), ptr);
@@ -463,7 +463,7 @@ failure:
         2, this->_internal_error_text(), target);
   }
 
-  // .ProtoShared.FlatDataset data = 3;
+  // .ProtoShared.DataContainer data = 3;
   if (this->_internal_has_data()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
@@ -494,7 +494,7 @@ size_t SqlReply::ByteSizeLong() const {
         this->_internal_error_text());
   }
 
-  // .ProtoShared.FlatDataset data = 3;
+  // .ProtoShared.DataContainer data = 3;
   if (this->_internal_has_data()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -540,7 +540,7 @@ void SqlReply::MergeFrom(const SqlReply& from) {
     _internal_set_error_text(from._internal_error_text());
   }
   if (from._internal_has_data()) {
-    _internal_mutable_data()->::ProtoShared::FlatDataset::MergeFrom(from._internal_data());
+    _internal_mutable_data()->::ProtoShared::DataContainer::MergeFrom(from._internal_data());
   }
   if (from._internal_error_code() != 0) {
     _internal_set_error_code(from._internal_error_code());

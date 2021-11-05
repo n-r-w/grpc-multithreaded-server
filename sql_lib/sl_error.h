@@ -23,7 +23,7 @@ public:
     bool isError() const;
     bool isOk() const;
 
-    std::string_view text() const;
+    std::string text() const;
     int64_t code() const;
 
 private:

@@ -5,6 +5,7 @@
 #include <server_lib/sl_request_processor.h>
 
 #include <api/generated/sql/sql.grpc.pb.h>
+#include <api/generated/shared/shared.grpc.pb.h>
 #include "../hrs_factory.h"
 
 namespace hrs

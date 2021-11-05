@@ -15,5 +15,5 @@ message SqlRequest {
 message SqlReply {
   uint64 error_code = 1;
   string error_text = 2;
-  ProtoShared.FlatDataset data = 3;
+  ProtoShared.DataContainer data = 3;
 }

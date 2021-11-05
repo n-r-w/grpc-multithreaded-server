@@ -1,20 +1,44 @@
 #include "srv_sql.h"
+
 #include "../hrs_factory.h"
 #include <utils/sl_utils.h>
 #include <api/src/data_converter.h>
+#include <sql_lib/plugins/psql/psql_impl.h>
 
 namespace hrs
 {
 void SqlRequestProcessor::handleRequest()
 {
-    sl::Utils::coutPrint("SqlRequestProcessor: " + request()->sql());
+    sql::Error error;
+    auto connection
+        = HrsServiceFactory::instance()->sqlConnectionPool()->getConnection("127.0.0.1", 5432, "ML829MP1", "postgres", "1", "", error);
 
-    double xxx = 0;
-    size_t counter = 99999999;
-    for (size_t i = 0; i < counter; i++) {
-        xxx += counter / (i + 1);
+    std::unique_ptr<sql::PsqlQuery> query;
+
+    if (error.isOk()) {
+        query = std::make_unique<sql::PsqlQuery>(connection);
+        error = query->exec(request()->sql());
     }
 
-    reply()->set_error_text(std::to_string(xxx));
+    if (error.isError()) {
+        reply()->set_error_text(error.text());
+        reply()->set_error_code(error.code());
+
+    } else {
+        auto container = new ProtoShared::DataContainer;
+        auto writer = api::DataContainerWrapper::createWriter(container, false);
+
+        const int dataset_id = 1;
+
+        writer->initDataset(dataset_id, query->rowCount(), query->columnCount());
+
+        for (size_t row = 0; row < query->rowCount(); row++) {
+            for (size_t col = 0; col < query->columnCount(); col++) {
+                writer->datasetWriter(dataset_id)->setValue(row, col, query->toString(row, col));
+            }
+        }
+
+        reply()->set_allocated_data(container);
+    }
 }
 } // namespace hrs

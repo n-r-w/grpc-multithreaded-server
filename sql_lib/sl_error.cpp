@@ -57,7 +57,7 @@ bool Error::isOk() const
     return _code == nullptr;
 }
 
-std::string_view Error::text() const
+std::string Error::text() const
 {
     return _text;
 }

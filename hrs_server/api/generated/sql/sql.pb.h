@@ -347,23 +347,23 @@ class SqlReply final :
   std::string* _internal_mutable_error_text();
   public:
 
-  // .ProtoShared.FlatDataset data = 3;
+  // .ProtoShared.DataContainer data = 3;
   bool has_data() const;
   private:
   bool _internal_has_data() const;
   public:
   void clear_data();
-  const ::ProtoShared::FlatDataset& data() const;
-  PROTOBUF_MUST_USE_RESULT ::ProtoShared::FlatDataset* release_data();
-  ::ProtoShared::FlatDataset* mutable_data();
-  void set_allocated_data(::ProtoShared::FlatDataset* data);
+  const ::ProtoShared::DataContainer& data() const;
+  PROTOBUF_MUST_USE_RESULT ::ProtoShared::DataContainer* release_data();
+  ::ProtoShared::DataContainer* mutable_data();
+  void set_allocated_data(::ProtoShared::DataContainer* data);
   private:
-  const ::ProtoShared::FlatDataset& _internal_data() const;
-  ::ProtoShared::FlatDataset* _internal_mutable_data();
+  const ::ProtoShared::DataContainer& _internal_data() const;
+  ::ProtoShared::DataContainer* _internal_mutable_data();
   public:
   void unsafe_arena_set_allocated_data(
-      ::ProtoShared::FlatDataset* data);
-  ::ProtoShared::FlatDataset* unsafe_arena_release_data();
+      ::ProtoShared::DataContainer* data);
+  ::ProtoShared::DataContainer* unsafe_arena_release_data();
 
   // uint64 error_code = 1;
   void clear_error_code();
@@ -382,7 +382,7 @@ class SqlReply final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_text_;
-  ::ProtoShared::FlatDataset* data_;
+  ::ProtoShared::DataContainer* data_;
   ::PROTOBUF_NAMESPACE_ID::uint64 error_code_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_sql_2eproto;
@@ -514,24 +514,24 @@ inline void SqlReply::set_allocated_error_text(std::string* error_text) {
   // @@protoc_insertion_point(field_set_allocated:SqlApi.SqlReply.error_text)
 }
 
-// .ProtoShared.FlatDataset data = 3;
+// .ProtoShared.DataContainer data = 3;
 inline bool SqlReply::_internal_has_data() const {
   return this != internal_default_instance() && data_ != nullptr;
 }
 inline bool SqlReply::has_data() const {
   return _internal_has_data();
 }
-inline const ::ProtoShared::FlatDataset& SqlReply::_internal_data() const {
-  const ::ProtoShared::FlatDataset* p = data_;
-  return p != nullptr ? *p : reinterpret_cast<const ::ProtoShared::FlatDataset&>(
-      ::ProtoShared::_FlatDataset_default_instance_);
+inline const ::ProtoShared::DataContainer& SqlReply::_internal_data() const {
+  const ::ProtoShared::DataContainer* p = data_;
+  return p != nullptr ? *p : reinterpret_cast<const ::ProtoShared::DataContainer&>(
+      ::ProtoShared::_DataContainer_default_instance_);
 }
-inline const ::ProtoShared::FlatDataset& SqlReply::data() const {
+inline const ::ProtoShared::DataContainer& SqlReply::data() const {
   // @@protoc_insertion_point(field_get:SqlApi.SqlReply.data)
   return _internal_data();
 }
 inline void SqlReply::unsafe_arena_set_allocated_data(
-    ::ProtoShared::FlatDataset* data) {
+    ::ProtoShared::DataContainer* data) {
   if (GetArenaForAllocation() == nullptr) {
     delete reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);
   }
@@ -543,9 +543,9 @@ inline void SqlReply::unsafe_arena_set_allocated_data(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:SqlApi.SqlReply.data)
 }
-inline ::ProtoShared::FlatDataset* SqlReply::release_data() {
+inline ::ProtoShared::DataContainer* SqlReply::release_data() {
   
-  ::ProtoShared::FlatDataset* temp = data_;
+  ::ProtoShared::DataContainer* temp = data_;
   data_ = nullptr;
 #ifdef PROTOBUF_FORCE_COPY_IN_RELEASE
   auto* old =  reinterpret_cast<::PROTOBUF_NAMESPACE_ID::MessageLite*>(temp);
@@ -558,27 +558,27 @@ inline ::ProtoShared::FlatDataset* SqlReply::release_data() {
 #endif  // !PROTOBUF_FORCE_COPY_IN_RELEASE
   return temp;
 }
-inline ::ProtoShared::FlatDataset* SqlReply::unsafe_arena_release_data() {
+inline ::ProtoShared::DataContainer* SqlReply::unsafe_arena_release_data() {
   // @@protoc_insertion_point(field_release:SqlApi.SqlReply.data)
   
-  ::ProtoShared::FlatDataset* temp = data_;
+  ::ProtoShared::DataContainer* temp = data_;
   data_ = nullptr;
   return temp;
 }
-inline ::ProtoShared::FlatDataset* SqlReply::_internal_mutable_data() {
+inline ::ProtoShared::DataContainer* SqlReply::_internal_mutable_data() {
   
   if (data_ == nullptr) {
-    auto* p = CreateMaybeMessage<::ProtoShared::FlatDataset>(GetArenaForAllocation());
+    auto* p = CreateMaybeMessage<::ProtoShared::DataContainer>(GetArenaForAllocation());
     data_ = p;
   }
   return data_;
 }
-inline ::ProtoShared::FlatDataset* SqlReply::mutable_data() {
-  ::ProtoShared::FlatDataset* _msg = _internal_mutable_data();
+inline ::ProtoShared::DataContainer* SqlReply::mutable_data() {
+  ::ProtoShared::DataContainer* _msg = _internal_mutable_data();
   // @@protoc_insertion_point(field_mutable:SqlApi.SqlReply.data)
   return _msg;
 }
-inline void SqlReply::set_allocated_data(::ProtoShared::FlatDataset* data) {
+inline void SqlReply::set_allocated_data(::ProtoShared::DataContainer* data) {
   ::PROTOBUF_NAMESPACE_ID::Arena* message_arena = GetArenaForAllocation();
   if (message_arena == nullptr) {
     delete reinterpret_cast< ::PROTOBUF_NAMESPACE_ID::MessageLite*>(data_);

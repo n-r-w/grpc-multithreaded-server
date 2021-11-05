@@ -15,6 +15,7 @@
 #include <server_lib/sl_auth.h>
 
 #include <hrs_server/server/hrs_auth.h>
+#include <api/src/data_converter.h>
 
 using grpc::Channel;
 using grpc::ClientContext;
@@ -43,8 +44,14 @@ public:
         Status status = _stub->ExecuteSQL(&context, request, &reply);
 
         if (status.ok()) {
-            // ответ в reply.data()
-            return "SQL data received";
+            if (!reply.error_text().empty())
+                return "Sql error: " + reply.error_text();
+
+            auto reader = api::DataContainerWrapper::createReader(reply.data());
+            const int dataset_id = 1;
+
+            return "SQL data received. Row count: " + std::to_string(reader->datasetReader(dataset_id)->rowCount())
+                   + ", column count: " + std::to_string(reader->datasetReader(dataset_id)->columnCount());
 
         } else {
             return std::to_string(status.error_code()) + ": " + status.error_message();
@@ -107,7 +114,7 @@ void execSqlClient(const std::string& info, uint id)
 
         SqlServiceClient service_client(grpc::CreateChannel(info, grpc::InsecureChannelCredentials()), id);
 
-        std::string status = service_client.executeSQL("SELECT * FROM XXXX");
+        std::string status = service_client.executeSQL("SELECT * FROM r0001");
 
         sl::Utils::coutPrint(status + ": " + std::to_string(id) + ", count: " + std::to_string(++counter));
     }
@@ -134,9 +141,9 @@ int main(int argc, char** argv)
 {
     std::string target_str = "localhost:50051";
 
-    size_t worker_sql_count = 10;
-    size_t worker_test1_count = 10;
-    size_t worker_test2_count = 10;
+    size_t worker_sql_count = 50;
+    size_t worker_test1_count = 0;
+    size_t worker_test2_count = 0;
 
     std::vector<std::thread*> worker_threads;
 
