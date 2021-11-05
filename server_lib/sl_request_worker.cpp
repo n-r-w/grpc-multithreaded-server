@@ -70,11 +70,13 @@ void RequestWorker::process()
             std::string login;
             std::string password;
 
-            if (!extractUserValidationInfo(processor->context(), login, password)) {
+            UservValidationResult v_res = extractUserValidationInfo(processor->service(), processor->context(), login, password);
+
+            if (v_res == UservValidationResult::NotValidated) {
                 processor->run(grpc::StatusCode::INVALID_ARGUMENT);
 
             } else {
-                if (!_user_validator->checkUser(login, password))
+                if (v_res == UservValidationResult::Validated && !_user_validator->checkUser(login, password))
                     processor->run(grpc::StatusCode::UNAUTHENTICATED);
                 else
                     processor->run(grpc::StatusCode::OK);

@@ -330,8 +330,9 @@ class SqlReply final :
 
   enum : int {
     kErrorTextFieldNumber = 2,
-    kDataFieldNumber = 3,
+    kDataFieldNumber = 4,
     kErrorCodeFieldNumber = 1,
+    kResultTypeFieldNumber = 3,
   };
   // string error_text = 2;
   void clear_error_text();
@@ -347,7 +348,7 @@ class SqlReply final :
   std::string* _internal_mutable_error_text();
   public:
 
-  // .ProtoShared.DataContainer data = 3;
+  // .ProtoShared.DataContainer data = 4;
   bool has_data() const;
   private:
   bool _internal_has_data() const;
@@ -374,6 +375,15 @@ class SqlReply final :
   void _internal_set_error_code(::PROTOBUF_NAMESPACE_ID::uint64 value);
   public:
 
+  // uint32 result_type = 3;
+  void clear_result_type();
+  ::PROTOBUF_NAMESPACE_ID::uint32 result_type() const;
+  void set_result_type(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::uint32 _internal_result_type() const;
+  void _internal_set_result_type(::PROTOBUF_NAMESPACE_ID::uint32 value);
+  public:
+
   // @@protoc_insertion_point(class_scope:SqlApi.SqlReply)
  private:
   class _Internal;
@@ -384,6 +394,7 @@ class SqlReply final :
   ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_text_;
   ::ProtoShared::DataContainer* data_;
   ::PROTOBUF_NAMESPACE_ID::uint64 error_code_;
+  ::PROTOBUF_NAMESPACE_ID::uint32 result_type_;
   mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   friend struct ::TableStruct_sql_2eproto;
 };
@@ -514,7 +525,27 @@ inline void SqlReply::set_allocated_error_text(std::string* error_text) {
   // @@protoc_insertion_point(field_set_allocated:SqlApi.SqlReply.error_text)
 }
 
-// .ProtoShared.DataContainer data = 3;
+// uint32 result_type = 3;
+inline void SqlReply::clear_result_type() {
+  result_type_ = 0u;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 SqlReply::_internal_result_type() const {
+  return result_type_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::uint32 SqlReply::result_type() const {
+  // @@protoc_insertion_point(field_get:SqlApi.SqlReply.result_type)
+  return _internal_result_type();
+}
+inline void SqlReply::_internal_set_result_type(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  
+  result_type_ = value;
+}
+inline void SqlReply::set_result_type(::PROTOBUF_NAMESPACE_ID::uint32 value) {
+  _internal_set_result_type(value);
+  // @@protoc_insertion_point(field_set:SqlApi.SqlReply.result_type)
+}
+
+// .ProtoShared.DataContainer data = 4;
 inline bool SqlReply::_internal_has_data() const {
   return this != internal_default_instance() && data_ != nullptr;
 }

@@ -27,7 +27,7 @@ ConnectionPool::~ConnectionPool()
 }
 
 ConnectionPtr ConnectionPool::getConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
-                                            const std::string& password, const std::string& options, Error& error) const
+                                            const std::string& password, const std::string& options, sl::Error& error) const
 {
     assert(!_is_shutdown);
 

@@ -37,9 +37,12 @@ class RequestProcessorBase
 {
 public:
     RequestProcessorBase() { }
+    virtual ~RequestProcessorBase() { }
     virtual void run(grpc::StatusCode code, const std::string& error_message = {}) = 0;
     //! Контекст запроса
     virtual grpc::ServerContext* context() const = 0;
+    //! Сервис
+    virtual grpc::Service* service() const = 0;
 
 protected:
     virtual void waitForRequest() = 0;
@@ -98,7 +101,7 @@ protected:
     //! Обработчик потока
     const RequestWorker* worker() const { return _worker; }
     //! Сервис
-    ServiceType* service() const { return _service; }    
+    ServiceType* service() const final { return _service; }
     //! Запрос
     RequestType* request() const { return &_request; }
     //! Ответ

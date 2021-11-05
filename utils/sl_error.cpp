@@ -1,6 +1,6 @@
 #include "sl_error.h"
 
-namespace sql
+namespace sl
 {
 Error::Error(const Error& e)
     : _code(e._code != nullptr ? std::make_unique<int64_t>(*e._code) : nullptr)
@@ -65,6 +65,11 @@ std::string Error::text() const
 int64_t Error::code() const
 {
     return _code != nullptr ? *_code : 0;
+}
+
+void Error::clear()
+{
+    *this = Error();
 }
 
 } // namespace sql

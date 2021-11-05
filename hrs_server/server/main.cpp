@@ -12,7 +12,7 @@ int main(int argc, char** argv)
     sl::Utils::coutPrint("enter 'q' for quit, 'c' for clear connection pool");
 
     background.start();
-    server.start("0.0.0.0:50051", 5);
+    server.start("0.0.0.0:50051", 10);
 
     char input;
     while (true) {

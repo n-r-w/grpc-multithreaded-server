@@ -167,14 +167,17 @@ private:
     friend class DataContainerWrapper;
 };
 
+class DataContainerWrapper;
+using DataContainerWrapperPtr = std::shared_ptr<DataContainerWrapper>;
+
 //! Контейнер с данными
 class DataContainerWrapper
 {
 public:
-    static std::shared_ptr<DataContainerWrapper> createWriter(ProtoShared::DataContainer* container, bool packet_data);
-    static std::shared_ptr<DataContainerWrapper> createWriter(ProtoShared::DataContainer& container, bool packet_data);
-    static std::shared_ptr<DataContainerWrapper> createReader(const ProtoShared::DataContainer& container);
-    static std::shared_ptr<DataContainerWrapper> createReader(const ProtoShared::DataContainer* container);
+    static DataContainerWrapperPtr createWriter(ProtoShared::DataContainer* container, bool packet_data);
+    static DataContainerWrapperPtr createWriter(ProtoShared::DataContainer& container, bool packet_data);
+    static DataContainerWrapperPtr createReader(const ProtoShared::DataContainer& container);
+    static DataContainerWrapperPtr createReader(const ProtoShared::DataContainer* container);
 
     ~DataContainerWrapper();
 

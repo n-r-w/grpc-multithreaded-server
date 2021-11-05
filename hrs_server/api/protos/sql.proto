@@ -12,8 +12,11 @@ message SqlRequest {
   string sql = 1;  
 }
 
-message SqlReply {
+message SqlReply {  
+  // hrs::ErrorCodes
   uint64 error_code = 1;
   string error_text = 2;
-  ProtoShared.DataContainer data = 3;
+  // sql::Query::ResultType
+  uint32 result_type = 3;
+  ProtoShared.DataContainer data = 4;
 }

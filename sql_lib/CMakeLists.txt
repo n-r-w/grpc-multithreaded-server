@@ -13,6 +13,10 @@ add_library(${ID} SHARED
     ${SOURCES}
 )
 
+include_directories(
+    ${PROJECT_SOURCE_DIR}
+)
+
 target_include_directories(${ID} PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )

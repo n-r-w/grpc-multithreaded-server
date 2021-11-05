@@ -2,6 +2,22 @@ syntax = "proto3";
 
 package ProtoShared;
 
+service Auth {
+  // Проверка логина и пароля
+  rpc checkLogin (LoginRequest) returns (LoginReply);
+}
+
+message LoginRequest {
+    string login = 1;
+    string password = 2;
+}
+
+message LoginReply {
+    // Если 0, то все ОК
+    int64 error_code = 1;
+    string error_text = 2;
+}
+
 message Value {
     oneof data {
        string v_string = 1;

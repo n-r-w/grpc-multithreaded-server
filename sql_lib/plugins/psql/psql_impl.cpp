@@ -14,7 +14,7 @@ PsqlConnectionPool::~PsqlConnectionPool()
 
 Connection* PsqlConnectionPool::createConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
                                                  const std::string& password, const std::string& password_hash, const std::string& options,
-                                                 Error& error)
+                                                 sl::Error& error)
 {
     return new PsqlConnection(host, port, db_name, login, password, password_hash, options);
 }
@@ -29,11 +29,11 @@ bool PsqlConnection::isOpen() const
     return PQstatus((PGconn*)_pq_connection) == CONNECTION_OK;
 }
 
-Error PsqlConnection::error() const
+sl::Error PsqlConnection::error() const
 {
     auto status = PQstatus((PGconn*)_pq_connection);
     if (status != CONNECTION_OK)
-        return Error(status, PQerrorMessage((PGconn*)_pq_connection));
+        return sl::Error(status, PQerrorMessage((PGconn*)_pq_connection));
 
     return {};
 }
@@ -83,7 +83,7 @@ std::string PsqlQuery::toString(size_t row, size_t column) const
     return std::string(res);
 }
 
-Error PsqlQuery::doExec(const std::string& sql, ResultType& result_type)
+sl::Error PsqlQuery::doExec(const std::string& sql, ResultType& result_type)
 {
     if (_result != nullptr)
         PQclear((PGresult*)_result);
@@ -94,7 +94,7 @@ Error PsqlQuery::doExec(const std::string& sql, ResultType& result_type)
     switch (status) {
         case PGRES_EMPTY_QUERY:
             result_type = ResultType::Error;
-            return Error(-1, "empty query");
+            return sl::Error(-1, "empty query");
 
         case PGRES_TUPLES_OK:
             result_type = ResultType::Select;
@@ -107,11 +107,11 @@ Error PsqlQuery::doExec(const std::string& sql, ResultType& result_type)
         case PGRES_FATAL_ERROR:
         case PGRES_NONFATAL_ERROR:
             result_type = ResultType::Error;
-            return Error(status, PQerrorMessage((PGconn*)connection()->_pq_connection));
+            return sl::Error(status, PQerrorMessage((PGconn*)connection()->_pq_connection));
 
         default:
             result_type = ResultType::Error;
-            return Error(status, "unsupported query type");
+            return sl::Error(status, "unsupported query type");
     }
 }
 

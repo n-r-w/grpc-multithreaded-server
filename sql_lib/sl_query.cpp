@@ -16,10 +16,10 @@ Query::ResultType Query::type() const
     return _type;
 }
 
-Error Query::exec(const std::string& sql)
+sl::Error Query::exec(const std::string& sql)
 {
     assert(!sql.empty());
-    Error error = doExec(sql, _type);
+    sl::Error error = doExec(sql, _type);
     return error;
 }
 

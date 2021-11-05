@@ -29,7 +29,7 @@ public:
     std::string options() const;
 
     virtual bool isOpen() const = 0;
-    virtual Error error() const = 0;
+    virtual sl::Error error() const = 0;
 
 protected:
     Connection(const std::string& host, size_t port, const std::string& db_name, const std::string& login, const std::string& password,

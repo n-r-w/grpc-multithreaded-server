@@ -18,7 +18,7 @@ protected:
     //! Создать соединение. Должно быть открыто
     Connection* createConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
                                  const std::string& password, const std::string& password_hash, const std::string& options,
-                                 Error& error) override;
+                                 sl::Error& error) override;
 };
 
 class PsqlConnection;
@@ -30,7 +30,7 @@ public:
     ~PsqlConnection();
 
     bool isOpen() const override;
-    Error error() const override;
+    sl::Error error() const override;
 
 private:
     PsqlConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login, const std::string& password,
@@ -56,7 +56,7 @@ public:
     std::string toString(size_t row, size_t column) const override;
 
 protected:
-    Error doExec(const std::string& sql, ResultType& result_type) override;
+    sl::Error doExec(const std::string& sql, ResultType& result_type) override;
 
 private:
     void* _result = nullptr;

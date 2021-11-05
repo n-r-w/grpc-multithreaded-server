@@ -10,9 +10,9 @@ set(PROTO_FILES
     test
 )
 
-set(SOURCES
-    src/data_converter.h
-    src/data_converter.cpp
+file(GLOB SOURCES
+    "src/*.h"
+    "src/*.cpp"
 )
 
 # макро для генерации кода на основе прото файлов

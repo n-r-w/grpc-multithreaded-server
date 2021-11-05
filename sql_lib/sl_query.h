@@ -31,7 +31,7 @@ public:
     ConnectionPtr connection() const;
     ResultType type() const;
 
-    Error exec(const std::string& sql);
+    sl::Error exec(const std::string& sql);
 
     virtual size_t rowCount() const = 0;
     virtual size_t columnCount() const = 0;
@@ -39,7 +39,7 @@ public:
     virtual std::string toString(size_t row, size_t column) const = 0;
 
 protected:
-    virtual Error doExec(const std::string& sql, ResultType& result_type) = 0;
+    virtual sl::Error doExec(const std::string& sql, ResultType& result_type) = 0;
 
     Query(const ConnectionPtr& con);
 

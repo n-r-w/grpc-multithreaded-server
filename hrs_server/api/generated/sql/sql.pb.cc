@@ -33,7 +33,8 @@ constexpr SqlReply::SqlReply(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : error_text_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
   , data_(nullptr)
-  , error_code_(uint64_t{0u}){}
+  , error_code_(uint64_t{0u})
+  , result_type_(0u){}
 struct SqlReplyDefaultTypeInternal {
   constexpr SqlReplyDefaultTypeInternal()
     : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
@@ -62,6 +63,7 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_sql_2eproto::offsets[] PROTOBU
   ~0u,  // no _weak_field_map_
   PROTOBUF_FIELD_OFFSET(::SqlApi::SqlReply, error_code_),
   PROTOBUF_FIELD_OFFSET(::SqlApi::SqlReply, error_text_),
+  PROTOBUF_FIELD_OFFSET(::SqlApi::SqlReply, result_type_),
   PROTOBUF_FIELD_OFFSET(::SqlApi::SqlReply, data_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
@@ -76,18 +78,19 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 
 const char descriptor_table_protodef_sql_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
   "\n\tsql.proto\022\006SqlApi\032\014shared.proto\"\031\n\nSql"
-  "Request\022\013\n\003sql\030\001 \001(\t\"\\\n\010SqlReply\022\022\n\nerro"
-  "r_code\030\001 \001(\004\022\022\n\nerror_text\030\002 \001(\t\022(\n\004data"
-  "\030\003 \001(\0132\032.ProtoShared.DataContainer29\n\003Sq"
-  "l\0222\n\nExecuteSQL\022\022.SqlApi.SqlRequest\032\020.Sq"
-  "lApi.SqlReplyb\006proto3"
+  "Request\022\013\n\003sql\030\001 \001(\t\"q\n\010SqlReply\022\022\n\nerro"
+  "r_code\030\001 \001(\004\022\022\n\nerror_text\030\002 \001(\t\022\023\n\013resu"
+  "lt_type\030\003 \001(\r\022(\n\004data\030\004 \001(\0132\032.ProtoShare"
+  "d.DataContainer29\n\003Sql\0222\n\nExecuteSQL\022\022.S"
+  "qlApi.SqlRequest\032\020.SqlApi.SqlReplyb\006prot"
+  "o3"
   ;
 static const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable*const descriptor_table_sql_2eproto_deps[1] = {
   &::descriptor_table_shared_2eproto,
 };
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_sql_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_sql_2eproto = {
-  false, false, 221, descriptor_table_protodef_sql_2eproto, "sql.proto", 
+  false, false, 242, descriptor_table_protodef_sql_2eproto, "sql.proto", 
   &descriptor_table_sql_2eproto_once, descriptor_table_sql_2eproto_deps, 1, 2,
   schemas, file_default_instances, TableStruct_sql_2eproto::offsets,
   file_level_metadata_sql_2eproto, file_level_enum_descriptors_sql_2eproto, file_level_service_descriptors_sql_2eproto,
@@ -339,7 +342,9 @@ SqlReply::SqlReply(const SqlReply& from)
   } else {
     data_ = nullptr;
   }
-  error_code_ = from.error_code_;
+  ::memcpy(&error_code_, &from.error_code_,
+    static_cast<size_t>(reinterpret_cast<char*>(&result_type_) -
+    reinterpret_cast<char*>(&error_code_)) + sizeof(result_type_));
   // @@protoc_insertion_point(copy_constructor:SqlApi.SqlReply)
 }
 
@@ -347,8 +352,8 @@ inline void SqlReply::SharedCtor() {
 error_text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
 ::memset(reinterpret_cast<char*>(this) + static_cast<size_t>(
     reinterpret_cast<char*>(&data_) - reinterpret_cast<char*>(this)),
-    0, static_cast<size_t>(reinterpret_cast<char*>(&error_code_) -
-    reinterpret_cast<char*>(&data_)) + sizeof(error_code_));
+    0, static_cast<size_t>(reinterpret_cast<char*>(&result_type_) -
+    reinterpret_cast<char*>(&data_)) + sizeof(result_type_));
 }
 
 SqlReply::~SqlReply() {
@@ -385,7 +390,9 @@ void SqlReply::Clear() {
     delete data_;
   }
   data_ = nullptr;
-  error_code_ = uint64_t{0u};
+  ::memset(&error_code_, 0, static_cast<size_t>(
+      reinterpret_cast<char*>(&result_type_) -
+      reinterpret_cast<char*>(&error_code_)) + sizeof(result_type_));
   _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
 }
 
@@ -411,9 +418,16 @@ const char* SqlReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::i
           CHK_(ptr);
         } else goto handle_unusual;
         continue;
-      // .ProtoShared.DataContainer data = 3;
+      // uint32 result_type = 3;
       case 3:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 26)) {
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 24)) {
+          result_type_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint32(&ptr);
+          CHK_(ptr);
+        } else goto handle_unusual;
+        continue;
+      // .ProtoShared.DataContainer data = 4;
+      case 4:
+        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 34)) {
           ptr = ctx->ParseMessage(_internal_mutable_data(), ptr);
           CHK_(ptr);
         } else goto handle_unusual;
@@ -463,12 +477,18 @@ failure:
         2, this->_internal_error_text(), target);
   }
 
-  // .ProtoShared.DataContainer data = 3;
+  // uint32 result_type = 3;
+  if (this->_internal_result_type() != 0) {
+    target = stream->EnsureSpace(target);
+    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteUInt32ToArray(3, this->_internal_result_type(), target);
+  }
+
+  // .ProtoShared.DataContainer data = 4;
   if (this->_internal_has_data()) {
     target = stream->EnsureSpace(target);
     target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::
       InternalWriteMessage(
-        3, _Internal::data(this), target, stream);
+        4, _Internal::data(this), target, stream);
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -494,7 +514,7 @@ size_t SqlReply::ByteSizeLong() const {
         this->_internal_error_text());
   }
 
-  // .ProtoShared.DataContainer data = 3;
+  // .ProtoShared.DataContainer data = 4;
   if (this->_internal_has_data()) {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::MessageSize(
@@ -506,6 +526,13 @@ size_t SqlReply::ByteSizeLong() const {
     total_size += 1 +
       ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt64Size(
         this->_internal_error_code());
+  }
+
+  // uint32 result_type = 3;
+  if (this->_internal_result_type() != 0) {
+    total_size += 1 +
+      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::UInt32Size(
+        this->_internal_result_type());
   }
 
   if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
@@ -545,6 +572,9 @@ void SqlReply::MergeFrom(const SqlReply& from) {
   if (from._internal_error_code() != 0) {
     _internal_set_error_code(from._internal_error_code());
   }
+  if (from._internal_result_type() != 0) {
+    _internal_set_result_type(from._internal_result_type());
+  }
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
 }
 
@@ -568,8 +598,8 @@ void SqlReply::InternalSwap(SqlReply* other) {
       &other->error_text_, other->GetArenaForAllocation()
   );
   ::PROTOBUF_NAMESPACE_ID::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(SqlReply, error_code_)
-      + sizeof(SqlReply::error_code_)
+      PROTOBUF_FIELD_OFFSET(SqlReply, result_type_)
+      + sizeof(SqlReply::result_type_)
       - PROTOBUF_FIELD_OFFSET(SqlReply, data_)>(
           reinterpret_cast<char*>(&data_),
           reinterpret_cast<char*>(&other->data_));

@@ -22,5 +22,6 @@ include_directories(
 
 add_subdirectory(api)
 add_subdirectory(server)
+add_subdirectory(client_lib)
 add_subdirectory(client_test)
 

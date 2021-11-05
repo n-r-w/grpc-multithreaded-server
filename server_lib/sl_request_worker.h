@@ -34,8 +34,17 @@ protected:
 
     //! Фабрика по созданию обработчиков запросов
     virtual std::vector<sl::RequestProcessorBase*> createRequestProcessors(const std::string& service_key) const = 0;
+
+    enum class UservValidationResult
+    {
+        Validated,
+        NotValidated,
+        NotRequired,
+    };
+
     //! Извлечь из запроса логин и пароль
-    virtual bool extractUserValidationInfo(const grpc::ServerContext* context, std::string& login, std::string& password) const = 0;
+    virtual UservValidationResult extractUserValidationInfo(const grpc::Service* service, const grpc::ServerContext* context,
+                                                            std::string& login, std::string& password) const = 0;
 
 private:
     void process();

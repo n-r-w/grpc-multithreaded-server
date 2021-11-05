@@ -4,13 +4,13 @@
 #include <string_view>
 #include <assert.h>
 
-namespace sql
+namespace sl
 {
 class Error
 {
 public:
     Error() = default;
-    Error(int64_t code, const std::string& text);
+    Error(int64_t code, const std::string& text = {});
     Error(int64_t code, std::string&& text);
     Error(const Error& e);
     Error(Error&& e);
@@ -25,6 +25,8 @@ public:
 
     std::string text() const;
     int64_t code() const;
+
+    void clear();
 
 private:
     std::unique_ptr<int64_t> _code;
