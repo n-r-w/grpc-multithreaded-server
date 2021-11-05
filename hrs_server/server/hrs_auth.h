@@ -15,6 +15,9 @@ public:
     ~UserValidator();
 
 protected:
-    virtual bool getPassword(const std::string& login, std::string& password) override;
+    //! Метод должен вернуть хэш акутального пароля для данного логина
+    bool getLoginPasswordHash(const std::string& login, std::string& password_hash) override;
+    //! Метод должен вычислить хэш пароля
+    std::string calcPasswordHash(const std::string& password_hash) override;
 };
 } // namespace hrs

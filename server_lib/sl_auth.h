@@ -17,11 +17,12 @@ public:
     void clearUserInfo(const std::string& login);
 
 protected:
-    virtual bool getPassword(const std::string& login, std::string& password) = 0;
+    //! Метод должен вернуть хэш акутального пароля для данного логина
+    virtual bool getLoginPasswordHash(const std::string& login, std::string& password_hash) = 0;
+    //! Метод должен вычислить хэш пароля
+    virtual std::string calcPasswordHash(const std::string& password_hash) = 0;
 
 private:
-    static std::string calcHash(const std::string& password);
-
     std::mutex _mutex;
     std::map<std::string, std::string> _info;
 };

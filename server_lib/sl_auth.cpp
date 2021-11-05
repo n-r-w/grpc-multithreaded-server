@@ -14,17 +14,16 @@ bool UserValidator::checkUser(const std::string& login, const std::string& passw
 {
     std::lock_guard<std::mutex> lock(_mutex);
 
-    std::string request_hash = calcHash(password);
+    std::string request_hash = calcPasswordHash(password);
 
     auto i = _info.find(login);
     if (i != _info.end())
         return request_hash == i->second;
 
-    std::string pass;
-    if (!getPassword(login, pass))
+    std::string valid_hash;
+    if (!getLoginPasswordHash(login, valid_hash))
         return false;
 
-    std::string valid_hash = calcHash(pass);
     _info[login] = valid_hash;
 
     return valid_hash == request_hash;
@@ -36,9 +35,5 @@ void UserValidator::clearUserInfo(const std::string& login)
     _info.erase(login);
 }
 
-std::string UserValidator::calcHash(const std::string& password)
-{
-    return password;
-}
 
 } // namespace sl

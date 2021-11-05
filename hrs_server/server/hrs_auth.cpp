@@ -1,4 +1,5 @@
 #include "hrs_auth.h"
+#include <sl_utils.h>
 
 namespace hrs
 {
@@ -10,10 +11,15 @@ UserValidator::~UserValidator()
 {
 }
 
-bool UserValidator::getPassword(const std::string& login, std::string& password)
+bool UserValidator::getLoginPasswordHash(const std::string& login, std::string& password)
 {
-    password = "qq1234";
+    password = calcPasswordHash("qq1234");
     return true;
+}
+
+std::string UserValidator::calcPasswordHash(const std::string& password_hash)
+{
+    return sl::Utils::sha256(password_hash);
 }
 
 } // namespace hrs
