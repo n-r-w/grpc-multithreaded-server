@@ -72,4 +72,15 @@ void Error::clear()
     *this = Error();
 }
 
+std::string Error::fullText() const
+{
+    if (_code == nullptr)
+        return "no error";
+
+    if (_text.empty())
+        return "error code: " + std::to_string(*_code);
+
+    return _text + " (error code: " + std::to_string(*_code) + ")";
+}
+
 } // namespace sql

@@ -4,6 +4,7 @@
 #include <server_lib/sl_request_worker.h>
 #include <sql_lib/sl_connection_pool.h>
 #include <server_lib/sl_auth.h>
+#include <sql_lib/sl_query.h>
 
 namespace hrs
 {
@@ -24,6 +25,9 @@ public:
 
     //! Общедоступный указатель на фабрику
     static HrsServiceFactory* instance();
+
+    //! Создать запрос. Потокобезопасно
+    static sql::QueryPtr getQuery(sl::Error& error);
 
     //! Получение соединения с севрером БД для выполнения SQL запросов
     sql::ConnectionPool* sqlConnectionPool() const;

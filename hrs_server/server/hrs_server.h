@@ -12,6 +12,10 @@ class HrsServer : public sl::Server
 public:
     HrsServer();
 
+    //! Инициализация соединения с БД
+    sl::Error initDatabaseConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
+                                     const std::string& password, const std::string& options);
+
 protected:
     //! Фабрика по создание обработчиков очереди (отдельный поток)
     sl::RequestWorker* createWorker(grpc::ServerCompletionQueue* queue) override;

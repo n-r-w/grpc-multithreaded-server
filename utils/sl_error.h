@@ -28,6 +28,8 @@ public:
 
     void clear();
 
+    std::string fullText() const;
+
 private:
     std::unique_ptr<int64_t> _code;
     std::string _text;

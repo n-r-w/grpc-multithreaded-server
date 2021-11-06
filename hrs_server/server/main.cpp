@@ -8,6 +8,11 @@ int main(int argc, char** argv)
 {
     hrs::BackgroundWorker background;
     hrs::HrsServer server;
+    sl::Error error = server.initDatabaseConnection("127.0.0.1", 5432, "ML829MP1", "postgres", "1", "");
+    if (error.isError()) {
+        sl::Utils::coutPrint("Database connection error: " + error.fullText());
+        return 0;
+    }
 
     sl::Utils::coutPrint("enter 'q' for quit, 'c' for clear connection pool");
 

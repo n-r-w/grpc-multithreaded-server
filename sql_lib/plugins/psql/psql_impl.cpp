@@ -19,6 +19,11 @@ Connection* PsqlConnectionPool::createConnection(const std::string& host, size_t
     return new PsqlConnection(host, port, db_name, login, password, password_hash, options);
 }
 
+Query* PsqlConnectionPool::createQuery(const ConnectionPtr& connection)
+{
+    return new PsqlQuery(connection);
+}
+
 PsqlConnection::~PsqlConnection()
 {
     PQfinish((PGconn*)_pq_connection);

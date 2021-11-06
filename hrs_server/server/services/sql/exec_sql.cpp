@@ -10,15 +10,10 @@ namespace hrs
 void SqlRequestProcessor::handleRequest()
 {
     sl::Error error;
-    auto connection
-        = HrsServiceFactory::instance()->sqlConnectionPool()->getConnection("127.0.0.1", 5432, "ML829MP1", "postgres", "1", "", error);
+    auto query = HrsServiceFactory::getQuery(error);
 
-    std::unique_ptr<sql::PsqlQuery> query;
-
-    if (error.isOk()) {
-        query = std::make_unique<sql::PsqlQuery>(connection);
+    if (error.isOk())
         error = query->exec(request()->sql());
-    }
 
     reply()->set_result_type((int)query->type());
 

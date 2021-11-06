@@ -1,6 +1,7 @@
 #include "sl_connection_pool.h"
 #include "sl_error.h"
 #include "sl_connection.h"
+#include "sl_query.h"
 
 #include <sl_utils.h>
 #include <assert.h>
@@ -90,6 +91,36 @@ size_t ConnectionPool::clear()
     }
 
     return count;
+}
+
+sl::Error ConnectionPool::setConnectionOptions(const std::string& host, size_t port, const std::string& db_name, const std::string& login,
+                                               const std::string& password, const std::string& options)
+{
+    clear();
+
+    // создаем тестовое соединение. послу удаления оно уйдет в пул
+    sl::Error error;
+    auto c = getConnection(host, port, db_name, login, password, options, error);
+    if (error.isError())
+        return error;
+
+    _host = host;
+    _port = port;
+    _db_name = db_name;
+    _login = login;
+    _password = password;
+    _options = options;
+    return {};
+}
+
+QueryPtr ConnectionPool::getQuery(sl::Error& error)
+{
+    auto c = getConnection(_host, _port, _db_name, _login, _password, _options, error);
+    if (error.isError())
+        return nullptr;
+
+    auto q = createQuery(c);
+    return std::shared_ptr<Query>(q);
 }
 
 void ConnectionPool::freeConnection(Connection* c) const

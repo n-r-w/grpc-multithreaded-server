@@ -30,6 +30,11 @@ HrsServiceFactory* HrsServiceFactory::instance()
     return static_cast<HrsServiceFactory*>(sl::ServiceFactory::instance());
 }
 
+sql::QueryPtr HrsServiceFactory::getQuery(sl::Error& error)
+{
+    return instance()->getQuery(error);
+}
+
 sql::ConnectionPool* HrsServiceFactory::sqlConnectionPool() const
 {
     return _conn_pool.get();

@@ -15,6 +15,7 @@ namespace sql
 class Connection;
 using ConnectionPtr = std::shared_ptr<Connection>;
 
+//! Соединение с сервером
 class Connection
 {
 public:
