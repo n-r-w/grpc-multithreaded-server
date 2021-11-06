@@ -49,7 +49,7 @@ struct TableStruct_shared_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[13]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[11]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -75,12 +75,6 @@ extern FlatDatasetDefaultTypeInternal _FlatDataset_default_instance_;
 class FlatDataset_Row;
 struct FlatDataset_RowDefaultTypeInternal;
 extern FlatDataset_RowDefaultTypeInternal _FlatDataset_Row_default_instance_;
-class LoginReply;
-struct LoginReplyDefaultTypeInternal;
-extern LoginReplyDefaultTypeInternal _LoginReply_default_instance_;
-class LoginRequest;
-struct LoginRequestDefaultTypeInternal;
-extern LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
 class PacketDataset;
 struct PacketDatasetDefaultTypeInternal;
 extern PacketDatasetDefaultTypeInternal _PacketDataset_default_instance_;
@@ -104,8 +98,6 @@ template<> ::ProtoShared::DataContainer_DatasetsEntry_DoNotUse* Arena::CreateMay
 template<> ::ProtoShared::DataContainer_FieldsEntry_DoNotUse* Arena::CreateMaybeMessage<::ProtoShared::DataContainer_FieldsEntry_DoNotUse>(Arena*);
 template<> ::ProtoShared::FlatDataset* Arena::CreateMaybeMessage<::ProtoShared::FlatDataset>(Arena*);
 template<> ::ProtoShared::FlatDataset_Row* Arena::CreateMaybeMessage<::ProtoShared::FlatDataset_Row>(Arena*);
-template<> ::ProtoShared::LoginReply* Arena::CreateMaybeMessage<::ProtoShared::LoginReply>(Arena*);
-template<> ::ProtoShared::LoginRequest* Arena::CreateMaybeMessage<::ProtoShared::LoginRequest>(Arena*);
 template<> ::ProtoShared::PacketDataset* Arena::CreateMaybeMessage<::ProtoShared::PacketDataset>(Arena*);
 template<> ::ProtoShared::PacketDataset_Row* Arena::CreateMaybeMessage<::ProtoShared::PacketDataset_Row>(Arena*);
 template<> ::ProtoShared::PacketDataset_Row_DataEntry_DoNotUse* Arena::CreateMaybeMessage<::ProtoShared::PacketDataset_Row_DataEntry_DoNotUse>(Arena*);
@@ -115,321 +107,6 @@ PROTOBUF_NAMESPACE_CLOSE
 namespace ProtoShared {
 
 // ===================================================================
-
-class LoginRequest final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ProtoShared.LoginRequest) */ {
- public:
-  inline LoginRequest() : LoginRequest(nullptr) {}
-  ~LoginRequest() override;
-  explicit constexpr LoginRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  LoginRequest(const LoginRequest& from);
-  LoginRequest(LoginRequest&& from) noexcept
-    : LoginRequest() {
-    *this = ::std::move(from);
-  }
-
-  inline LoginRequest& operator=(const LoginRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline LoginRequest& operator=(LoginRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const LoginRequest& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const LoginRequest* internal_default_instance() {
-    return reinterpret_cast<const LoginRequest*>(
-               &_LoginRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    0;
-
-  friend void swap(LoginRequest& a, LoginRequest& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(LoginRequest* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(LoginRequest* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline LoginRequest* New() const final {
-    return new LoginRequest();
-  }
-
-  LoginRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<LoginRequest>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const LoginRequest& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const LoginRequest& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(LoginRequest* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ProtoShared.LoginRequest";
-  }
-  protected:
-  explicit LoginRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kLoginFieldNumber = 1,
-    kPasswordFieldNumber = 2,
-  };
-  // string login = 1;
-  void clear_login();
-  const std::string& login() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_login(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_login();
-  PROTOBUF_MUST_USE_RESULT std::string* release_login();
-  void set_allocated_login(std::string* login);
-  private:
-  const std::string& _internal_login() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_login(const std::string& value);
-  std::string* _internal_mutable_login();
-  public:
-
-  // string password = 2;
-  void clear_password();
-  const std::string& password() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_password(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_password();
-  PROTOBUF_MUST_USE_RESULT std::string* release_password();
-  void set_allocated_password(std::string* password);
-  private:
-  const std::string& _internal_password() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_password(const std::string& value);
-  std::string* _internal_mutable_password();
-  public:
-
-  // @@protoc_insertion_point(class_scope:ProtoShared.LoginRequest)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr login_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr password_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_shared_2eproto;
-};
-// -------------------------------------------------------------------
-
-class LoginReply final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ProtoShared.LoginReply) */ {
- public:
-  inline LoginReply() : LoginReply(nullptr) {}
-  ~LoginReply() override;
-  explicit constexpr LoginReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
-
-  LoginReply(const LoginReply& from);
-  LoginReply(LoginReply&& from) noexcept
-    : LoginReply() {
-    *this = ::std::move(from);
-  }
-
-  inline LoginReply& operator=(const LoginReply& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline LoginReply& operator=(LoginReply&& from) noexcept {
-    if (this == &from) return *this;
-    if (GetOwningArena() == from.GetOwningArena()) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
-    return GetDescriptor();
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const LoginReply& default_instance() {
-    return *internal_default_instance();
-  }
-  static inline const LoginReply* internal_default_instance() {
-    return reinterpret_cast<const LoginReply*>(
-               &_LoginReply_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages =
-    1;
-
-  friend void swap(LoginReply& a, LoginReply& b) {
-    a.Swap(&b);
-  }
-  inline void Swap(LoginReply* other) {
-    if (other == this) return;
-    if (GetOwningArena() == other->GetOwningArena()) {
-      InternalSwap(other);
-    } else {
-      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(LoginReply* other) {
-    if (other == this) return;
-    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  inline LoginReply* New() const final {
-    return new LoginReply();
-  }
-
-  LoginReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
-    return CreateMaybeMessage<LoginReply>(arena);
-  }
-  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
-  void CopyFrom(const LoginReply& from);
-  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
-  void MergeFrom(const LoginReply& from);
-  private:
-  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
-  public:
-  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
-  bool IsInitialized() const final;
-
-  size_t ByteSizeLong() const final;
-  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
-  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
-      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
-  int GetCachedSize() const final { return _cached_size_.Get(); }
-
-  private:
-  void SharedCtor();
-  void SharedDtor();
-  void SetCachedSize(int size) const final;
-  void InternalSwap(LoginReply* other);
-  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
-  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "ProtoShared.LoginReply";
-  }
-  protected:
-  explicit LoginReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                       bool is_message_owned = false);
-  private:
-  static void ArenaDtor(void* object);
-  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
-  public:
-
-  static const ClassData _class_data_;
-  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
-
-  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
-
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-
-  enum : int {
-    kErrorTextFieldNumber = 2,
-    kErrorCodeFieldNumber = 1,
-  };
-  // string error_text = 2;
-  void clear_error_text();
-  const std::string& error_text() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_error_text(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_error_text();
-  PROTOBUF_MUST_USE_RESULT std::string* release_error_text();
-  void set_allocated_error_text(std::string* error_text);
-  private:
-  const std::string& _internal_error_text() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error_text(const std::string& value);
-  std::string* _internal_mutable_error_text();
-  public:
-
-  // int64 error_code = 1;
-  void clear_error_code();
-  ::PROTOBUF_NAMESPACE_ID::int64 error_code() const;
-  void set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value);
-  private:
-  ::PROTOBUF_NAMESPACE_ID::int64 _internal_error_code() const;
-  void _internal_set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value);
-  public:
-
-  // @@protoc_insertion_point(class_scope:ProtoShared.LoginReply)
- private:
-  class _Internal;
-
-  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
-  typedef void InternalArenaConstructable_;
-  typedef void DestructorSkippable_;
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_text_;
-  ::PROTOBUF_NAMESPACE_ID::int64 error_code_;
-  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
-  friend struct ::TableStruct_shared_2eproto;
-};
-// -------------------------------------------------------------------
 
 class Value final :
     public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:ProtoShared.Value) */ {
@@ -487,7 +164,7 @@ class Value final :
                &_Value_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    2;
+    0;
 
   friend void swap(Value& a, Value& b) {
     a.Swap(&b);
@@ -787,7 +464,7 @@ class PacketDataset_Row final :
                &_PacketDataset_Row_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    4;
+    2;
 
   friend void swap(PacketDataset_Row& a, PacketDataset_Row& b) {
     a.Swap(&b);
@@ -962,7 +639,7 @@ class PacketDataset final :
                &_PacketDataset_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    6;
+    4;
 
   friend void swap(PacketDataset& a, PacketDataset& b) {
     a.Swap(&b);
@@ -1137,7 +814,7 @@ class FlatDataset_Row final :
                &_FlatDataset_Row_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    7;
+    5;
 
   friend void swap(FlatDataset_Row& a, FlatDataset_Row& b) {
     a.Swap(&b);
@@ -1285,7 +962,7 @@ class FlatDataset final :
                &_FlatDataset_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    8;
+    6;
 
   friend void swap(FlatDataset& a, FlatDataset& b) {
     a.Swap(&b);
@@ -1475,7 +1152,7 @@ class DataContainer_Dataset final :
                &_DataContainer_Dataset_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    10;
+    8;
 
   friend void swap(DataContainer_Dataset& a, DataContainer_Dataset& b) {
     a.Swap(&b);
@@ -1679,7 +1356,7 @@ class DataContainer final :
                &_DataContainer_default_instance_);
   }
   static constexpr int kIndexInFileMessages =
-    12;
+    10;
 
   friend void swap(DataContainer& a, DataContainer& b) {
     a.Swap(&b);
@@ -1840,172 +1517,6 @@ class DataContainer final :
   #pragma GCC diagnostic push
   #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// LoginRequest
-
-// string login = 1;
-inline void LoginRequest::clear_login() {
-  login_.ClearToEmpty();
-}
-inline const std::string& LoginRequest::login() const {
-  // @@protoc_insertion_point(field_get:ProtoShared.LoginRequest.login)
-  return _internal_login();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LoginRequest::set_login(ArgT0&& arg0, ArgT... args) {
- 
- login_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:ProtoShared.LoginRequest.login)
-}
-inline std::string* LoginRequest::mutable_login() {
-  std::string* _s = _internal_mutable_login();
-  // @@protoc_insertion_point(field_mutable:ProtoShared.LoginRequest.login)
-  return _s;
-}
-inline const std::string& LoginRequest::_internal_login() const {
-  return login_.Get();
-}
-inline void LoginRequest::_internal_set_login(const std::string& value) {
-  
-  login_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* LoginRequest::_internal_mutable_login() {
-  
-  return login_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* LoginRequest::release_login() {
-  // @@protoc_insertion_point(field_release:ProtoShared.LoginRequest.login)
-  return login_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void LoginRequest::set_allocated_login(std::string* login) {
-  if (login != nullptr) {
-    
-  } else {
-    
-  }
-  login_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), login,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:ProtoShared.LoginRequest.login)
-}
-
-// string password = 2;
-inline void LoginRequest::clear_password() {
-  password_.ClearToEmpty();
-}
-inline const std::string& LoginRequest::password() const {
-  // @@protoc_insertion_point(field_get:ProtoShared.LoginRequest.password)
-  return _internal_password();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LoginRequest::set_password(ArgT0&& arg0, ArgT... args) {
- 
- password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:ProtoShared.LoginRequest.password)
-}
-inline std::string* LoginRequest::mutable_password() {
-  std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:ProtoShared.LoginRequest.password)
-  return _s;
-}
-inline const std::string& LoginRequest::_internal_password() const {
-  return password_.Get();
-}
-inline void LoginRequest::_internal_set_password(const std::string& value) {
-  
-  password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* LoginRequest::_internal_mutable_password() {
-  
-  return password_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* LoginRequest::release_password() {
-  // @@protoc_insertion_point(field_release:ProtoShared.LoginRequest.password)
-  return password_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void LoginRequest::set_allocated_password(std::string* password) {
-  if (password != nullptr) {
-    
-  } else {
-    
-  }
-  password_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), password,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:ProtoShared.LoginRequest.password)
-}
-
-// -------------------------------------------------------------------
-
-// LoginReply
-
-// int64 error_code = 1;
-inline void LoginReply::clear_error_code() {
-  error_code_ = int64_t{0};
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 LoginReply::_internal_error_code() const {
-  return error_code_;
-}
-inline ::PROTOBUF_NAMESPACE_ID::int64 LoginReply::error_code() const {
-  // @@protoc_insertion_point(field_get:ProtoShared.LoginReply.error_code)
-  return _internal_error_code();
-}
-inline void LoginReply::_internal_set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  
-  error_code_ = value;
-}
-inline void LoginReply::set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value) {
-  _internal_set_error_code(value);
-  // @@protoc_insertion_point(field_set:ProtoShared.LoginReply.error_code)
-}
-
-// string error_text = 2;
-inline void LoginReply::clear_error_text() {
-  error_text_.ClearToEmpty();
-}
-inline const std::string& LoginReply::error_text() const {
-  // @@protoc_insertion_point(field_get:ProtoShared.LoginReply.error_text)
-  return _internal_error_text();
-}
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void LoginReply::set_error_text(ArgT0&& arg0, ArgT... args) {
- 
- error_text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:ProtoShared.LoginReply.error_text)
-}
-inline std::string* LoginReply::mutable_error_text() {
-  std::string* _s = _internal_mutable_error_text();
-  // @@protoc_insertion_point(field_mutable:ProtoShared.LoginReply.error_text)
-  return _s;
-}
-inline const std::string& LoginReply::_internal_error_text() const {
-  return error_text_.Get();
-}
-inline void LoginReply::_internal_set_error_text(const std::string& value) {
-  
-  error_text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
-}
-inline std::string* LoginReply::_internal_mutable_error_text() {
-  
-  return error_text_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
-}
-inline std::string* LoginReply::release_error_text() {
-  // @@protoc_insertion_point(field_release:ProtoShared.LoginReply.error_text)
-  return error_text_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
-}
-inline void LoginReply::set_allocated_error_text(std::string* error_text) {
-  if (error_text != nullptr) {
-    
-  } else {
-    
-  }
-  error_text_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), error_text,
-      GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set_allocated:ProtoShared.LoginReply.error_text)
-}
-
-// -------------------------------------------------------------------
-
 // Value
 
 // string v_string = 1;
@@ -2897,10 +2408,6 @@ inline void DataContainer::set_packet_data(bool value) {
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// -------------------------------------------------------------------
-
 // -------------------------------------------------------------------
 
 // -------------------------------------------------------------------

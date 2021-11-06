@@ -2,7 +2,7 @@
 
 #include <api/generated/sql/sql.grpc.pb.h>
 #include <api/generated/test/test.grpc.pb.h>
-#include <api/generated/shared/shared.grpc.pb.h>
+#include <api/generated/srv/srv.grpc.pb.h>
 
 #include <sql_lib/plugins/psql/psql_impl.h>
 
@@ -32,7 +32,7 @@ HrsServiceFactory* HrsServiceFactory::instance()
 
 sql::QueryPtr HrsServiceFactory::getQuery(sl::Error& error)
 {
-    return instance()->getQuery(error);
+    return instance()->sqlConnectionPool()->getQuery(error);
 }
 
 sql::ConnectionPool* HrsServiceFactory::sqlConnectionPool() const
@@ -54,7 +54,7 @@ bool HrsServiceFactory::isAuthService(const grpc::Service* service) const
 grpc::Service* HrsServiceFactory::createService(const std::string& key) const
 {
     if (key == AUTH_SERVICE_KEY) {
-        _auth_service = new ProtoShared::Auth::AsyncService;
+        _auth_service = new Srv::Auth::AsyncService;
         return _auth_service;
     }
     if (key == SQL_SERVICE_KEY)

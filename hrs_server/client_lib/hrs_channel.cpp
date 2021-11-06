@@ -2,7 +2,7 @@
 #include <grpcpp/grpcpp.h>
 #include <api/src/hrs_error_codes.h>
 #include <hrs_server/server/hrs_auth.h>
-#include <api/generated/shared/shared.grpc.pb.h>
+#include <api/generated/srv/srv.grpc.pb.h>
 
 namespace hrs
 {
@@ -23,12 +23,12 @@ sl::Error ClientChannel::setup(const std::string& target, const std::shared_ptr<
         return sl::Error(ErrorCodes::ConnectionFail);
     }
 
-    ProtoShared::LoginRequest request;
+    Srv::LoginRequest request;
     request.set_login(login);
     request.set_password(password);
 
-    ProtoShared::LoginReply reply;
-    auto stub = ProtoShared::Auth::NewStub(_channel);
+    Srv::LoginReply reply;
+    auto stub = Srv::Auth::NewStub(_channel);
 
     grpc::ClientContext context;
 

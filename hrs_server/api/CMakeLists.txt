@@ -6,6 +6,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 # файлы с описанием API (расширение proto) в каталоге api/protos
 set(PROTO_FILES
     shared
+    srv
     sql
     test
 )

@@ -17,32 +17,6 @@
 
 PROTOBUF_PRAGMA_INIT_SEG
 namespace ProtoShared {
-constexpr LoginRequest::LoginRequest(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : login_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , password_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string){}
-struct LoginRequestDefaultTypeInternal {
-  constexpr LoginRequestDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~LoginRequestDefaultTypeInternal() {}
-  union {
-    LoginRequest _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
-constexpr LoginReply::LoginReply(
-  ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
-  : error_text_(&::PROTOBUF_NAMESPACE_ID::internal::fixed_address_empty_string)
-  , error_code_(int64_t{0}){}
-struct LoginReplyDefaultTypeInternal {
-  constexpr LoginReplyDefaultTypeInternal()
-    : _instance(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized{}) {}
-  ~LoginReplyDefaultTypeInternal() {}
-  union {
-    LoginReply _instance;
-  };
-};
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT LoginReplyDefaultTypeInternal _LoginReply_default_instance_;
 constexpr Value::Value(
   ::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized)
   : _oneof_case_{}{}
@@ -178,25 +152,11 @@ struct DataContainerDefaultTypeInternal {
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT DataContainerDefaultTypeInternal _DataContainer_default_instance_;
 }  // namespace ProtoShared
-static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_shared_2eproto[13];
+static ::PROTOBUF_NAMESPACE_ID::Metadata file_level_metadata_shared_2eproto[11];
 static constexpr ::PROTOBUF_NAMESPACE_ID::EnumDescriptor const** file_level_enum_descriptors_shared_2eproto = nullptr;
 static constexpr ::PROTOBUF_NAMESPACE_ID::ServiceDescriptor const** file_level_service_descriptors_shared_2eproto = nullptr;
 
 const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_shared_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::ProtoShared::LoginRequest, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::ProtoShared::LoginRequest, login_),
-  PROTOBUF_FIELD_OFFSET(::ProtoShared::LoginRequest, password_),
-  ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::ProtoShared::LoginReply, _internal_metadata_),
-  ~0u,  // no _extensions_
-  ~0u,  // no _oneof_case_
-  ~0u,  // no _weak_field_map_
-  PROTOBUF_FIELD_OFFSET(::ProtoShared::LoginReply, error_code_),
-  PROTOBUF_FIELD_OFFSET(::ProtoShared::LoginReply, error_text_),
   ~0u,  // no _has_bits_
   PROTOBUF_FIELD_OFFSET(::ProtoShared::Value, _internal_metadata_),
   ~0u,  // no _extensions_
@@ -293,24 +253,20 @@ const ::PROTOBUF_NAMESPACE_ID::uint32 TableStruct_shared_2eproto::offsets[] PROT
   PROTOBUF_FIELD_OFFSET(::ProtoShared::DataContainer, packet_data_),
 };
 static const ::PROTOBUF_NAMESPACE_ID::internal::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, sizeof(::ProtoShared::LoginRequest)},
-  { 7, -1, sizeof(::ProtoShared::LoginReply)},
-  { 14, -1, sizeof(::ProtoShared::Value)},
-  { 28, 35, sizeof(::ProtoShared::PacketDataset_Row_DataEntry_DoNotUse)},
-  { 37, -1, sizeof(::ProtoShared::PacketDataset_Row)},
-  { 43, 50, sizeof(::ProtoShared::PacketDataset_RowsEntry_DoNotUse)},
-  { 52, -1, sizeof(::ProtoShared::PacketDataset)},
-  { 60, -1, sizeof(::ProtoShared::FlatDataset_Row)},
-  { 66, -1, sizeof(::ProtoShared::FlatDataset)},
-  { 73, 80, sizeof(::ProtoShared::DataContainer_FieldsEntry_DoNotUse)},
-  { 82, -1, sizeof(::ProtoShared::DataContainer_Dataset)},
-  { 90, 97, sizeof(::ProtoShared::DataContainer_DatasetsEntry_DoNotUse)},
-  { 99, -1, sizeof(::ProtoShared::DataContainer)},
+  { 0, -1, sizeof(::ProtoShared::Value)},
+  { 14, 21, sizeof(::ProtoShared::PacketDataset_Row_DataEntry_DoNotUse)},
+  { 23, -1, sizeof(::ProtoShared::PacketDataset_Row)},
+  { 29, 36, sizeof(::ProtoShared::PacketDataset_RowsEntry_DoNotUse)},
+  { 38, -1, sizeof(::ProtoShared::PacketDataset)},
+  { 46, -1, sizeof(::ProtoShared::FlatDataset_Row)},
+  { 52, -1, sizeof(::ProtoShared::FlatDataset)},
+  { 59, 66, sizeof(::ProtoShared::DataContainer_FieldsEntry_DoNotUse)},
+  { 68, -1, sizeof(::ProtoShared::DataContainer_Dataset)},
+  { 76, 83, sizeof(::ProtoShared::DataContainer_DatasetsEntry_DoNotUse)},
+  { 85, -1, sizeof(::ProtoShared::DataContainer)},
 };
 
 static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] = {
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::ProtoShared::_LoginRequest_default_instance_),
-  reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::ProtoShared::_LoginReply_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::ProtoShared::_Value_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::ProtoShared::_PacketDataset_Row_DataEntry_DoNotUse_default_instance_),
   reinterpret_cast<const ::PROTOBUF_NAMESPACE_ID::Message*>(&::ProtoShared::_PacketDataset_Row_default_instance_),
@@ -325,43 +281,39 @@ static ::PROTOBUF_NAMESPACE_ID::Message const * const file_default_instances[] =
 };
 
 const char descriptor_table_protodef_shared_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\014shared.proto\022\013ProtoShared\"/\n\014LoginRequ"
-  "est\022\r\n\005login\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"4\n\n"
-  "LoginReply\022\022\n\nerror_code\030\001 \001(\003\022\022\n\nerror_"
-  "text\030\002 \001(\t\"\250\001\n\005Value\022\022\n\010v_string\030\001 \001(\tH\000"
-  "\022\017\n\005v_int\030\003 \001(\003H\000\022\022\n\010v_double\030\004 \001(\001H\000\022\020\n"
-  "\006v_bool\030\005 \001(\010H\000\022\021\n\007v_bytes\030\006 \001(\014H\000\022\025\n\013v_"
-  "date_time\030\007 \001(\004H\000\022\020\n\006v_time\030\010 \001(\rH\000\022\020\n\006v"
-  "_null\030\t \001(\010H\000B\006\n\004data\"\271\002\n\rPacketDataset\022"
-  "\024\n\014column_count\030\001 \001(\r\022\021\n\trow_count\030\002 \001(\004"
-  "\0222\n\004rows\030\003 \003(\0132$.ProtoShared.PacketDatas"
-  "et.RowsEntry\032~\n\003Row\0226\n\004data\030\001 \003(\0132(.Prot"
-  "oShared.PacketDataset.Row.DataEntry\032\?\n\tD"
-  "ataEntry\022\013\n\003key\030\001 \001(\r\022!\n\005value\030\002 \001(\0132\022.P"
-  "rotoShared.Value:\0028\001\032K\n\tRowsEntry\022\013\n\003key"
-  "\030\001 \001(\004\022-\n\005value\030\002 \001(\0132\036.ProtoShared.Pack"
-  "etDataset.Row:\0028\001\"x\n\013FlatDataset\022\024\n\014colu"
-  "mn_count\030\001 \001(\r\022*\n\004rows\030\002 \003(\0132\034.ProtoShar"
-  "ed.FlatDataset.Row\032\'\n\003Row\022 \n\004data\030\001 \003(\0132"
-  "\022.ProtoShared.Value\"\266\003\n\rDataContainer\022\031\n"
-  "\021structure_version\030\001 \001(\r\0226\n\006fields\030\002 \003(\013"
-  "2&.ProtoShared.DataContainer.FieldsEntry"
-  "\022:\n\010datasets\030\003 \003(\0132(.ProtoShared.DataCon"
-  "tainer.DatasetsEntry\022\023\n\013packet_data\030\004 \001("
-  "\010\032A\n\013FieldsEntry\022\013\n\003key\030\001 \001(\r\022!\n\005value\030\002"
-  " \001(\0132\022.ProtoShared.Value:\0028\001\032i\n\007Dataset\022"
-  ",\n\006packet\030\001 \001(\0132\032.ProtoShared.PacketData"
-  "setH\000\022(\n\004flat\030\002 \001(\0132\030.ProtoShared.FlatDa"
-  "tasetH\000B\006\n\004data\032S\n\rDatasetsEntry\022\013\n\003key\030"
-  "\001 \001(\r\0221\n\005value\030\002 \001(\0132\".ProtoShared.DataC"
-  "ontainer.Dataset:\0028\0012H\n\004Auth\022@\n\ncheckLog"
-  "in\022\031.ProtoShared.LoginRequest\032\027.ProtoSha"
-  "red.LoginReplyb\006proto3"
+  "\n\014shared.proto\022\013ProtoShared\"\250\001\n\005Value\022\022\n"
+  "\010v_string\030\001 \001(\tH\000\022\017\n\005v_int\030\003 \001(\003H\000\022\022\n\010v_"
+  "double\030\004 \001(\001H\000\022\020\n\006v_bool\030\005 \001(\010H\000\022\021\n\007v_by"
+  "tes\030\006 \001(\014H\000\022\025\n\013v_date_time\030\007 \001(\004H\000\022\020\n\006v_"
+  "time\030\010 \001(\rH\000\022\020\n\006v_null\030\t \001(\010H\000B\006\n\004data\"\271"
+  "\002\n\rPacketDataset\022\024\n\014column_count\030\001 \001(\r\022\021"
+  "\n\trow_count\030\002 \001(\004\0222\n\004rows\030\003 \003(\0132$.ProtoS"
+  "hared.PacketDataset.RowsEntry\032~\n\003Row\0226\n\004"
+  "data\030\001 \003(\0132(.ProtoShared.PacketDataset.R"
+  "ow.DataEntry\032\?\n\tDataEntry\022\013\n\003key\030\001 \001(\r\022!"
+  "\n\005value\030\002 \001(\0132\022.ProtoShared.Value:\0028\001\032K\n"
+  "\tRowsEntry\022\013\n\003key\030\001 \001(\004\022-\n\005value\030\002 \001(\0132\036"
+  ".ProtoShared.PacketDataset.Row:\0028\001\"x\n\013Fl"
+  "atDataset\022\024\n\014column_count\030\001 \001(\r\022*\n\004rows\030"
+  "\002 \003(\0132\034.ProtoShared.FlatDataset.Row\032\'\n\003R"
+  "ow\022 \n\004data\030\001 \003(\0132\022.ProtoShared.Value\"\266\003\n"
+  "\rDataContainer\022\031\n\021structure_version\030\001 \001("
+  "\r\0226\n\006fields\030\002 \003(\0132&.ProtoShared.DataCont"
+  "ainer.FieldsEntry\022:\n\010datasets\030\003 \003(\0132(.Pr"
+  "otoShared.DataContainer.DatasetsEntry\022\023\n"
+  "\013packet_data\030\004 \001(\010\032A\n\013FieldsEntry\022\013\n\003key"
+  "\030\001 \001(\r\022!\n\005value\030\002 \001(\0132\022.ProtoShared.Valu"
+  "e:\0028\001\032i\n\007Dataset\022,\n\006packet\030\001 \001(\0132\032.Proto"
+  "Shared.PacketDatasetH\000\022(\n\004flat\030\002 \001(\0132\030.P"
+  "rotoShared.FlatDatasetH\000B\006\n\004data\032S\n\rData"
+  "setsEntry\022\013\n\003key\030\001 \001(\r\0221\n\005value\030\002 \001(\0132\"."
+  "ProtoShared.DataContainer.Dataset:\0028\001b\006p"
+  "roto3"
   ;
 static ::PROTOBUF_NAMESPACE_ID::internal::once_flag descriptor_table_shared_2eproto_once;
 const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_shared_2eproto = {
-  false, false, 1262, descriptor_table_protodef_shared_2eproto, "shared.proto", 
-  &descriptor_table_shared_2eproto_once, nullptr, 0, 13,
+  false, false, 1085, descriptor_table_protodef_shared_2eproto, "shared.proto", 
+  &descriptor_table_shared_2eproto_once, nullptr, 0, 11,
   schemas, file_default_instances, TableStruct_shared_2eproto::offsets,
   file_level_metadata_shared_2eproto, file_level_enum_descriptors_shared_2eproto, file_level_service_descriptors_shared_2eproto,
 };
@@ -372,475 +324,6 @@ PROTOBUF_ATTRIBUTE_WEAK const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY static ::PROTOBUF_NAMESPACE_ID::internal::AddDescriptorsRunner dynamic_init_dummy_shared_2eproto(&descriptor_table_shared_2eproto);
 namespace ProtoShared {
-
-// ===================================================================
-
-class LoginRequest::_Internal {
- public:
-};
-
-LoginRequest::LoginRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
-  // @@protoc_insertion_point(arena_constructor:ProtoShared.LoginRequest)
-}
-LoginRequest::LoginRequest(const LoginRequest& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  login_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_login().empty()) {
-    login_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_login(), 
-      GetArenaForAllocation());
-  }
-  password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_password().empty()) {
-    password_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_password(), 
-      GetArenaForAllocation());
-  }
-  // @@protoc_insertion_point(copy_constructor:ProtoShared.LoginRequest)
-}
-
-inline void LoginRequest::SharedCtor() {
-login_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-password_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-LoginRequest::~LoginRequest() {
-  // @@protoc_insertion_point(destructor:ProtoShared.LoginRequest)
-  if (GetArenaForAllocation() != nullptr) return;
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-inline void LoginRequest::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  login_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  password_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void LoginRequest::ArenaDtor(void* object) {
-  LoginRequest* _this = reinterpret_cast< LoginRequest* >(object);
-  (void)_this;
-}
-void LoginRequest::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void LoginRequest::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void LoginRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:ProtoShared.LoginRequest)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  login_.ClearToEmpty();
-  password_.ClearToEmpty();
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* LoginRequest::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // string login = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 10)) {
-          auto str = _internal_mutable_login();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "ProtoShared.LoginRequest.login"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string password = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_password();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "ProtoShared.LoginRequest.password"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* LoginRequest::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:ProtoShared.LoginRequest)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // string login = 1;
-  if (!this->_internal_login().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_login().data(), static_cast<int>(this->_internal_login().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "ProtoShared.LoginRequest.login");
-    target = stream->WriteStringMaybeAliased(
-        1, this->_internal_login(), target);
-  }
-
-  // string password = 2;
-  if (!this->_internal_password().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_password().data(), static_cast<int>(this->_internal_password().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "ProtoShared.LoginRequest.password");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_password(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:ProtoShared.LoginRequest)
-  return target;
-}
-
-size_t LoginRequest::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:ProtoShared.LoginRequest)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string login = 1;
-  if (!this->_internal_login().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_login());
-  }
-
-  // string password = 2;
-  if (!this->_internal_password().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_password());
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LoginRequest::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    LoginRequest::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LoginRequest::GetClassData() const { return &_class_data_; }
-
-void LoginRequest::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
-  static_cast<LoginRequest *>(to)->MergeFrom(
-      static_cast<const LoginRequest &>(from));
-}
-
-
-void LoginRequest::MergeFrom(const LoginRequest& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:ProtoShared.LoginRequest)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_login().empty()) {
-    _internal_set_login(from._internal_login());
-  }
-  if (!from._internal_password().empty()) {
-    _internal_set_password(from._internal_password());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void LoginRequest::CopyFrom(const LoginRequest& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ProtoShared.LoginRequest)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool LoginRequest::IsInitialized() const {
-  return true;
-}
-
-void LoginRequest::InternalSwap(LoginRequest* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &login_, GetArenaForAllocation(),
-      &other->login_, other->GetArenaForAllocation()
-  );
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &password_, GetArenaForAllocation(),
-      &other->password_, other->GetArenaForAllocation()
-  );
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata LoginRequest::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
-      &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[0]);
-}
-
-// ===================================================================
-
-class LoginReply::_Internal {
- public:
-};
-
-LoginReply::LoginReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
-                         bool is_message_owned)
-  : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
-  SharedCtor();
-  if (!is_message_owned) {
-    RegisterArenaDtor(arena);
-  }
-  // @@protoc_insertion_point(arena_constructor:ProtoShared.LoginReply)
-}
-LoginReply::LoginReply(const LoginReply& from)
-  : ::PROTOBUF_NAMESPACE_ID::Message() {
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-  error_text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-  if (!from._internal_error_text().empty()) {
-    error_text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, from._internal_error_text(), 
-      GetArenaForAllocation());
-  }
-  error_code_ = from.error_code_;
-  // @@protoc_insertion_point(copy_constructor:ProtoShared.LoginReply)
-}
-
-inline void LoginReply::SharedCtor() {
-error_text_.UnsafeSetDefault(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-error_code_ = int64_t{0};
-}
-
-LoginReply::~LoginReply() {
-  // @@protoc_insertion_point(destructor:ProtoShared.LoginReply)
-  if (GetArenaForAllocation() != nullptr) return;
-  SharedDtor();
-  _internal_metadata_.Delete<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-inline void LoginReply::SharedDtor() {
-  GOOGLE_DCHECK(GetArenaForAllocation() == nullptr);
-  error_text_.DestroyNoArena(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited());
-}
-
-void LoginReply::ArenaDtor(void* object) {
-  LoginReply* _this = reinterpret_cast< LoginReply* >(object);
-  (void)_this;
-}
-void LoginReply::RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena*) {
-}
-void LoginReply::SetCachedSize(int size) const {
-  _cached_size_.Set(size);
-}
-
-void LoginReply::Clear() {
-// @@protoc_insertion_point(message_clear_start:ProtoShared.LoginReply)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  error_text_.ClearToEmpty();
-  error_code_ = int64_t{0};
-  _internal_metadata_.Clear<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>();
-}
-
-const char* LoginReply::_InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) {
-#define CHK_(x) if (PROTOBUF_PREDICT_FALSE(!(x))) goto failure
-  while (!ctx->Done(&ptr)) {
-    ::PROTOBUF_NAMESPACE_ID::uint32 tag;
-    ptr = ::PROTOBUF_NAMESPACE_ID::internal::ReadTag(ptr, &tag);
-    switch (tag >> 3) {
-      // int64 error_code = 1;
-      case 1:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 8)) {
-          error_code_ = ::PROTOBUF_NAMESPACE_ID::internal::ReadVarint64(&ptr);
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      // string error_text = 2;
-      case 2:
-        if (PROTOBUF_PREDICT_TRUE(static_cast<::PROTOBUF_NAMESPACE_ID::uint8>(tag) == 18)) {
-          auto str = _internal_mutable_error_text();
-          ptr = ::PROTOBUF_NAMESPACE_ID::internal::InlineGreedyStringParser(str, ptr, ctx);
-          CHK_(::PROTOBUF_NAMESPACE_ID::internal::VerifyUTF8(str, "ProtoShared.LoginReply.error_text"));
-          CHK_(ptr);
-        } else goto handle_unusual;
-        continue;
-      default: {
-      handle_unusual:
-        if ((tag == 0) || ((tag & 7) == 4)) {
-          CHK_(ptr);
-          ctx->SetLastTag(tag);
-          goto success;
-        }
-        ptr = UnknownFieldParse(tag,
-            _internal_metadata_.mutable_unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(),
-            ptr, ctx);
-        CHK_(ptr != nullptr);
-        continue;
-      }
-    }  // switch
-  }  // while
-success:
-  return ptr;
-failure:
-  ptr = nullptr;
-  goto success;
-#undef CHK_
-}
-
-::PROTOBUF_NAMESPACE_ID::uint8* LoginReply::_InternalSerialize(
-    ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:ProtoShared.LoginReply)
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  // int64 error_code = 1;
-  if (this->_internal_error_code() != 0) {
-    target = stream->EnsureSpace(target);
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::WriteInt64ToArray(1, this->_internal_error_code(), target);
-  }
-
-  // string error_text = 2;
-  if (!this->_internal_error_text().empty()) {
-    ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::VerifyUtf8String(
-      this->_internal_error_text().data(), static_cast<int>(this->_internal_error_text().length()),
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::SERIALIZE,
-      "ProtoShared.LoginReply.error_text");
-    target = stream->WriteStringMaybeAliased(
-        2, this->_internal_error_text(), target);
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    target = ::PROTOBUF_NAMESPACE_ID::internal::WireFormat::InternalSerializeUnknownFieldsToArray(
-        _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
-  }
-  // @@protoc_insertion_point(serialize_to_array_end:ProtoShared.LoginReply)
-  return target;
-}
-
-size_t LoginReply::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:ProtoShared.LoginReply)
-  size_t total_size = 0;
-
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  // Prevent compiler warnings about cached_has_bits being unused
-  (void) cached_has_bits;
-
-  // string error_text = 2;
-  if (!this->_internal_error_text().empty()) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::StringSize(
-        this->_internal_error_text());
-  }
-
-  // int64 error_code = 1;
-  if (this->_internal_error_code() != 0) {
-    total_size += 1 +
-      ::PROTOBUF_NAMESPACE_ID::internal::WireFormatLite::Int64Size(
-        this->_internal_error_code());
-  }
-
-  if (PROTOBUF_PREDICT_FALSE(_internal_metadata_.have_unknown_fields())) {
-    return ::PROTOBUF_NAMESPACE_ID::internal::ComputeUnknownFieldsSize(
-        _internal_metadata_, total_size, &_cached_size_);
-  }
-  int cached_size = ::PROTOBUF_NAMESPACE_ID::internal::ToCachedSize(total_size);
-  SetCachedSize(cached_size);
-  return total_size;
-}
-
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData LoginReply::_class_data_ = {
-    ::PROTOBUF_NAMESPACE_ID::Message::CopyWithSizeCheck,
-    LoginReply::MergeImpl
-};
-const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*LoginReply::GetClassData() const { return &_class_data_; }
-
-void LoginReply::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to,
-                      const ::PROTOBUF_NAMESPACE_ID::Message&from) {
-  static_cast<LoginReply *>(to)->MergeFrom(
-      static_cast<const LoginReply &>(from));
-}
-
-
-void LoginReply::MergeFrom(const LoginReply& from) {
-// @@protoc_insertion_point(class_specific_merge_from_start:ProtoShared.LoginReply)
-  GOOGLE_DCHECK_NE(&from, this);
-  ::PROTOBUF_NAMESPACE_ID::uint32 cached_has_bits = 0;
-  (void) cached_has_bits;
-
-  if (!from._internal_error_text().empty()) {
-    _internal_set_error_text(from._internal_error_text());
-  }
-  if (from._internal_error_code() != 0) {
-    _internal_set_error_code(from._internal_error_code());
-  }
-  _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
-}
-
-void LoginReply::CopyFrom(const LoginReply& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:ProtoShared.LoginReply)
-  if (&from == this) return;
-  Clear();
-  MergeFrom(from);
-}
-
-bool LoginReply::IsInitialized() const {
-  return true;
-}
-
-void LoginReply::InternalSwap(LoginReply* other) {
-  using std::swap;
-  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
-  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::InternalSwap(
-      &::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(),
-      &error_text_, GetArenaForAllocation(),
-      &other->error_text_, other->GetArenaForAllocation()
-  );
-  swap(error_code_, other->error_code_);
-}
-
-::PROTOBUF_NAMESPACE_ID::Metadata LoginReply::GetMetadata() const {
-  return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
-      &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[1]);
-}
 
 // ===================================================================
 
@@ -1288,7 +771,7 @@ void Value::InternalSwap(Value* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata Value::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[2]);
+      file_level_metadata_shared_2eproto[0]);
 }
 
 // ===================================================================
@@ -1302,7 +785,7 @@ void PacketDataset_Row_DataEntry_DoNotUse::MergeFrom(const PacketDataset_Row_Dat
 ::PROTOBUF_NAMESPACE_ID::Metadata PacketDataset_Row_DataEntry_DoNotUse::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[3]);
+      file_level_metadata_shared_2eproto[1]);
 }
 
 // ===================================================================
@@ -1521,7 +1004,7 @@ void PacketDataset_Row::InternalSwap(PacketDataset_Row* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PacketDataset_Row::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[4]);
+      file_level_metadata_shared_2eproto[2]);
 }
 
 // ===================================================================
@@ -1535,7 +1018,7 @@ void PacketDataset_RowsEntry_DoNotUse::MergeFrom(const PacketDataset_RowsEntry_D
 ::PROTOBUF_NAMESPACE_ID::Metadata PacketDataset_RowsEntry_DoNotUse::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[5]);
+      file_level_metadata_shared_2eproto[3]);
 }
 
 // ===================================================================
@@ -1816,7 +1299,7 @@ void PacketDataset::InternalSwap(PacketDataset* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata PacketDataset::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[6]);
+      file_level_metadata_shared_2eproto[4]);
 }
 
 // ===================================================================
@@ -2006,7 +1489,7 @@ void FlatDataset_Row::InternalSwap(FlatDataset_Row* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatDataset_Row::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[7]);
+      file_level_metadata_shared_2eproto[5]);
 }
 
 // ===================================================================
@@ -2223,7 +1706,7 @@ void FlatDataset::InternalSwap(FlatDataset* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata FlatDataset::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[8]);
+      file_level_metadata_shared_2eproto[6]);
 }
 
 // ===================================================================
@@ -2237,7 +1720,7 @@ void DataContainer_FieldsEntry_DoNotUse::MergeFrom(const DataContainer_FieldsEnt
 ::PROTOBUF_NAMESPACE_ID::Metadata DataContainer_FieldsEntry_DoNotUse::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[9]);
+      file_level_metadata_shared_2eproto[7]);
 }
 
 // ===================================================================
@@ -2541,7 +2024,7 @@ void DataContainer_Dataset::InternalSwap(DataContainer_Dataset* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DataContainer_Dataset::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[10]);
+      file_level_metadata_shared_2eproto[8]);
 }
 
 // ===================================================================
@@ -2555,7 +2038,7 @@ void DataContainer_DatasetsEntry_DoNotUse::MergeFrom(const DataContainer_Dataset
 ::PROTOBUF_NAMESPACE_ID::Metadata DataContainer_DatasetsEntry_DoNotUse::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[11]);
+      file_level_metadata_shared_2eproto[9]);
 }
 
 // ===================================================================
@@ -2892,18 +2375,12 @@ void DataContainer::InternalSwap(DataContainer* other) {
 ::PROTOBUF_NAMESPACE_ID::Metadata DataContainer::GetMetadata() const {
   return ::PROTOBUF_NAMESPACE_ID::internal::AssignDescriptors(
       &descriptor_table_shared_2eproto_getter, &descriptor_table_shared_2eproto_once,
-      file_level_metadata_shared_2eproto[12]);
+      file_level_metadata_shared_2eproto[10]);
 }
 
 // @@protoc_insertion_point(namespace_scope)
 }  // namespace ProtoShared
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::ProtoShared::LoginRequest* Arena::CreateMaybeMessage< ::ProtoShared::LoginRequest >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::ProtoShared::LoginRequest >(arena);
-}
-template<> PROTOBUF_NOINLINE ::ProtoShared::LoginReply* Arena::CreateMaybeMessage< ::ProtoShared::LoginReply >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::ProtoShared::LoginReply >(arena);
-}
 template<> PROTOBUF_NOINLINE ::ProtoShared::Value* Arena::CreateMaybeMessage< ::ProtoShared::Value >(Arena* arena) {
   return Arena::CreateMessageInternal< ::ProtoShared::Value >(arena);
 }

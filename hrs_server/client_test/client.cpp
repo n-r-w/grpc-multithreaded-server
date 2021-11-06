@@ -43,7 +43,7 @@ int main(int argc, char** argv)
         return 0;
     }
 
-    size_t worker_sql_count = 50;
+    size_t worker_sql_count = 1;
     std::vector<std::thread*> worker_threads;
 
     for (size_t i = 0; i < worker_sql_count; i++) {
