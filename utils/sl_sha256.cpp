@@ -5,6 +5,9 @@
 
 namespace sl
 {
+std::mutex Utils::_id_mutex;
+uint64_t Utils::_id_base(0);
+
 // http://www.zedwood.com/article/cpp-sha256-function
 class SHA256
 {
@@ -188,6 +191,18 @@ std::string Utils::createSalt()
 {
     return std::to_string(
         std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count());
+}
+
+std::string Utils::generateId()
+{
+    std::lock_guard<std::mutex> lock(_id_mutex);
+
+    uint64_t n = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch()).count();
+    if (n == _id_base)
+        n++;
+    _id_base = n;
+
+    return sha256("IUjkD" + std::to_string(_id_base));
 }
 
 } // namespace sl

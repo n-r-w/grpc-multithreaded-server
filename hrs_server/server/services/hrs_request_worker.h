@@ -17,8 +17,8 @@ protected:
     //! Фабрика по созданию обработчиков запросов
     std::vector<sl::RequestProcessorBase*> createRequestProcessors(const std::string& service_key) const override;
     //! Извлечь из запроса логин и пароль
-    UservValidationResult extractUserValidationInfo(const grpc::Service* service, const grpc::ServerContext* context, std::string& login,
-                                                    std::string& password) const override;
+    UservValidationExtractResult extractUserValidationInfo(const grpc::Service* service, const grpc::ServerContext* context,
+                                                           std::string& session_id) const override;
 };
 
 } // namespace hrs

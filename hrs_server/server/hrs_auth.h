@@ -8,8 +8,7 @@ namespace hrs
 class UserValidator : public sl::UserValidator
 {
 public:
-    inline static const std::string LOGIN_METADATA = "hrs_login";
-    inline static const std::string PASSWORD_METADATA = "hrs_password";
+    inline static const std::string SESSION_METADATA = "hrs_session_id";
 
     UserValidator();
     ~UserValidator();

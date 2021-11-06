@@ -4,6 +4,7 @@
 namespace hrs
 {
 UserValidator::UserValidator()
+    : sl::UserValidator()
 {
 }
 

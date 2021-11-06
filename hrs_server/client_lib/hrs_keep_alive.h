@@ -4,13 +4,11 @@
 
 namespace hrs
 {
-//! Выполняет некую фоновую обработку
-//! Корректно завершает свой поток в деструкторе
-class BackgroundWorker : protected sl::StoppableWorker
+class KeepAliveWorker : public sl::StoppableWorker
 {
 public:
-    BackgroundWorker();
-    ~BackgroundWorker();
+    KeepAliveWorker(const std::chrono::seconds& interval);
+    ~KeepAliveWorker();
 
     void start();
     void stop();
@@ -23,6 +21,6 @@ private:
     mutable std::mutex _locker;
     // Поток, в котором запускается
     std::thread* _thread = nullptr;
+    std::chrono::seconds _interval;
 };
-
 } // namespace hrs

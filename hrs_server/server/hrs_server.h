@@ -10,7 +10,9 @@ namespace hrs
 class HrsServer : public sl::Server
 {
 public:
-    HrsServer();
+    HrsServer(
+        //! Время устаревания сессии без подтверждения активности (секунды)
+        uint16_t expire_sec);
 
     //! Инициализация соединения с БД
     sl::Error initDatabaseConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,

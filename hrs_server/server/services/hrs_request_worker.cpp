@@ -17,7 +17,8 @@ std::vector<sl::RequestProcessorBase*> HrsRequestWorker::createRequestProcessors
 {
     if (service_key == HrsServiceFactory::AUTH_SERVICE_KEY)
         return {
-            new AuthRequestProcessor(queue(), this),
+            new LoginRequestProcessor(queue(), this),
+            new KeepAliveRequestProcessor(queue(), this),
         };
 
     if (service_key == HrsServiceFactory::SQL_SERVICE_KEY)
@@ -35,26 +36,20 @@ std::vector<sl::RequestProcessorBase*> HrsRequestWorker::createRequestProcessors
     return {};
 }
 
-sl::RequestWorker::UservValidationResult HrsRequestWorker::extractUserValidationInfo(const grpc::Service* service,
-                                                                                     const grpc::ServerContext* context, std::string& login,
-                                                                                     std::string& password) const
+sl::RequestWorker::UservValidationExtractResult HrsRequestWorker::extractUserValidationInfo(const grpc::Service* service,
+                                                                                            const grpc::ServerContext* context,
+                                                                                            std::string& session_id) const
 {
     if (HrsServiceFactory::instance()->isAuthService(service))
-        return UservValidationResult::NotRequired;
+        return UservValidationExtractResult::NotRequired;
 
-    auto meta = context->client_metadata().find(UserValidator::LOGIN_METADATA);
+    auto meta = context->client_metadata().find(UserValidator::SESSION_METADATA);
     if (meta != context->client_metadata().end())
-        login = std::string(meta->second.begin(), meta->second.end());
+        session_id = std::string(meta->second.begin(), meta->second.end());
     else
-        return UservValidationResult::NotValidated;
+        return UservValidationExtractResult::NotFound;
 
-    meta = context->client_metadata().find(UserValidator::PASSWORD_METADATA);
-    if (meta != context->client_metadata().end())
-        password = std::string(meta->second.begin(), meta->second.end());
-    else
-        return UservValidationResult::NotValidated;
-
-    return UservValidationResult::Validated;
+    return UservValidationExtractResult::Extracted;
 }
 
 } // namespace hrs

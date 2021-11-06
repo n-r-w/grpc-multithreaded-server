@@ -3,8 +3,10 @@ syntax = "proto3";
 package Srv;
 
 service Auth {
-  // Проверка логина и пароля
-  rpc checkLogin (LoginRequest) returns (LoginReply);
+  // Логин
+  rpc Login (LoginRequest) returns (LoginReply);
+  // Поддержка соединения
+  rpc KeepAlive (KeepAliveRequest) returns (KeepAliveReply);
 }
 
 message LoginRequest {
@@ -16,5 +18,19 @@ message LoginReply {
     // Если 0, то все ОК
     int64 error_code = 1;
     string error_text = 2;
+    // Идентификатор соединения
+    string session_id = 3;
+    // Количество секунд, необходимое для поддержки соединения
+    int32 keep_alive_sec = 4;
 }
 
+message KeepAliveRequest {
+    // Идентификатор соединения, полученный при Login
+    string session_id = 1;
+}
+
+message KeepAliveReply {
+    // Если 0, то все ОК
+    int64 error_code = 1;
+    string error_text = 2;
+}

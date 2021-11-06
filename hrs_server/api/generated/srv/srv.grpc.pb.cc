@@ -22,7 +22,8 @@
 namespace Srv {
 
 static const char* Auth_method_names[] = {
-  "/Srv.Auth/checkLogin",
+  "/Srv.Auth/Login",
+  "/Srv.Auth/KeepAlive",
 };
 
 std::unique_ptr< Auth::Stub> Auth::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -32,28 +33,52 @@ std::unique_ptr< Auth::Stub> Auth::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 Auth::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel), rpcmethod_checkLogin_(Auth_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  : channel_(channel), rpcmethod_Login_(Auth_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_KeepAlive_(Auth_method_names[1], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
-::grpc::Status Auth::Stub::checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::Srv::LoginReply* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::Srv::LoginRequest, ::Srv::LoginReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_checkLogin_, context, request, response);
+::grpc::Status Auth::Stub::Login(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::Srv::LoginReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Srv::LoginRequest, ::Srv::LoginReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Login_, context, request, response);
 }
 
-void Auth::Stub::async::checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::Srv::LoginRequest, ::Srv::LoginReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_checkLogin_, context, request, response, std::move(f));
+void Auth::Stub::async::Login(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Srv::LoginRequest, ::Srv::LoginReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Login_, context, request, response, std::move(f));
 }
 
-void Auth::Stub::async::checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, ::grpc::ClientUnaryReactor* reactor) {
-  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_checkLogin_, context, request, response, reactor);
+void Auth::Stub::async::Login(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Login_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* Auth::Stub::PrepareAsynccheckLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Srv::LoginReply, ::Srv::LoginRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_checkLogin_, context, request);
+::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* Auth::Stub::PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Srv::LoginReply, ::Srv::LoginRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Login_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* Auth::Stub::AsynccheckLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* Auth::Stub::AsyncLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
-    this->PrepareAsynccheckLoginRaw(context, request, cq);
+    this->PrepareAsyncLoginRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
+::grpc::Status Auth::Stub::KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::Srv::KeepAliveReply* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_KeepAlive_, context, request, response);
+}
+
+void Auth::Stub::async::KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_KeepAlive_, context, request, response, std::move(f));
+}
+
+void Auth::Stub::async::KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_KeepAlive_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>* Auth::Stub::PrepareAsyncKeepAliveRaw(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::Srv::KeepAliveReply, ::Srv::KeepAliveRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_KeepAlive_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>* Auth::Stub::AsyncKeepAliveRaw(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncKeepAliveRaw(context, request, cq);
   result->StartCall();
   return result;
 }
@@ -67,14 +92,31 @@ Auth::Service::Service() {
              ::grpc::ServerContext* ctx,
              const ::Srv::LoginRequest* req,
              ::Srv::LoginReply* resp) {
-               return service->checkLogin(ctx, req, resp);
+               return service->Login(ctx, req, resp);
+             }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Auth_method_names[1],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Auth::Service, ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Auth::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::Srv::KeepAliveRequest* req,
+             ::Srv::KeepAliveReply* resp) {
+               return service->KeepAlive(ctx, req, resp);
              }, this)));
 }
 
 Auth::Service::~Service() {
 }
 
-::grpc::Status Auth::Service::checkLogin(::grpc::ServerContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response) {
+::grpc::Status Auth::Service::Login(::grpc::ServerContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status Auth::Service::KeepAlive(::grpc::ServerContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response) {
   (void) context;
   (void) request;
   (void) response;

@@ -67,16 +67,15 @@ void RequestWorker::process()
         if (next_status == grpc::CompletionQueue::NextStatus::GOT_EVENT) {
             auto processor = static_cast<sl::RequestProcessorBase*>(tag);
 
-            std::string login;
-            std::string password;
+            std::string session_id;
 
-            UservValidationResult v_res = extractUserValidationInfo(processor->service(), processor->context(), login, password);
+            UservValidationExtractResult v_res = extractUserValidationInfo(processor->service(), processor->context(), session_id);
 
-            if (v_res == UservValidationResult::NotValidated) {
+            if (v_res == UservValidationExtractResult::NotFound) {
                 processor->run(grpc::StatusCode::INVALID_ARGUMENT);
 
             } else {
-                if (v_res == UservValidationResult::Validated && !_user_validator->checkUser(login, password))
+                if (v_res == UservValidationExtractResult::Extracted && !_user_validator->checkSession(session_id))
                     processor->run(grpc::StatusCode::UNAUTHENTICATED);
                 else
                     processor->run(grpc::StatusCode::OK);

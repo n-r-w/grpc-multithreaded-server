@@ -46,7 +46,7 @@ struct TableStruct_srv_2eproto {
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::AuxiliaryParseTableField aux[]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
-  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[2]
+  static const ::PROTOBUF_NAMESPACE_ID::internal::ParseTable schema[4]
     PROTOBUF_SECTION_VARIABLE(protodesc_cold);
   static const ::PROTOBUF_NAMESPACE_ID::internal::FieldMetadata field_metadata[];
   static const ::PROTOBUF_NAMESPACE_ID::internal::SerializationTable serialization_table[];
@@ -54,6 +54,12 @@ struct TableStruct_srv_2eproto {
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_srv_2eproto;
 namespace Srv {
+class KeepAliveReply;
+struct KeepAliveReplyDefaultTypeInternal;
+extern KeepAliveReplyDefaultTypeInternal _KeepAliveReply_default_instance_;
+class KeepAliveRequest;
+struct KeepAliveRequestDefaultTypeInternal;
+extern KeepAliveRequestDefaultTypeInternal _KeepAliveRequest_default_instance_;
 class LoginReply;
 struct LoginReplyDefaultTypeInternal;
 extern LoginReplyDefaultTypeInternal _LoginReply_default_instance_;
@@ -62,6 +68,8 @@ struct LoginRequestDefaultTypeInternal;
 extern LoginRequestDefaultTypeInternal _LoginRequest_default_instance_;
 }  // namespace Srv
 PROTOBUF_NAMESPACE_OPEN
+template<> ::Srv::KeepAliveReply* Arena::CreateMaybeMessage<::Srv::KeepAliveReply>(Arena*);
+template<> ::Srv::KeepAliveRequest* Arena::CreateMaybeMessage<::Srv::KeepAliveRequest>(Arena*);
 template<> ::Srv::LoginReply* Arena::CreateMaybeMessage<::Srv::LoginReply>(Arena*);
 template<> ::Srv::LoginRequest* Arena::CreateMaybeMessage<::Srv::LoginRequest>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
@@ -345,6 +353,332 @@ class LoginReply final :
 
   enum : int {
     kErrorTextFieldNumber = 2,
+    kSessionIdFieldNumber = 3,
+    kErrorCodeFieldNumber = 1,
+    kKeepAliveSecFieldNumber = 4,
+  };
+  // string error_text = 2;
+  void clear_error_text();
+  const std::string& error_text() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_error_text(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_error_text();
+  PROTOBUF_MUST_USE_RESULT std::string* release_error_text();
+  void set_allocated_error_text(std::string* error_text);
+  private:
+  const std::string& _internal_error_text() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_error_text(const std::string& value);
+  std::string* _internal_mutable_error_text();
+  public:
+
+  // string session_id = 3;
+  void clear_session_id();
+  const std::string& session_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_session_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_session_id();
+  PROTOBUF_MUST_USE_RESULT std::string* release_session_id();
+  void set_allocated_session_id(std::string* session_id);
+  private:
+  const std::string& _internal_session_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_id(const std::string& value);
+  std::string* _internal_mutable_session_id();
+  public:
+
+  // int64 error_code = 1;
+  void clear_error_code();
+  ::PROTOBUF_NAMESPACE_ID::int64 error_code() const;
+  void set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int64 _internal_error_code() const;
+  void _internal_set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value);
+  public:
+
+  // int32 keep_alive_sec = 4;
+  void clear_keep_alive_sec();
+  ::PROTOBUF_NAMESPACE_ID::int32 keep_alive_sec() const;
+  void set_keep_alive_sec(::PROTOBUF_NAMESPACE_ID::int32 value);
+  private:
+  ::PROTOBUF_NAMESPACE_ID::int32 _internal_keep_alive_sec() const;
+  void _internal_set_keep_alive_sec(::PROTOBUF_NAMESPACE_ID::int32 value);
+  public:
+
+  // @@protoc_insertion_point(class_scope:Srv.LoginReply)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr error_text_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr session_id_;
+  ::PROTOBUF_NAMESPACE_ID::int64 error_code_;
+  ::PROTOBUF_NAMESPACE_ID::int32 keep_alive_sec_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_srv_2eproto;
+};
+// -------------------------------------------------------------------
+
+class KeepAliveRequest final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Srv.KeepAliveRequest) */ {
+ public:
+  inline KeepAliveRequest() : KeepAliveRequest(nullptr) {}
+  ~KeepAliveRequest() override;
+  explicit constexpr KeepAliveRequest(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  KeepAliveRequest(const KeepAliveRequest& from);
+  KeepAliveRequest(KeepAliveRequest&& from) noexcept
+    : KeepAliveRequest() {
+    *this = ::std::move(from);
+  }
+
+  inline KeepAliveRequest& operator=(const KeepAliveRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KeepAliveRequest& operator=(KeepAliveRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KeepAliveRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KeepAliveRequest* internal_default_instance() {
+    return reinterpret_cast<const KeepAliveRequest*>(
+               &_KeepAliveRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    2;
+
+  friend void swap(KeepAliveRequest& a, KeepAliveRequest& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(KeepAliveRequest* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KeepAliveRequest* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline KeepAliveRequest* New() const final {
+    return new KeepAliveRequest();
+  }
+
+  KeepAliveRequest* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<KeepAliveRequest>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const KeepAliveRequest& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const KeepAliveRequest& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(KeepAliveRequest* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Srv.KeepAliveRequest";
+  }
+  protected:
+  explicit KeepAliveRequest(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kSessionIdFieldNumber = 1,
+  };
+  // string session_id = 1;
+  void clear_session_id();
+  const std::string& session_id() const;
+  template <typename ArgT0 = const std::string&, typename... ArgT>
+  void set_session_id(ArgT0&& arg0, ArgT... args);
+  std::string* mutable_session_id();
+  PROTOBUF_MUST_USE_RESULT std::string* release_session_id();
+  void set_allocated_session_id(std::string* session_id);
+  private:
+  const std::string& _internal_session_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_session_id(const std::string& value);
+  std::string* _internal_mutable_session_id();
+  public:
+
+  // @@protoc_insertion_point(class_scope:Srv.KeepAliveRequest)
+ private:
+  class _Internal;
+
+  template <typename T> friend class ::PROTOBUF_NAMESPACE_ID::Arena::InternalHelper;
+  typedef void InternalArenaConstructable_;
+  typedef void DestructorSkippable_;
+  ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr session_id_;
+  mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
+  friend struct ::TableStruct_srv_2eproto;
+};
+// -------------------------------------------------------------------
+
+class KeepAliveReply final :
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:Srv.KeepAliveReply) */ {
+ public:
+  inline KeepAliveReply() : KeepAliveReply(nullptr) {}
+  ~KeepAliveReply() override;
+  explicit constexpr KeepAliveReply(::PROTOBUF_NAMESPACE_ID::internal::ConstantInitialized);
+
+  KeepAliveReply(const KeepAliveReply& from);
+  KeepAliveReply(KeepAliveReply&& from) noexcept
+    : KeepAliveReply() {
+    *this = ::std::move(from);
+  }
+
+  inline KeepAliveReply& operator=(const KeepAliveReply& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline KeepAliveReply& operator=(KeepAliveReply&& from) noexcept {
+    if (this == &from) return *this;
+    if (GetOwningArena() == from.GetOwningArena()) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::PROTOBUF_NAMESPACE_ID::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const KeepAliveReply& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const KeepAliveReply* internal_default_instance() {
+    return reinterpret_cast<const KeepAliveReply*>(
+               &_KeepAliveReply_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages =
+    3;
+
+  friend void swap(KeepAliveReply& a, KeepAliveReply& b) {
+    a.Swap(&b);
+  }
+  inline void Swap(KeepAliveReply* other) {
+    if (other == this) return;
+    if (GetOwningArena() == other->GetOwningArena()) {
+      InternalSwap(other);
+    } else {
+      ::PROTOBUF_NAMESPACE_ID::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(KeepAliveReply* other) {
+    if (other == this) return;
+    GOOGLE_DCHECK(GetOwningArena() == other->GetOwningArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  inline KeepAliveReply* New() const final {
+    return new KeepAliveReply();
+  }
+
+  KeepAliveReply* New(::PROTOBUF_NAMESPACE_ID::Arena* arena) const final {
+    return CreateMaybeMessage<KeepAliveReply>(arena);
+  }
+  using ::PROTOBUF_NAMESPACE_ID::Message::CopyFrom;
+  void CopyFrom(const KeepAliveReply& from);
+  using ::PROTOBUF_NAMESPACE_ID::Message::MergeFrom;
+  void MergeFrom(const KeepAliveReply& from);
+  private:
+  static void MergeImpl(::PROTOBUF_NAMESPACE_ID::Message*to, const ::PROTOBUF_NAMESPACE_ID::Message&from);
+  public:
+  PROTOBUF_ATTRIBUTE_REINITIALIZES void Clear() final;
+  bool IsInitialized() const final;
+
+  size_t ByteSizeLong() const final;
+  const char* _InternalParse(const char* ptr, ::PROTOBUF_NAMESPACE_ID::internal::ParseContext* ctx) final;
+  ::PROTOBUF_NAMESPACE_ID::uint8* _InternalSerialize(
+      ::PROTOBUF_NAMESPACE_ID::uint8* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const final;
+  int GetCachedSize() const final { return _cached_size_.Get(); }
+
+  private:
+  void SharedCtor();
+  void SharedDtor();
+  void SetCachedSize(int size) const final;
+  void InternalSwap(KeepAliveReply* other);
+  friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
+  static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
+    return "Srv.KeepAliveReply";
+  }
+  protected:
+  explicit KeepAliveReply(::PROTOBUF_NAMESPACE_ID::Arena* arena,
+                       bool is_message_owned = false);
+  private:
+  static void ArenaDtor(void* object);
+  inline void RegisterArenaDtor(::PROTOBUF_NAMESPACE_ID::Arena* arena);
+  public:
+
+  static const ClassData _class_data_;
+  const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*GetClassData() const final;
+
+  ::PROTOBUF_NAMESPACE_ID::Metadata GetMetadata() const final;
+
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+
+  enum : int {
+    kErrorTextFieldNumber = 2,
     kErrorCodeFieldNumber = 1,
   };
   // string error_text = 2;
@@ -370,7 +704,7 @@ class LoginReply final :
   void _internal_set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value);
   public:
 
-  // @@protoc_insertion_point(class_scope:Srv.LoginReply)
+  // @@protoc_insertion_point(class_scope:Srv.KeepAliveReply)
  private:
   class _Internal;
 
@@ -555,9 +889,199 @@ inline void LoginReply::set_allocated_error_text(std::string* error_text) {
   // @@protoc_insertion_point(field_set_allocated:Srv.LoginReply.error_text)
 }
 
+// string session_id = 3;
+inline void LoginReply::clear_session_id() {
+  session_id_.ClearToEmpty();
+}
+inline const std::string& LoginReply::session_id() const {
+  // @@protoc_insertion_point(field_get:Srv.LoginReply.session_id)
+  return _internal_session_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void LoginReply::set_session_id(ArgT0&& arg0, ArgT... args) {
+ 
+ session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Srv.LoginReply.session_id)
+}
+inline std::string* LoginReply::mutable_session_id() {
+  std::string* _s = _internal_mutable_session_id();
+  // @@protoc_insertion_point(field_mutable:Srv.LoginReply.session_id)
+  return _s;
+}
+inline const std::string& LoginReply::_internal_session_id() const {
+  return session_id_.Get();
+}
+inline void LoginReply::_internal_set_session_id(const std::string& value) {
+  
+  session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* LoginReply::_internal_mutable_session_id() {
+  
+  return session_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* LoginReply::release_session_id() {
+  // @@protoc_insertion_point(field_release:Srv.LoginReply.session_id)
+  return session_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void LoginReply::set_allocated_session_id(std::string* session_id) {
+  if (session_id != nullptr) {
+    
+  } else {
+    
+  }
+  session_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), session_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Srv.LoginReply.session_id)
+}
+
+// int32 keep_alive_sec = 4;
+inline void LoginReply::clear_keep_alive_sec() {
+  keep_alive_sec_ = 0;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LoginReply::_internal_keep_alive_sec() const {
+  return keep_alive_sec_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int32 LoginReply::keep_alive_sec() const {
+  // @@protoc_insertion_point(field_get:Srv.LoginReply.keep_alive_sec)
+  return _internal_keep_alive_sec();
+}
+inline void LoginReply::_internal_set_keep_alive_sec(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  
+  keep_alive_sec_ = value;
+}
+inline void LoginReply::set_keep_alive_sec(::PROTOBUF_NAMESPACE_ID::int32 value) {
+  _internal_set_keep_alive_sec(value);
+  // @@protoc_insertion_point(field_set:Srv.LoginReply.keep_alive_sec)
+}
+
+// -------------------------------------------------------------------
+
+// KeepAliveRequest
+
+// string session_id = 1;
+inline void KeepAliveRequest::clear_session_id() {
+  session_id_.ClearToEmpty();
+}
+inline const std::string& KeepAliveRequest::session_id() const {
+  // @@protoc_insertion_point(field_get:Srv.KeepAliveRequest.session_id)
+  return _internal_session_id();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void KeepAliveRequest::set_session_id(ArgT0&& arg0, ArgT... args) {
+ 
+ session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Srv.KeepAliveRequest.session_id)
+}
+inline std::string* KeepAliveRequest::mutable_session_id() {
+  std::string* _s = _internal_mutable_session_id();
+  // @@protoc_insertion_point(field_mutable:Srv.KeepAliveRequest.session_id)
+  return _s;
+}
+inline const std::string& KeepAliveRequest::_internal_session_id() const {
+  return session_id_.Get();
+}
+inline void KeepAliveRequest::_internal_set_session_id(const std::string& value) {
+  
+  session_id_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* KeepAliveRequest::_internal_mutable_session_id() {
+  
+  return session_id_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* KeepAliveRequest::release_session_id() {
+  // @@protoc_insertion_point(field_release:Srv.KeepAliveRequest.session_id)
+  return session_id_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void KeepAliveRequest::set_allocated_session_id(std::string* session_id) {
+  if (session_id != nullptr) {
+    
+  } else {
+    
+  }
+  session_id_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), session_id,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Srv.KeepAliveRequest.session_id)
+}
+
+// -------------------------------------------------------------------
+
+// KeepAliveReply
+
+// int64 error_code = 1;
+inline void KeepAliveReply::clear_error_code() {
+  error_code_ = int64_t{0};
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 KeepAliveReply::_internal_error_code() const {
+  return error_code_;
+}
+inline ::PROTOBUF_NAMESPACE_ID::int64 KeepAliveReply::error_code() const {
+  // @@protoc_insertion_point(field_get:Srv.KeepAliveReply.error_code)
+  return _internal_error_code();
+}
+inline void KeepAliveReply::_internal_set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  
+  error_code_ = value;
+}
+inline void KeepAliveReply::set_error_code(::PROTOBUF_NAMESPACE_ID::int64 value) {
+  _internal_set_error_code(value);
+  // @@protoc_insertion_point(field_set:Srv.KeepAliveReply.error_code)
+}
+
+// string error_text = 2;
+inline void KeepAliveReply::clear_error_text() {
+  error_text_.ClearToEmpty();
+}
+inline const std::string& KeepAliveReply::error_text() const {
+  // @@protoc_insertion_point(field_get:Srv.KeepAliveReply.error_text)
+  return _internal_error_text();
+}
+template <typename ArgT0, typename... ArgT>
+inline PROTOBUF_ALWAYS_INLINE
+void KeepAliveReply::set_error_text(ArgT0&& arg0, ArgT... args) {
+ 
+ error_text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set:Srv.KeepAliveReply.error_text)
+}
+inline std::string* KeepAliveReply::mutable_error_text() {
+  std::string* _s = _internal_mutable_error_text();
+  // @@protoc_insertion_point(field_mutable:Srv.KeepAliveReply.error_text)
+  return _s;
+}
+inline const std::string& KeepAliveReply::_internal_error_text() const {
+  return error_text_.Get();
+}
+inline void KeepAliveReply::_internal_set_error_text(const std::string& value) {
+  
+  error_text_.Set(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, value, GetArenaForAllocation());
+}
+inline std::string* KeepAliveReply::_internal_mutable_error_text() {
+  
+  return error_text_.Mutable(::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr::EmptyDefault{}, GetArenaForAllocation());
+}
+inline std::string* KeepAliveReply::release_error_text() {
+  // @@protoc_insertion_point(field_release:Srv.KeepAliveReply.error_text)
+  return error_text_.Release(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), GetArenaForAllocation());
+}
+inline void KeepAliveReply::set_allocated_error_text(std::string* error_text) {
+  if (error_text != nullptr) {
+    
+  } else {
+    
+  }
+  error_text_.SetAllocated(&::PROTOBUF_NAMESPACE_ID::internal::GetEmptyStringAlreadyInited(), error_text,
+      GetArenaForAllocation());
+  // @@protoc_insertion_point(field_set_allocated:Srv.KeepAliveReply.error_text)
+}
+
 #ifdef __GNUC__
   #pragma GCC diagnostic pop
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// -------------------------------------------------------------------
+
 // -------------------------------------------------------------------
 
 

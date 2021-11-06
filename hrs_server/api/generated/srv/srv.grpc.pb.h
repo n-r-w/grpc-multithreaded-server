@@ -35,43 +35,65 @@ class Auth final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    // Проверка логина и пароля
-    virtual ::grpc::Status checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::Srv::LoginReply* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>> AsynccheckLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>>(AsynccheckLoginRaw(context, request, cq));
+    // Логин
+    virtual ::grpc::Status Login(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::Srv::LoginReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>> AsyncLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>>(AsyncLoginRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>> PrepareAsynccheckLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>>(PrepareAsynccheckLoginRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>> PrepareAsyncLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>>(PrepareAsyncLoginRaw(context, request, cq));
+    }
+    // Поддержка соединения
+    virtual ::grpc::Status KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::Srv::KeepAliveReply* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::KeepAliveReply>> AsyncKeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::KeepAliveReply>>(AsyncKeepAliveRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::KeepAliveReply>> PrepareAsyncKeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::Srv::KeepAliveReply>>(PrepareAsyncKeepAliveRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      // Проверка логина и пароля
-      virtual void checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Логин
+      virtual void Login(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Login(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      // Поддержка соединения
+      virtual void KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>* AsynccheckLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>* PrepareAsynccheckLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>* AsyncLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Srv::LoginReply>* PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Srv::KeepAliveReply>* AsyncKeepAliveRaw(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::Srv::KeepAliveReply>* PrepareAsyncKeepAliveRaw(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::Srv::LoginReply* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>> AsynccheckLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>>(AsynccheckLoginRaw(context, request, cq));
+    ::grpc::Status Login(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::Srv::LoginReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>> AsyncLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>>(AsyncLoginRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>> PrepareAsynccheckLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>>(PrepareAsynccheckLoginRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>> PrepareAsyncLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>>(PrepareAsyncLoginRaw(context, request, cq));
+    }
+    ::grpc::Status KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::Srv::KeepAliveReply* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>> AsyncKeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>>(AsyncKeepAliveRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>> PrepareAsyncKeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>>(PrepareAsyncKeepAliveRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, std::function<void(::grpc::Status)>) override;
-      void checkLogin(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Login(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, std::function<void(::grpc::Status)>) override;
+      void Login(::grpc::ClientContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response, std::function<void(::grpc::Status)>) override;
+      void KeepAlive(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -83,9 +105,12 @@ class Auth final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* AsynccheckLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* PrepareAsynccheckLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_checkLogin_;
+    ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* AsyncLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Srv::LoginReply>* PrepareAsyncLoginRaw(::grpc::ClientContext* context, const ::Srv::LoginRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>* AsyncKeepAliveRaw(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::Srv::KeepAliveReply>* PrepareAsyncKeepAliveRaw(::grpc::ClientContext* context, const ::Srv::KeepAliveRequest& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Login_;
+    const ::grpc::internal::RpcMethod rpcmethod_KeepAlive_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -93,148 +118,283 @@ class Auth final {
    public:
     Service();
     virtual ~Service();
-    // Проверка логина и пароля
-    virtual ::grpc::Status checkLogin(::grpc::ServerContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response);
+    // Логин
+    virtual ::grpc::Status Login(::grpc::ServerContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response);
+    // Поддержка соединения
+    virtual ::grpc::Status KeepAlive(::grpc::ServerContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_checkLogin : public BaseClass {
+  class WithAsyncMethod_Login : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_checkLogin() {
+    WithAsyncMethod_Login() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_checkLogin() override {
+    ~WithAsyncMethod_Login() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status checkLogin(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+    ::grpc::Status Login(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestcheckLogin(::grpc::ServerContext* context, ::Srv::LoginRequest* request, ::grpc::ServerAsyncResponseWriter< ::Srv::LoginReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestLogin(::grpc::ServerContext* context, ::Srv::LoginRequest* request, ::grpc::ServerAsyncResponseWriter< ::Srv::LoginReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_checkLogin<Service > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_checkLogin : public BaseClass {
+  class WithAsyncMethod_KeepAlive : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_checkLogin() {
+    WithAsyncMethod_KeepAlive() {
+      ::grpc::Service::MarkMethodAsync(1);
+    }
+    ~WithAsyncMethod_KeepAlive() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status KeepAlive(::grpc::ServerContext* /*context*/, const ::Srv::KeepAliveRequest* /*request*/, ::Srv::KeepAliveReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestKeepAlive(::grpc::ServerContext* context, ::Srv::KeepAliveRequest* request, ::grpc::ServerAsyncResponseWriter< ::Srv::KeepAliveReply>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_Login<WithAsyncMethod_KeepAlive<Service > > AsyncService;
+  template <class BaseClass>
+  class WithCallbackMethod_Login : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_Login() {
       ::grpc::Service::MarkMethodCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::Srv::LoginRequest, ::Srv::LoginReply>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response) { return this->checkLogin(context, request, response); }));}
-    void SetMessageAllocatorFor_checkLogin(
+                   ::grpc::CallbackServerContext* context, const ::Srv::LoginRequest* request, ::Srv::LoginReply* response) { return this->Login(context, request, response); }));}
+    void SetMessageAllocatorFor_Login(
         ::grpc::MessageAllocator< ::Srv::LoginRequest, ::Srv::LoginReply>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
       static_cast<::grpc::internal::CallbackUnaryHandler< ::Srv::LoginRequest, ::Srv::LoginReply>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_checkLogin() override {
+    ~WithCallbackMethod_Login() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status checkLogin(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+    ::grpc::Status Login(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* checkLogin(
+    virtual ::grpc::ServerUnaryReactor* Login(
       ::grpc::CallbackServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_checkLogin<Service > CallbackService;
-  typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_checkLogin : public BaseClass {
+  class WithCallbackMethod_KeepAlive : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_checkLogin() {
-      ::grpc::Service::MarkMethodGeneric(0);
+    WithCallbackMethod_KeepAlive() {
+      ::grpc::Service::MarkMethodCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::Srv::KeepAliveRequest* request, ::Srv::KeepAliveReply* response) { return this->KeepAlive(context, request, response); }));}
+    void SetMessageAllocatorFor_KeepAlive(
+        ::grpc::MessageAllocator< ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply>*>(handler)
+              ->SetMessageAllocator(allocator);
     }
-    ~WithGenericMethod_checkLogin() override {
+    ~WithCallbackMethod_KeepAlive() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status checkLogin(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+    ::grpc::Status KeepAlive(::grpc::ServerContext* /*context*/, const ::Srv::KeepAliveRequest* /*request*/, ::Srv::KeepAliveReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* KeepAlive(
+      ::grpc::CallbackServerContext* /*context*/, const ::Srv::KeepAliveRequest* /*request*/, ::Srv::KeepAliveReply* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_Login<WithCallbackMethod_KeepAlive<Service > > CallbackService;
+  typedef CallbackService ExperimentalCallbackService;
+  template <class BaseClass>
+  class WithGenericMethod_Login : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_Login() {
+      ::grpc::Service::MarkMethodGeneric(0);
+    }
+    ~WithGenericMethod_Login() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Login(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_checkLogin : public BaseClass {
+  class WithGenericMethod_KeepAlive : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_checkLogin() {
-      ::grpc::Service::MarkMethodRaw(0);
+    WithGenericMethod_KeepAlive() {
+      ::grpc::Service::MarkMethodGeneric(1);
     }
-    ~WithRawMethod_checkLogin() override {
+    ~WithGenericMethod_KeepAlive() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status checkLogin(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+    ::grpc::Status KeepAlive(::grpc::ServerContext* /*context*/, const ::Srv::KeepAliveRequest* /*request*/, ::Srv::KeepAliveReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestcheckLogin(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+  };
+  template <class BaseClass>
+  class WithRawMethod_Login : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_Login() {
+      ::grpc::Service::MarkMethodRaw(0);
+    }
+    ~WithRawMethod_Login() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Login(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestLogin(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_checkLogin : public BaseClass {
+  class WithRawMethod_KeepAlive : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_checkLogin() {
-      ::grpc::Service::MarkMethodRawCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
-            [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->checkLogin(context, request, response); }));
+    WithRawMethod_KeepAlive() {
+      ::grpc::Service::MarkMethodRaw(1);
     }
-    ~WithRawCallbackMethod_checkLogin() override {
+    ~WithRawMethod_KeepAlive() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status checkLogin(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+    ::grpc::Status KeepAlive(::grpc::ServerContext* /*context*/, const ::Srv::KeepAliveRequest* /*request*/, ::Srv::KeepAliveReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* checkLogin(
-      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+    void RequestKeepAlive(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
+    }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_checkLogin : public BaseClass {
+  class WithRawCallbackMethod_Login : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_checkLogin() {
+    WithRawCallbackMethod_Login() {
+      ::grpc::Service::MarkMethodRawCallback(0,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Login(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_Login() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status Login(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* Login(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_KeepAlive : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_KeepAlive() {
+      ::grpc::Service::MarkMethodRawCallback(1,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->KeepAlive(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_KeepAlive() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status KeepAlive(::grpc::ServerContext* /*context*/, const ::Srv::KeepAliveRequest* /*request*/, ::Srv::KeepAliveReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* KeepAlive(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_Login : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_Login() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
           ::Srv::LoginRequest, ::Srv::LoginReply>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
                      ::Srv::LoginRequest, ::Srv::LoginReply>* streamer) {
-                       return this->StreamedcheckLogin(context,
+                       return this->StreamedLogin(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_checkLogin() override {
+    ~WithStreamedUnaryMethod_Login() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status checkLogin(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
+    ::grpc::Status Login(::grpc::ServerContext* /*context*/, const ::Srv::LoginRequest* /*request*/, ::Srv::LoginReply* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedcheckLogin(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Srv::LoginRequest,::Srv::LoginReply>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedLogin(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Srv::LoginRequest,::Srv::LoginReply>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_checkLogin<Service > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_KeepAlive : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_KeepAlive() {
+      ::grpc::Service::MarkMethodStreamed(1,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::Srv::KeepAliveRequest, ::Srv::KeepAliveReply>* streamer) {
+                       return this->StreamedKeepAlive(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_KeepAlive() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status KeepAlive(::grpc::ServerContext* /*context*/, const ::Srv::KeepAliveRequest* /*request*/, ::Srv::KeepAliveReply* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedKeepAlive(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::Srv::KeepAliveRequest,::Srv::KeepAliveReply>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_KeepAlive<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_checkLogin<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Login<WithStreamedUnaryMethod_KeepAlive<Service > > StreamedService;
 };
 
 }  // namespace Srv

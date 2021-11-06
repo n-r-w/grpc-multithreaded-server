@@ -10,7 +10,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 file(GLOB SOURCES
     "*.h"
-    "*.cpp"
+    "*.cpp"    
+    "read.me"
 )
 
 add_library(${ID} SHARED

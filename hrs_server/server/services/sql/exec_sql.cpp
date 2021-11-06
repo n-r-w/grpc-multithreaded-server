@@ -7,7 +7,7 @@
 
 namespace hrs
 {
-void SqlRequestProcessor::handleRequest()
+bool SqlRequestProcessor::handleRequest()
 {
     sl::Error error;
     auto query = HrsServiceFactory::getQuery(error);
@@ -23,7 +23,7 @@ void SqlRequestProcessor::handleRequest()
 
     } else {
         if (query->type() == sql::PsqlQuery::ResultType::Command)
-            return;
+            return true;
 
         auto container = new ProtoShared::DataContainer;
         auto writer = api::DataContainerWrapper::createWriter(container, false);
@@ -40,5 +40,7 @@ void SqlRequestProcessor::handleRequest()
 
         reply()->set_allocated_data(container);
     }
+
+    return true;
 }
 } // namespace hrs

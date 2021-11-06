@@ -4,9 +4,10 @@
 
 namespace hrs
 {
-HrsServer::HrsServer()
+HrsServer::HrsServer(uint16_t expire_sec)
     : sl::Server(&_service_factory, &_user_validator)
 {
+    _user_validator.setExpire(std::chrono::seconds(expire_sec));
     _service_factory.setUserValidator(&_user_validator);
 }
 

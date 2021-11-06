@@ -9,8 +9,12 @@
 
 namespace hrs
 {
-//! Обработчик запроса Auth::checkLogin
-SL_DEFINE_PROCESSOR(AuthRequestProcessor, Srv::Auth::AsyncService, HrsServiceFactory::AUTH_SERVICE_KEY, Srv::LoginRequest, Srv::LoginReply,
-                    checkLogin)
+//! Обработчик запроса Auth::Login
+SL_DEFINE_PROCESSOR(LoginRequestProcessor, Srv::Auth::AsyncService, HrsServiceFactory::AUTH_SERVICE_KEY, Srv::LoginRequest, Srv::LoginReply,
+                    Login)
+
+//! Обработчик запроса Auth::KeepAlive
+SL_DEFINE_PROCESSOR(KeepAliveRequestProcessor, Srv::Auth::AsyncService, HrsServiceFactory::AUTH_SERVICE_KEY, Srv::KeepAliveRequest,
+                    Srv::KeepAliveReply, KeepAlive)
 
 } // namespace hrs

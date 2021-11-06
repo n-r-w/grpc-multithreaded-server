@@ -8,6 +8,9 @@
 #include <client_lib/hrs_channel.h>
 #include <client_lib/hrs_sql_request.h>
 
+#include <grpcpp/grpcpp.h>
+#include <api/generated/srv/srv.grpc.pb.h>
+
 void execSqlClient()
 {
     size_t counter = 0;
@@ -37,13 +40,13 @@ void execSqlClient()
 
 int main(int argc, char** argv)
 {
-    auto error = hrs::ClientChannel::setup("localhost:50051", grpc::InsecureChannelCredentials(), "petrov", "qq1234");
+    auto error = hrs::ClientChannel::connect("localhost:50051", grpc::InsecureChannelCredentials(), "petrov", "qq1234");
     if (error.isError()) {
         sl::Utils::coutPrint(std::to_string(error.code()));
         return 0;
     }
 
-    size_t worker_sql_count = 1;
+    size_t worker_sql_count = 50;
     std::vector<std::thread*> worker_threads;
 
     for (size_t i = 0; i < worker_sql_count; i++) {

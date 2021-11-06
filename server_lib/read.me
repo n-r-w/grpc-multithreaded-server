@@ -1,0 +1,64 @@
+Для добавления нового сервиса:
+
+1. Добавить файлы proto
+
+2. Добавить константу ключа нового сервиса в наследника sl::ServiceFactory
+        inline static const std::string AUTH_SERVICE_KEY = "auth";
+        inline static const std::string SQL_SERVICE_KEY = "sql";
+        inline static const std::string TEST_SERVICE_KEY = "test";
+
+3. Добавить создание объекта сервиса в метод наследника sl::ServiceFactory::createService
+        grpc::Service* HrsServiceFactory::createService(const std::string& key) const
+        {
+            if (key == AUTH_SERVICE_KEY) {
+                _auth_service = new Srv::Auth::AsyncService;
+                return _auth_service;
+            }
+            if (key == SQL_SERVICE_KEY)
+                return new SqlApi::Sql::AsyncService;
+            if (key == TEST_SERVICE_KEY)
+                return new TestApi::TestService::AsyncService;
+
+            assert(false);
+            return nullptr;
+        }
+
+4. Добавить класс обработчик для каждого метода сервиса через макро SL_DEFINE_PROCESSOR
+            SL_DEFINE_PROCESSOR(AuthRequestProcessor, Srv::Auth::AsyncService, HrsServiceFactory::AUTH_SERVICE_KEY, Srv::LoginRequest, Srv::LoginReply,
+                                checkLogin)
+
+5. Добавить функцию обработчик для каждого метода сервиса
+            bool AuthRequestProcessor::handleRequest()
+            {
+                if (HrsServiceFactory::instance()->userValidator()->checkUser(request()->login(), request()->password())) {
+                    reply()->set_error_code(ErrorCodes::NoError);
+
+                } else {
+                    reply()->set_error_code(ErrorCodes::AuthFail);
+                }
+                return true;
+            }
+
+6. Добавить обработчик в наследника sl::RequestWorker::createRequestProcessors
+            std::vector<sl::RequestProcessorBase*> HrsRequestWorker::createRequestProcessors(const std::string& service_key) const
+            {
+                if (service_key == HrsServiceFactory::AUTH_SERVICE_KEY)
+                    return {
+                        new AuthRequestProcessor(queue(), this),
+                        new AuthConnectProcessor(queue(), this),
+                    };
+
+                if (service_key == HrsServiceFactory::SQL_SERVICE_KEY)
+                    return {
+                        new SqlRequestProcessor(queue(), this),
+                    };
+
+                if (service_key == HrsServiceFactory::TEST_SERVICE_KEY)
+                    return {
+                        new TestRequestProcessor1(queue(), this),
+                        new TestRequestProcessor2(queue(), this),
+                    };
+
+                assert(false);
+                return {};
+            }

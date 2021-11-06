@@ -5,7 +5,7 @@
 
 namespace hrs
 {
-void TestRequestProcessor2::handleRequest()
+bool TestRequestProcessor2::handleRequest()
 {
     // запрос
     sl::Utils::coutPrint("TestRequestProcessor2: " + request()->request2_info());
@@ -16,6 +16,8 @@ void TestRequestProcessor2::handleRequest()
         xxx += counter / (i + 1);
     }
     reply()->set_reply2_info("наш ответ 2: " + std::to_string(xxx));
+
+    return true;
 }
 
 } // namespace hrs
