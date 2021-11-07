@@ -8,8 +8,13 @@ file(GLOB SOURCES
     "*.cpp"
 )
 
+
 add_library(${ID}
 	${SOURCES}
+)
+
+target_include_directories(${ID} PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
 )
 
 target_link_libraries(${ID}    

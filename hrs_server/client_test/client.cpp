@@ -3,16 +3,16 @@
 #include <string>
 #include <thread>
 
-#include <utils/sl_utils.h>
+#include <sl_utils.h>
+#include <sl_binder.h>
+
 #include <api/src/hrs_data_converter.h>
-#include <client_lib/hrs_channel.h>
-#include <client_lib/hrs_sql_request.h>
+#include <hrs_channel.h>
+#include <hrs_sql_request.h>
 
 #include <grpcpp/grpcpp.h>
 #include <api/generated/srv/srv.grpc.pb.h>
 #include <atomic>
-
-#include <boost/algorithm/string/replace.hpp>
 
 void execSqlClient()
 {
@@ -55,12 +55,12 @@ static void channelCollback(sl::Error error)
 
 uint64_t addUser(const std::string& login, const std::string& password, const std::string& name, sl::Error& error)
 {
-    std::string sql = "INSERT INTO users(login, name, password_hash) values (':login', ':name', ':password_hash') RETURNING id_user";
-    boost::replace_all(sql, ":login", login);
-    boost::replace_all(sql, ":name", name);
-    boost::replace_all(sql, ":password_hash", sl::Utils::sha256(password));
+    sql::Binder binder("INSERT INTO users(login, name, password_hash) values (:login, :name, :password_hash) RETURNING id_user");
+    binder.bind(":login", login);
+    binder.bind(":name", name);
+    binder.bind(":password_hash", sl::Utils::sha256(password));
 
-    auto result = hrs::SqlRequest::exec(sql, error);
+    auto result = hrs::SqlRequest::exec(binder.sql(), error);
     if (error.isError())
         return 0;
 
@@ -76,7 +76,7 @@ int main(int argc, char** argv)
         return 0;
     }
 
-    //    auto user_id = addUser("ivanov", "qq1234", "Ivan Ivanov", error);
+    //    auto user_id = addUser("petrov", "qq1234", "Petr Petrov", error);
 
     hrs::ClientChannel::setCallback(channelCollback);
 

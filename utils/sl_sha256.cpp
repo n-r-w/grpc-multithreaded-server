@@ -2,6 +2,7 @@
 #include <cstring>
 #include <fstream>
 #include <chrono>
+#include <algorithm>
 
 namespace sl
 {

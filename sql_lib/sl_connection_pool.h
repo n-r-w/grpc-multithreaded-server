@@ -38,6 +38,8 @@ public:
     //! Создать запрос. Потокобезопасно
     QueryPtr getQuery(sl::Error& error);
 
+    //    virtual std::string valueToSql(...) = 0;
+
 protected:
     //! Создать соединение. Реализация зависит от конкретного SQL сервера
     virtual Connection* createConnection(const std::string& host, size_t port, const std::string& db_name, const std::string& login,

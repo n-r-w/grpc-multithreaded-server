@@ -9,6 +9,7 @@ target_link_libraries(${ID}
     client_lib
     server_lib
     hrs_api
+    sql_lib
     ${_REFLECTION}
     ${_GRPC_GRPCPP}
     ${_PROTOBUF_LIBPROTOBUF})
