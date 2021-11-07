@@ -12,13 +12,16 @@ namespace hrs
 bool LoginRequestProcessor::handleRequest()
 {
     std::string session_id;
-    if (HrsServiceFactory::instance()->userValidator()->login(request()->login(), request()->password(), session_id)) {
+    sl::Error error;
+    if (HrsServiceFactory::instance()->userValidator()->login(request()->login(), request()->password(), session_id, error)) {
         reply()->set_error_code(ErrorCodes::NoError);
         reply()->set_session_id(session_id);
         reply()->set_keep_alive_sec(HrsServiceFactory::instance()->userValidator()->expire().count());
 
     } else {
         reply()->set_error_code(ErrorCodes::AuthFail);
+        if (!error.text().empty())
+            reply()->set_error_text(error.text());
     }
     return true;
 }

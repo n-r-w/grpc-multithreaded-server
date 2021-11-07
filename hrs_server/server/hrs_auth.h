@@ -15,8 +15,8 @@ public:
 
 protected:
     //! Метод должен вернуть хэш акутального пароля для данного логина
-    bool getLoginPasswordHash(const std::string& login, std::string& password_hash) override;
+    bool getLoginPasswordHash(const std::string& login, std::string& password_hash, sl::Error& error) override;
     //! Метод должен вычислить хэш пароля
-    std::string calcPasswordHash(const std::string& password_hash) override;
+    std::string calcPasswordHash(const std::string& password) override;
 };
 } // namespace hrs

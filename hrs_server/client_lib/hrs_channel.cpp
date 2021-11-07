@@ -21,6 +21,12 @@ sl::Error ClientChannel::connect(const std::string& target, const std::shared_pt
 {
     std::lock_guard<std::mutex> lock(_mutex);
 
+    //    grpc::ChannelArguments args;
+    //    args.SetInt(GRPC_ARG_KEEPALIVE_TIME_MS, kKeepAliveTimeMs);
+    //    args.SetInt(GRPC_ARG_KEEPALIVE_TIMEOUT_MS, kKeepAliveTimeoutMs);
+    //    args.SetInt(GRPC_ARG_KEEPALIVE_PERMIT_WITHOUT_CALLS, true);
+    //    args.SetInt(GRPC_ARG_HTTP2_MAX_PINGS_WITHOUT_DATA, 0);
+
     _channel = grpc::CreateChannel(target, creds);
     auto state = _channel->GetState(true);
     if (state != GRPC_CHANNEL_READY && state != GRPC_CHANNEL_IDLE) {
@@ -47,7 +53,9 @@ sl::Error ClientChannel::connect(const std::string& target, const std::shared_pt
     _password = password;
     _session_id = reply.session_id();
 
-    _keep_alive_worker = std::make_unique<KeepAliveWorker>(std::chrono::seconds(reply.keep_alive_sec() / 2));
+    _keep_alive_worker = std::make_unique<KeepAliveWorker>(
+        // уменьшаем интервал поддержки соединения, чтобы не влияли сетевые задержки
+        std::chrono::seconds(std::max(reply.keep_alive_sec() / 2, reply.keep_alive_sec() - 20)));
     _keep_alive_worker->start();
 
     return {};

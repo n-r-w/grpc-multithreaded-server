@@ -10,43 +10,77 @@
 
 #include <grpcpp/grpcpp.h>
 #include <api/generated/srv/srv.grpc.pb.h>
+#include <atomic>
+
+#include <boost/algorithm/string/replace.hpp>
 
 void execSqlClient()
 {
+    static std::atomic<uint64_t> last_duration(0);
+
     size_t counter = 0;
     while (true) {
+        auto begin = std::chrono::steady_clock::now();
+
         sl::Error error;
+        auto result = hrs::SqlRequest::exec("SELECT * FROM some_data", error);
+        if (error.isOk())
+            result = hrs::SqlRequest::exec("UPDATE some_data SET name='test name' WHERE id=1", error);
 
-        auto result = hrs::SqlRequest::exec("SELECT * FROM r0031", error);
-        if (error.isError()) {
-            sl::Utils::coutPrint(std::to_string(++counter) + ", " + error.text());
+        auto end = std::chrono::steady_clock::now();
+        auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count();
 
-        } else {
-            assert(result->type() == sql::Query::ResultType::Select);
-            sl::Utils::coutPrint(std::to_string(++counter) + ", SQL data received. Row count: " + std::to_string(result->data()->rowCount())
-                                 + ", column count: " + std::to_string(result->data()->columnCount()));
-        }
-
-        result = hrs::SqlRequest::exec("UPDATE c_types SET sp=1 WHERE p00='1'", error);
-        if (error.isError()) {
-            sl::Utils::coutPrint(std::to_string(++counter) + ", " + error.text());
+        uint64_t diff;
+        if (last_duration == 0) {
+            last_duration = duration;
+            diff = 0;
 
         } else {
-            assert(result->type() == sql::Query::ResultType::Command);
-            sl::Utils::coutPrint(std::to_string(++counter) + ", SQL data received. Command OK");
+            diff = std::abs((int64_t)(last_duration - duration));
+            last_duration = duration;
         }
+
+        if (error.isError())
+            sl::Utils::coutPrint("error: " + error.fullText() + ", duration: " + std::to_string(duration)
+                                 + ", diff: " + std::to_string(diff));
+        else
+            sl::Utils::coutPrint("ok, duration: " + std::to_string(duration) + ", diff: " + std::to_string(diff));
     }
+}
+
+static void channelCollback(sl::Error error)
+{
+    sl::Utils::coutPrint("Callback error: " + error.fullText());
+}
+
+uint64_t addUser(const std::string& login, const std::string& password, const std::string& name, sl::Error& error)
+{
+    std::string sql = "INSERT INTO users(login, name, password_hash) values (':login', ':name', ':password_hash') RETURNING id_user";
+    boost::replace_all(sql, ":login", login);
+    boost::replace_all(sql, ":name", name);
+    boost::replace_all(sql, ":password_hash", sl::Utils::sha256(password));
+
+    auto result = hrs::SqlRequest::exec(sql, error);
+    if (error.isError())
+        return 0;
+
+    auto id = result->data()->toString(0, 0);
+    return std::stoul(*id);
 }
 
 int main(int argc, char** argv)
 {
-    auto error = hrs::ClientChannel::connect("localhost:50051", grpc::InsecureChannelCredentials(), "petrov", "qq1234");
+    auto error = hrs::ClientChannel::connect("localhost:50051", grpc::InsecureChannelCredentials(), "ivanov", "qq1234");
     if (error.isError()) {
         sl::Utils::coutPrint(std::to_string(error.code()));
         return 0;
     }
 
-    size_t worker_sql_count = 50;
+    //    auto user_id = addUser("ivanov", "qq1234", "Ivan Ivanov", error);
+
+    hrs::ClientChannel::setCallback(channelCollback);
+
+    size_t worker_sql_count = 100;
     std::vector<std::thread*> worker_threads;
 
     for (size_t i = 0; i < worker_sql_count; i++) {

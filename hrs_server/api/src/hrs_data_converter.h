@@ -104,7 +104,7 @@ public:
     bool hasValue(size_t row, size_t column) const;
     //! Тип данных в ячейке
     DataType type(size_t row, size_t column) const;
-    ;
+
     const std::string* toString(size_t row, size_t column) const;
     int64_t toInt(size_t row, size_t column) const;
     double toDouble(size_t row, size_t column) const;

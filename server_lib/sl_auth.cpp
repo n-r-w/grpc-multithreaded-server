@@ -40,19 +40,21 @@ void UserValidator::clearSession(const std::string& session_id)
     _session_manager->removeSessionById(session_id);
 }
 
-bool UserValidator::login(const std::string& login, const std::string& password, std::string& session_id)
+bool UserValidator::login(const std::string& login, const std::string& password, std::string& session_id, sl::Error& error)
 {
     std::lock_guard<std::mutex> lock(_mutex);
 
+    session_id.erase();
     std::string request_hash = calcPasswordHash(password);
     std::string valid_hash;
-    if (!getLoginPasswordHash(login, valid_hash)) {
-        session_id.erase();
+    if (!getLoginPasswordHash(login, valid_hash, error))
         return false;
-    }
+
+    if (valid_hash != request_hash)
+        return false;
 
     session_id = _session_manager->createNewSession(login);
-    return valid_hash == request_hash;
+    return true;
 }
 
 } // namespace sl

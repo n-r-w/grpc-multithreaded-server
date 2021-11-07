@@ -4,6 +4,8 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
 
+#include <sl_error.h>
+
 namespace sl
 {
 class SessionManager;
@@ -23,7 +25,7 @@ public:
     //! Проверка входа пользователя. Если все ОК, то возвращает идентификатор сессии
     bool login(const std::string& login, const std::string& password,
                //! Идентификатор сессии
-               std::string& session_id);
+               std::string& session_id, sl::Error& error);
     //! Проверка сессии на актуальность
     bool checkSession(const std::string& session_id);
 
@@ -34,9 +36,9 @@ public:
 
 protected:
     //! Метод должен вернуть хэш акутального пароля для данного логина, если такой существует
-    virtual bool getLoginPasswordHash(const std::string& login, std::string& password_hash) = 0;
+    virtual bool getLoginPasswordHash(const std::string& login, std::string& password_hash, sl::Error& error) = 0;
     //! Метод должен вычислить хэш пароля
-    virtual std::string calcPasswordHash(const std::string& password_hash) = 0;
+    virtual std::string calcPasswordHash(const std::string& password) = 0;
 
 private:
     std::mutex _mutex;
